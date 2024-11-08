@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: junction
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - ARCH=amd64      # markus change to "arm64v8"
+        - PYTHON_VERSION=3.11
+    tty: true
+    stdin_open: true
+    command: bash
+    volumes:
+      - ./backend:/app/backend
+      - ./frontend:/app/frontend
+      - ./prep.sh:/app/prep.sh
+      - node_modules:/app/frontend/node_modules
+    ports:
+      - "5173:5173" #vite dev port
+      - "8000:8000" #fastapi server port
+    env_file:
+      - .env
+      
+volumes:
+  node_modules:
