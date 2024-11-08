@@ -4,6 +4,6 @@
 
 <template>
 	<main>
-		<div>Kontsaa</div>
+		<div>paskaa</div>
 	</main>
 </template>
