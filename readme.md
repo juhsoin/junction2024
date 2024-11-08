@@ -1,0 +1,35 @@
+# Testing that container based workflow works
+
+## Docker 
+
+- Inspect compose.yaml and change the architecture arg based on the platform you are running on
+- run ```docker compose build``` and ```docker compose up```
+
+
+## running fastapi
+
+- attach to the container with ```docker attach <container_tag>```
+
+- go to /app/back and run ```fastapi dev --host 0.0.0.0``` 
+
+- navigate to localhost:8000/api in your browser and check do you receive the mock json response
+
+
+## running vite dev
+
+- attach to the container with ```docker attach <container_tag>```
+
+- go to /app/front/vue-project and run ```npm run dev``` 
+
+- navigate to localhost:5173 in your browser and check do you see the vue default page
+
+
+## vscode specific stuff
+
+- install remote development extension
+
+- after spinning up the containers install necessary extensions inside the container environment (example in prep.sh)
+
+## neovim specific stuff
+
+- go and figure
