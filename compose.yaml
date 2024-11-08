@@ -27,14 +27,6 @@ services:
     ports:
       - "5173:5173" #vite dev port
       - "8000:8000" #fastapi server port
-    env_file:
-      - .env
-<<<<<<< HEAD
       
 volumes:
   node_modules:
-=======
-
-volumes:  
-  node_modules:
->>>>>>> b65eff9 (added database and added way to run as non root inside the container)
