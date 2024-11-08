@@ -22,6 +22,7 @@ RUN pip3 install -r requirements.txt
 WORKDIR /app/frontend/
 #RUN npm cache --clean 
 RUN npm install 
+RUN npm ci
 
 
 CMD [ "bash" ]
