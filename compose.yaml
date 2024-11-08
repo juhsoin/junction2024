@@ -17,6 +17,12 @@ services:
       - ./frontend:/app/frontend
       - ./prep.sh:/app/prep.sh
       - node_modules:/app/frontend/node_modules
+
+      # Neovim stuff
+      - "./nvim-linux64/:/root/" # neovim binary
+      - "~/bin/:/root/scripts/" # some script to make my config work
+      - "./nvim_config/:/root/nvim/" # neovim config
+      - "./bashrc/:/root/.bashrc" # set path variables + add shortcut to start nvim
     ports:
       - "5173:5173" #vite dev port
       - "8000:8000" #fastapi server port

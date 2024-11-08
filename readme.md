@@ -27,9 +27,11 @@
 ## vscode specific stuff
 
 - install remote development extension
-
 - after spinning up the containers install necessary extensions inside the container environment (example in prep.sh)
 
 ## neovim specific stuff
 
-- go and figure
+- download neovim tar archive from https://github.com/neovim/neovim/releases/tag/v0.10.2
+- extract and add `nvim-linux64/` folder to the root
+- ensure that nvim mounts in `./compose.yaml` are uncommented
+- start container and enjoy smooth neovim experience
