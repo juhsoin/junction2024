@@ -2,3 +2,6 @@
 */**/__pycache__/*
 nvim_config
 nvim-linux64/
+*.env
+
+__pycache__/

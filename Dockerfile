@@ -10,7 +10,8 @@ RUN debian_frontend=noninteractive apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     nodejs \
-    npm
+    npm \
+    sqlite3
 
 COPY ./backend/requirements.txt /app/backend/requirements.txt
 COPY ./frontend/package.json /app/frontend/package.json
