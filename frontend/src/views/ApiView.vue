@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	// aaoeu
+// aaoeu
 </script>
 
 <template>
