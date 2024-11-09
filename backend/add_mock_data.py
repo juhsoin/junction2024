@@ -13,7 +13,7 @@ def main():
         mock_api = pd.read_csv("./mock_data/api.csv", sep="\t")
         mock_api.to_sql(name="api", con=connection, if_exists='append', index=False)
 
-        mock_tickets = pd.read_csv("./mock_data/tickets_old.csv", sep="\t")
+        mock_tickets = pd.read_csv("./mock_data/ticket.csv", sep="\t")
         mock_tickets.to_sql(name="ticket", con=connection, if_exists='append', index=False)
 
         mock_comment = pd.read_csv("./mock_data/comment.csv", sep="\t")
