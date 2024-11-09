@@ -1,11 +1,12 @@
 from typing import Optional
 from sqlmodel import SQLModel, Field
+from ..schemas.categories import States
 
 class Update(SQLModel, table=True):
     id: Optional[str] = Field(default=None, primary_key=True)
     title: str
     description: str
-    status: str
+    status: States
     created_at: Optional[float] = None
     updated_at: Optional[float] = None
     root_id: str # ticket id

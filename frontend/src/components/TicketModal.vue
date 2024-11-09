@@ -1,10 +1,12 @@
 <script lang="ts" setup>
+import type { ITicket } from '@/api/ticket';
 import { defineProps, defineEmits, ref } from 'vue';
-import { VCard, VCardTitle, VCardText, VCardActions, VBtn, VDialog, VDivider, VContainer } from 'vuetify/components';
+import { VCard, VCardTitle, VCardText, VBtn, VDivider, VContainer } from 'vuetify/components';
 import TicketChat from './TicketChat.vue';
 
 // Define the props
 const props = defineProps<{
+  ticket: ITicket;
 }>();
 
 // Emit an action event when the button is clicked
@@ -53,9 +55,6 @@ const public_save = ref([
     { user: 'Helen 4', description: 'This is the fourth item.' },
   ]);
 
-
-
-
 </script>
 
 <template>
@@ -67,7 +66,8 @@ const public_save = ref([
               {{ title }}
             </VCardTitle>
             <VCardText>
-              <span class="card-section-title">State: </span> {{ state }}
+              <span class="card-section-title">Description: </span> 
+              <p class="text-wrap"> {{ state }} </p>
             </VCardText>
             <VCardText>
               <span class="card-section-title">Category: </span>{{ category }}

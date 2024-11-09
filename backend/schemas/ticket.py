@@ -1,6 +1,6 @@
 from typing import Optional
 from sqlmodel import SQLModel, Field
-from categories import States
+from .categories import States
 
 class Ticket(SQLModel, table=True):
     id: Optional[str] = Field(default=None, primary_key=True)

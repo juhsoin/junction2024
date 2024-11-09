@@ -10,7 +10,11 @@
 
 - attach to the container with ```docker attach <container_tag>```
 
-- go to /app/back and run ```fastapi dev --host 0.0.0.0``` 
+- go to /app/back
+
+- Before running first time the api, run ````python3 add_mock_data.py``` to populate the database with mock data
+
+- run ```fastapi dev --host 0.0.0.0``` to start the backend API
 
 - navigate to localhost:8000/api in your browser and check do you receive the mock json response
 

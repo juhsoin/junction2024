@@ -19,7 +19,6 @@ def create_ticket(ticket: Ticket, session: SessionDep) -> Ticket:
     session.add(ticket)
     session.commit()
     session.refresh(ticket)
-    print(ticket)
     return ticket
 
 
@@ -42,10 +41,12 @@ def read_tickets(f: Filter, session: SessionDep) -> list[Ticket]:
 
 
 @router.post("/api/tickets/root/{root_id}")
-def get_api_tickets(f: Filter, root_id: int, session: SessionDep) -> list[Ticket]:
+def get_api_tickets(f: Filter, root_id: str, session: SessionDep) -> list[Ticket]:
     tickets = session.exec(select(Ticket).where(Ticket.root_id == root_id)).all()
     if not tickets:
         raise HTTPException(status_code=404, detail="Ticket not found")
+    for t in tickets:
+        print(t)
     return list(filter(f.apply, tickets))
 
 

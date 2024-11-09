@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import IntEnum
 
 
-class Category(Enum):
+class Category(IntEnum):
     KAYTTOPAIKKAPROSESSI = 1
     TUOTEPROSESSI = 2
     MITTAUSTIETOPROSESSI = 3
@@ -24,7 +24,7 @@ class Category(Enum):
     KUORMANOHJAUSPROSESSI = 20
 
 
-class States(Enum):
+class States(IntEnum):
     NEW = 1
     CLARIFICATION = 2
     RECOMMENDATION = 3

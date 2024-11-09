@@ -1,6 +1,6 @@
 from typing import Optional
 from sqlmodel import SQLModel
-from categories import Category, States
+from .categories import States
 
 class Filter(SQLModel):
     id: Optional[str] = None
@@ -9,7 +9,7 @@ class Filter(SQLModel):
     updated_after: Optional[float] = None
     created_before: Optional[float] = None
     updated_before: Optional[float] = None
-    categories: Optional[list[Category]] = None
+    categories: Optional[str] = None
     state: Optional[States] = None
     root: Optional[str] = None
 
