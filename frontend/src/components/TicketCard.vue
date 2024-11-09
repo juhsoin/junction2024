@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue';
-import { VCard, VCardTitle, VCardText, VCardActions, VBtn } from 'vuetify/components';
+import { VCard, VCardTitle, VCardText, VCardActions, VBtn, VCardSubtitle } from 'vuetify/components';
 import TicketModal from './TicketModal.vue';
 import type { ITicket } from '@/api/ticket';
+import { EStates } from '@/filters/filter';
 
 // Define the props
 const props = defineProps<{
@@ -25,8 +26,9 @@ const handleActionClick = () => {
     <VCardTitle>
       {{ ticket.title }}
     </VCardTitle>
-    <VCardText color="secondary">
-      {{ ticket.description }}
+    <VCardSubtitle>{{ EStates[parseInt(ticket.status)] }}</VCardSubtitle>
+    <VCardText color="secondary" class="description-paragraph">
+      {{ ticket.description.slice(0, 30) + (ticket.description.length > 30 ? '...' : '')}}
     </VCardText>
     <VDialog scrollable>
         <template v-slot:activator="{ props: activatorProps }">
@@ -45,6 +47,12 @@ const handleActionClick = () => {
 .ticket-card {
   border: 1px solid #eee;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 250px;
+  max-width: 280px;
+}
+
+.description-paragraph {
+  max-height: 10px;
 }
 
 .ticket-modal {
