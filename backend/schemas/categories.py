@@ -1,7 +1,9 @@
 from enum import Enum
+from typing import Optional
+from sqlmodel import Field, SQLModel
 
 
-class Category(Enum):
+class Cat(Enum):
     KAYTTOPAIKKAPROSESSI = 1
     TUOTEPROSESSI = 2
     MITTAUSTIETOPROSESSI = 3
@@ -24,10 +26,24 @@ class Category(Enum):
     KUORMANOHJAUSPROSESSI = 20
 
 
-class States(Enum):
+class Category(SQLModel, table=True):
+    id: str = Field(default=None, primary_key=True)
+    value: str
+    ticket_id: Optional[str]
+    update_id: Optional[str]
+
+
+class Stat(Enum):
     NEW = 1
     CLARIFICATION = 2
     RECOMMENDATION = 3
     WIP = 4
     READY = 5
     REJECTED = 6
+
+
+class States(SQLModel, table=True):
+    id: str = Field(default=None, primary_key=True)
+    value: str
+    ticket_id: Optional[str]
+    update_id: Optional[str]

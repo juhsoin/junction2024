@@ -1,7 +1,9 @@
 from typing import Optional
 from sqlmodel import SQLModel, Field
 
-class Update(SQLModel, table=True):
+from ..schemas.categories import Category
+
+class BaseUpdate():
     id: Optional[str] = Field(default=None, primary_key=True)
     title: str
     description: str
@@ -18,4 +20,11 @@ class Update(SQLModel, table=True):
     next_steps: Optional[str]
     workgroup: Optional[str]
     othernotes: Optional[str]
+
+
+class Update(BaseUpdate):
+    categories: Optional[list[Category]]
+
+
+class SQLUpdate(BaseUpdate, SQLModel, table=True):
     categories: Optional[str]

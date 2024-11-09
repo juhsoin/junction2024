@@ -1,12 +1,11 @@
 from typing import Optional
 from sqlmodel import SQLModel, Field
-from categories import States
 
 class Ticket(SQLModel, table=True):
     id: Optional[str] = Field(default=None, primary_key=True)
     title: str
     description: str
-    status: States
+    status: int
     created_at: Optional[float] = None
     updated_at: Optional[float] = None
     root_id: str # connect to some api, allow fast filtering of api issues
@@ -17,5 +16,4 @@ class Ticket(SQLModel, table=True):
     argumentation_for_proposal: Optional[str]
     proposal_impact: Optional[str]
     next_steps: Optional[str]
-    categories: Optional[str]
     planned_release_version: Optional[str]

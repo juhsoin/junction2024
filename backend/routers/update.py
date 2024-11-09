@@ -1,4 +1,4 @@
-from ..schemas.update import Update
+from ..schemas.update import SQLUpdate, Update
 from ..schemas.filter import Filter
 from ..schemas.database_init import SessionDep
 from fastapi import APIRouter, HTTPException
@@ -9,6 +9,19 @@ import datetime
 router = APIRouter()
 
 
+def transform_to_sql(u: Update) -> SQLUpdate:
+    sqlu: SQLTicket = u.__deepcopy__() # pyright: ignore
+    if u.categories and len(u.categories) > 0:
+        sqlu.categories = ",".join(u.categories) # pyright: ignore
+    return sqlu
+
+def transform_to_ticket(sqlu: SQLUpdate) -> Update:
+    u: Ticket = SQLticket.__deepcopy__() # pyright: ignore
+    if sqlu.categories and len(sqlu.categories) > 0:
+        u.categories = sqlu.categories.split(",") # pyright: ignore
+    return u
+
+
 @router.post("/api/update/create/{ticket_id}")
 def create_update(update: Update, ticket_id: str, session: SessionDep) -> Update:
     Update.model_validate(update)
@@ -17,15 +30,17 @@ def create_update(update: Update, ticket_id: str, session: SessionDep) -> Update
     update.updated_at = date.timestamp()
     update.id = datetime.datetime.now().strftime("%M%S")
     update.root_id = ticket_id
-    session.add(update)
+    sqlu = transform_to_sql(update)
+    session.add(sqlu)
     session.commit()
-    session.refresh(update)
+    session.refresh(sqlu)
     return update
 
 
 @router.post("/api/update/get/{ticket_id}")
 def read_update(f: Filter, ticket_id: str, session: SessionDep) -> list[Update]:
-    updates = session.exec(select(Update).where(Update.root_id == ticket_id)).all()
-    if not updates:
+    sqlupdates = session.exec(select(SQLUpdate).where(SQLUpdate.root_id == ticket_id)).all()
+    if not sqlupdates:
         raise HTTPException(status_code=404, detail="Update not found")
-    return list(filter(f.apply, updates))
+    ups = map(transform_to_ticket, sqlupdates)
+    return list(filter(f.apply, ups))
