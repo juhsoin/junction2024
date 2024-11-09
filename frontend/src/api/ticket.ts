@@ -85,6 +85,17 @@ export const subscRibeToTickets = async (ticketId: string) => {
 	return response
 }
 
+export const unsubscRibeToTickets = async (ticketId: string) => {
+	const user = get_user_id()
+	const response = await fetch(API_URL + "/users/" + user + "/subscribe/" + ticketId, {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	})
+	return response
+}
+
 export const fetchTicketMeetingNotes = async (ticketId: string) => {
 	const response = await fetch(API_URL + "/update/get/" + ticketId, {
 		method: "POST",

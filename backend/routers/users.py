@@ -80,11 +80,12 @@ def unsubscribe_user_from_ticket(user_id: str, ticket_id: str, session: SessionD
             TicketSubscription.user_id == user_id
             and TicketSubscription.ticket_id == ticket_id
         )
-    )
+    ).all()
 
     if subscription:
-        res = subscription.one()
+        res = subscription[0]
         session.delete(res)
+        session.commit()
         return subscription
     else:
         raise HTTPException(status_code=404, detail="User not found")

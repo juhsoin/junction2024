@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits } from 'vue';
+import { defineProps, defineEmits, onMounted } from 'vue';
 import { VCard, VCardTitle, VCardText, VCardActions, VBtn, VCardSubtitle } from 'vuetify/components';
 import TicketModal from './TicketModal.vue';
 import type { ITicket } from '@/api/ticket';
@@ -8,11 +8,13 @@ import { EStates } from '@/filters/filter';
 // Define the props
 const props = defineProps<{
 	ticket: ITicket;
+	followed?: bool
 }>();
 
 // Emit an action event when the button is clicked
 const emit = defineEmits<{
 	(e: 'action-clicked'): void;
+	(e: 'deleted'): void;
 }>();
 
 // Handle action button click
@@ -43,7 +45,7 @@ const stateHighlight = (ticket: ITicket) => {
 				</VCardActions>
 			</template>
 			<template v-slot:default="{ isActive }">
-				<TicketModal :ticket="ticket" class="ticket-modal"></TicketModal>
+				<TicketModal @deleted="$emit('deleted')" :followed="props.followed" :ticket="ticket" class="ticket-modal"></TicketModal>
 			</template>
 		</VDialog>
 	</VCard>

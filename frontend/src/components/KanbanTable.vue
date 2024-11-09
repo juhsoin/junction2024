@@ -62,6 +62,7 @@ const columns = [
           v-for="ticket in filteredTickets(column.status)"
           class="kanban-card"
           :ticket="ticket"
+		  :followed="false"
         />
       </VCol>
     </VRow>

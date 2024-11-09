@@ -5,10 +5,12 @@ import TicketCard from './TicketCard.vue';
 
 const props = defineProps<{
 	tickets: ITicket[];
+	followed?: bool
 }>();
 
 const emit = defineEmits<{
 	(e: 'ticket-action', ticket: { id: number; title: string; description: string }): void;
+	(e: 'deleted'): void;
 }>();
 
 </script>
@@ -17,7 +19,7 @@ const emit = defineEmits<{
 	<VContainer>
 		<VRow :gutter="0" class="ticket-row">
 			<VCol v-for="ticket in tickets" :key="ticket.id" cols="4">
-				<TicketCard :ticket="ticket" />
+				<TicketCard @deleted="$emit('deleted')" :followed="props.followed" :ticket="ticket" />
 			</VCol>
 		</VRow>
 	</VContainer>

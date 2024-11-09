@@ -21,6 +21,13 @@ onMounted(() => {
 	});
 });
 
+const refresh = () => {
+	fetchUsersTickets().then((response) => {
+		console.log(response)
+		tickets.value = response
+		loading.value = false;
+	});
+}
 
 const apiInfo = [
 	{
@@ -46,7 +53,7 @@ const handleNavigation = (route: string) => {
 	<VContainer>
 		<h1>Your Tickets</h1>
 		<div v-if="loading">Loading...</div>
-		<TicketGrid v-else :tickets="tickets">
+		<TicketGrid v-else @deleted="refresh" :followed="true" :tickets="tickets">
 		</TicketGrid>
 		<VBtn variant="plain" color="primary" @click="handleNavigation('/tickets')">Show All</VBtn>
 	</VContainer>

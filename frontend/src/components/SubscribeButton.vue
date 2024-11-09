@@ -1,20 +1,31 @@
 <script lang="ts" setup>
-import { ref, defineProps } from 'vue';
-import { subscRibeToTickets } from '@/api/ticket';
+import { ref, defineProps, onMounted, defineEmits } from 'vue';
+import { subscRibeToTickets, unsubscRibeToTickets } from '@/api/ticket';
 import { VBtn } from 'vuetify/components';
 
-const props = defineProps(["ticket_id"])
+const props = defineProps(["ticket_id", "followed"])
+const emit = defineEmits(["deleted"])
 
-// const follow_but_text = ref("Follow")
 const subs = () => {
 	console.log("subscriibattu!")
 	subscRibeToTickets(props.ticket_id)
+}
+
+onMounted(() => {
+console.log(props.followed)
+})
+
+const unsub = () => {
+	console.log("unsubscriibattu!")
+	unsubscRibeToTickets(props.ticket_id)
+	emit("deleted")
 }
 </script>
 
 <template>
 	<div class="modal-header-interactions">
 		<VBtn icon="mdi-thumb-up" color="primary"></VBtn> <br>
-		<VBtn color="primary" @click="subs">Follow</VBtn>
+		<VBtn v-if="!props.followed" color="primary" @click="subs">Follow</VBtn>
+		<VBtn v-else color="primary" @click="unsub">Unfollow</VBtn>
 	</div>
 </template>

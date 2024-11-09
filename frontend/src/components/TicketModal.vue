@@ -9,11 +9,13 @@ import SubscribeButton from "./SubscribeButton.vue"
 // Define the props
 const props = defineProps<{
 	ticket: ITicket;
+	followed?: bool
 }>();
 
 // Emit an action event when the button is clicked
 const emit = defineEmits<{
 	(e: 'action-clicked'): void;
+	(e: 'deleted'): void,
 }>();
 
 // Handle action button click
@@ -62,6 +64,10 @@ const private_save = ref([
 	{ user: 'Helen 4', description: 'This is the fourth item.' },
 ]);
 
+const emitDeleted = () => {
+	emit("deleted")
+}
+
 </script>
 
 <template>
@@ -83,7 +89,7 @@ const private_save = ref([
 						<span class="card-section-title">Planned release version: </span>{{ release_version }}
 					</VCardText>
 				</div>
-				<SubscribeButton :ticket_id="ticket.id"></SubscribeButton>
+				<SubscribeButton :followed="props.followed" @deleted="emitDeleted()" :ticket_id="ticket.id"></SubscribeButton>
 			</div>
 			<VDivider></VDivider>
 			<VCardText class="card-section-top">
