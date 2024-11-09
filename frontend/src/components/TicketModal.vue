@@ -1,9 +1,11 @@
 <script lang="ts" setup>
+import type { ITicket } from '@/api/ticket';
 import { defineProps, defineEmits, ref } from 'vue';
 import { VCard, VCardTitle, VCardText, VCardActions, VBtn, VDialog, VDivider, VContainer } from 'vuetify/components';
 
 // Define the props
 const props = defineProps<{
+  ticket: ITicket;
 }>();
 
 // Emit an action event when the button is clicked
@@ -38,7 +40,8 @@ const release_version = '3.2.1'
               {{ title }}
             </VCardTitle>
             <VCardText>
-              <span class="card-section-title">State: </span> {{ state }}
+              <span class="card-section-title">Description: </span> 
+              <p class="text-wrap"> {{ state }} </p>
             </VCardText>
             <VCardText>
               <span class="card-section-title">Category: </span>{{ category }}

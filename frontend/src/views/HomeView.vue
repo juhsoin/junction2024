@@ -6,7 +6,15 @@ import { fetchTickets, type ITicketResponse, type ITicket } from '../api/ticket'
 
 
 // plaeholder for demo purposes
-const ticketInfo: ITicketResponse = await fetchTickets();
+
+import { onMounted, ref } from 'vue';
+
+const ticketInfo = ref<ITicketResponse | null>(null);
+
+onMounted(async () => {
+	ticketInfo.value = await fetchTickets();
+});
+
 </script>
 
 <template>

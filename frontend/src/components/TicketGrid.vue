@@ -3,7 +3,7 @@ import { VCol, VRow, VContainer } from 'vuetify/components';
 import {type ITicket, type ITicketResponse} from '../api/ticket';
 
 const props = defineProps<{
-  tickets: ITicketResponse;
+  tickets: ITicketResponse | null;
 }>();
 
 const emit = defineEmits<{
@@ -23,8 +23,7 @@ const tickets = props.tickets;
         cols="4"
         >
         <TicketCard
-          :title="ticket.title"
-          :description="ticket.description"
+          ticket: ticket;
         />
       </VCol>
     </VRow>

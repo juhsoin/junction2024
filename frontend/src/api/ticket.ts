@@ -22,7 +22,7 @@ export interface ITicket {
 
 export type ITicketResponse = [ITicket]; 
 
-export const fetchTickets = async (): Promise<TicketResponse> => {
+export const fetchTickets = async (): Promise<ITicketResponse> => {
     const response = await fetch(
         API_URL + '/tickets/all', {
         method: 'GET',
@@ -31,11 +31,11 @@ export const fetchTickets = async (): Promise<TicketResponse> => {
             },
         }
     );
-    const body: TicketResponse  = await response.json()
+    const body: ITicketResponse  = await response.json()
     return body
 }
 
-export const fetchUsersTickets = async (userId: string): Promise<TicketResponse> => {
+export const fetchUsersTickets = async (userId: string): Promise<ITicketResponse> => {
     const response = await fetch(
         API_URL + '/tickets/user/' + userId + "/tickets", {
         method: 'GET',
@@ -44,18 +44,20 @@ export const fetchUsersTickets = async (userId: string): Promise<TicketResponse>
             },
         }
     );
-    const body: TicketResponse  = await response.json()
+    const body: ITicketResponse  = await response.json()
     return body
 }
 
-export const subscRibeToTickets = async (userId: string, ticketId: string) => {
+export const fetchTicket = async (ticketId: string): Promise<ITicket> => {
     const response = await fetch(
-        API_URL + '/tickets/user/' + userId + "/subscribe/" + ticketId, {
-        method: 'POST',
+        API_URL + '/tickets/' + ticketId, {
+        method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
         }
     );
-    return response
+    const body: ITicket  = await response.json()
+    return body
 }
+
