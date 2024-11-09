@@ -6,5 +6,5 @@ class Api(SQLModel, table=True):
     title: str
     description: str
     status: str
-    created_at: Optional[str] = None
-    updated_at: Optional[str] = None
+    created_at: Optional[float] = None
+    updated_at: Optional[float] = None

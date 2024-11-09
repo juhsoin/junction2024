@@ -6,6 +6,6 @@ class Comment(SQLModel, table=True):
     title: str
     comment: str
     user_id: str
-    created_at: Optional[str] = None
-    updated_at: Optional[str] = None
+    created_at: Optional[float] = None
+    updated_at: Optional[float] = None
     root_id: str # ticket id
