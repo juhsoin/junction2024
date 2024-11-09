@@ -60,7 +60,7 @@ const handleNavigation = (route: string) => {
 	</VContainer>
 	<VContainer>
 		<h1>Your Fingrid Services</h1>
-		<ApiGrid :api-list="apiInfo"></ApiGrid>
+		<ApiGrid :api-list="apiInfo" :short-form="true" />
 		<VBtn variant="plain" color="primary" @click="handleNavigation('/apis')">Show All</VBtn>
 	</VContainer>
 </template>

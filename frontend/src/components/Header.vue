@@ -18,7 +18,7 @@ const handleNavigation = (route: string) => {
             Home
         </VBtn>
         <VBtn icon @click="handleNavigation('/apis')">
-            APIs
+            Services
         </VBtn>
         <VBtn icon @click="handleNavigation('/tickets')">
             Tickets
@@ -37,7 +37,7 @@ const handleNavigation = (route: string) => {
         padding-right: 30px;
     }
     .v-btn {
-        margin: 30px;
+        margin: 40px;
     }
     .user-view {
         padding-right: 30px;

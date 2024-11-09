@@ -7,6 +7,7 @@ const props = defineProps<{
     title: string;
     description: string;
     status: string;
+    shortForm: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -16,11 +17,20 @@ const emit = defineEmits<{
 </script>
 
 <template>
-   <VCard class="api-card">
-            <VCardTitle>{{ title }}</VCardTitle>
-            <VCardSubtitle>{{ status }}</VCardSubtitle>
-            <VCardText>{{ description }}</VCardText>
-        </VCard>
+   <VCard v-if="shortForm" class="api-card">
+        <VCardTitle>{{ title }}</VCardTitle>
+        <VCardSubtitle>{{ status }}</VCardSubtitle>
+        <VCardText>{{ description }}</VCardText>
+    </VCard>
+
+    <VCard v-else class="api-card">
+        <VCardTitle>{{ title }}</VCardTitle>
+        <VCardSubtitle>{{ status }}</VCardSubtitle>
+        <VCardText>Current Version: 1.2.3</VCardText>
+        <VCardText>Next release: 1.3.0</VCardText>
+        <VCardText>Next change description</VCardText>
+        <VCardText>{{ description }}</VCardText>
+    </VCard>
 </template>
 
 <style scoped>

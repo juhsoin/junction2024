@@ -31,7 +31,7 @@ const handleActionClick = () => {
     <VDialog scrollable>
         <template v-slot:activator="{ props: activatorProps }">
             <VCardActions>
-                <VBtn v-bind="activatorProps" color="primary" @click="handleActionClick">Show details</VBtn>
+                <VBtn variant="plain" v-bind="activatorProps" color="primary" @click="handleActionClick">Show details</VBtn>
             </VCardActions>
         </template>
         <template v-slot:default="{ isActive }">

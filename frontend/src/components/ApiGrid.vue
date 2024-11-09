@@ -11,6 +11,7 @@ interface apiInfo {
 
 const props = defineProps<{
   apiList: apiInfo[];
+  shortForm: boolean;
 }>();
 
 
@@ -30,6 +31,7 @@ const emit = defineEmits<{
             :id="api.id"
             :description="api.description"
             :status="api.status"
+            :short-form="shortForm"
         ></ApiCard>
     </VRow>
    </VContainer>
