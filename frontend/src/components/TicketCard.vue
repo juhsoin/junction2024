@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue';
 import { VCard, VCardTitle, VCardText, VCardActions, VBtn } from 'vuetify/components';
+import TicketModal from './TicketModal.vue';
 
 // Define the props
 const props = defineProps<{
@@ -24,19 +25,30 @@ const handleActionClick = () => {
     <VCardTitle>
       {{ title }}
     </VCardTitle>
-    <VCardText>
+    <VCardText color="secondary">
       {{ description }}
     </VCardText>
-    <VCardActions>
-      <VBtn color="primary" @click="handleActionClick">Take Action</VBtn>
-    </VCardActions>
+    <VDialog scrollable>
+        <template v-slot:activator="{ props: activatorProps }">
+            <VCardActions>
+                <VBtn v-bind="activatorProps" color="primary" @click="handleActionClick">Show details</VBtn>
+            </VCardActions>
+        </template>
+        <template v-slot:default="{ isActive }">
+          <TicketModal class="ticket-modal"></TicketModal>
+        </template>
+    </VDialog>
   </VCard>
 </template>
 
 <style scoped>
 .ticket-card {
   border: 1px solid #eee;
-  width: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.ticket-modal {
+  align-self: center;
+}
+
 </style>
