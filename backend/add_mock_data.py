@@ -19,7 +19,7 @@ def main():
         mock_comment = pd.read_csv("./mock_data/comment.csv", sep="\t")
         mock_comment.to_sql(name="comment", con=connection, if_exists='append', index=False)
 
-        mock_subs = pd.read_csv("./mock_data/ticket_subscription.csv", sep="\t")
+        mock_subs = pd.read_csv("./mock_data/ticket_subs.csv", sep="\t")
         mock_subs.to_sql(name="ticket_subscription", con=connection, if_exists='append', index=False)
 
 
