@@ -1,6 +1,7 @@
 <script setup lang="ts">
-
+import ApiGrid from '@/components/ApiGrid.vue';
 import TicketGrid from '@/components/TicketGrid.vue';
+import router from '../router/index'
 
 import { VContainer } from 'vuetify/components';
 import { fetchTickets, type ITicket } from '../api/ticket';
@@ -19,14 +20,38 @@ onMounted(() => {
 	});
 });
 
+
+const apiInfo = [
+	{
+		id: '1',
+		title: 'Wind service',
+		description: 'Tuuli?',
+		status: 'Status',
+	},
+	{
+		id: '1',
+		title: 'Wind service',
+		description: 'Tuuli?',
+		status: 'Status',
+	},
+]
+
+const handleNavigation = (route: string) => {
+  router.push(route);
+};
 </script>
 
 <template>
-<VContainer>
-	<h1>Your Tickets</h1>
-	<div v-if="loading">Loading...</div>
+	<VContainer>
+		<h1>Your Tickets</h1>
+		<div v-if="loading">Loading...</div>
 	<TicketGrid v-else :tickets="tickets">
-	</TicketGrid>
-	
-</VContainer>
+		</TicketGrid>
+		<VBtn variant="plain" color="primary" @click="handleNavigation('/tickets')">Show All</VBtn>
+	</VContainer>
+	<VContainer>
+		<h1>Your Fingrid Services</h1>
+		<ApiGrid :api-list="apiInfo" :short-form="true" />
+		<VBtn variant="plain" color="primary" @click="handleNavigation('/apis')">Show All</VBtn>
+	</VContainer>
 </template>
