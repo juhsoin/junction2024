@@ -21,6 +21,16 @@ export interface ITicket {
     planned_release?: string;
 }
 
+export interface ITicketComment {
+    id: string
+    title: string
+    comment: string
+    user_id: string
+    created_at?: string
+    updated_at?: string
+    root_id: string
+}
+
 export const fetchTickets = async (): Promise<ITicket[]> => {
 
     const filterStore = useFilterStore();
@@ -36,7 +46,6 @@ export const fetchTickets = async (): Promise<ITicket[]> => {
         }
     );
     const body: ITicket[]  = await response.json()
-    console.log(body)
     return body
 }
 
@@ -71,4 +80,17 @@ export const subscRibeToTickets = async (userId: string, ticketId: string) => {
 		},
 	})
 	return response
+}
+
+export const fetchTicketMeetingNotes = async (ticketId: string) => {
+    const response = await fetch(API_URL + "/update/get/" + ticketId, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+        body: JSON.stringify({}),
+	})
+	const body: ITicketComment[] = await response.json()
+    console.log(body)
+	return body
 }

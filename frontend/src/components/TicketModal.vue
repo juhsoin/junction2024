@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import type { ITicket } from '@/api/ticket';
+import { fetchTicketMeetingNotes, type ITicket } from '@/api/ticket';
 import { defineProps, defineEmits, ref } from 'vue';
 import { VCard, VCardTitle, VCardText, VBtn, VDivider, VContainer } from 'vuetify/components';
 import TicketChat from './TicketChat.vue';
+import { EStates } from '@/filters/filter';
 
 // Define the props
 const props = defineProps<{
@@ -30,15 +31,20 @@ const addItemToPrivate = (newItem: { user: string; description: string }) => {
   private_save.value.push(newItem);
 };
 
-const title = "First ticket"
-const state = 'In progress'
-const category = 'wörk'
-const description = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus' +
-  	'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus!'
-const meetingNotes = ['good', 'poopoo', 'nice']
-const publicComments = ['comment', 'comment', 'comment']
-const privateComments = ['comment', 'comment', 'comment']
-const release_version = '3.2.1'
+const loading = ref(true)
+
+const title = props.ticket.title;
+const state = EStates[parseInt(props.ticket.status)]
+const category = 'Work'
+const description = props.ticket.description;
+const release_version = props.ticket.planned_release ?? 'unknown';
+const meetingNotes = ref<string[]>([])
+
+fetchTicketMeetingNotes(props.ticket.id ?? '').then((response) => {
+  meetingNotes.value = Array.isArray(response) ? response.map(n => n.comment) : [];
+  loading.value = false;
+})
+
 const user = ref({
   company: 'Fortum 1',
 });
@@ -92,13 +98,14 @@ const public_save = ref([
         </VCardText>
         <VDivider></VDivider>
           <VCardText
-            v-if="meetingNotesVisible"
+            v-if="meetingNotesVisible && meetingNotes.length"
             v-for="note in meetingNotes"
             class="meeting-note"
           >
           {{ note }}
           <VDivider></VDivider>
-        </VCardText>
+          </VCardText>
+          <VCardText v-else-if="meetingNotesVisible" class="meeting-note"> Notes not found.</VCardText>
 
         <VCardText class="card-section-public-comments">
             <span class="card-section-title">Public comments</span>
@@ -150,9 +157,9 @@ const public_save = ref([
 
   .modal-header-interactions {
     grid-column: 2;
-    margin-top: 40px;
+    margin-top: 5px;
+    margin-left: 520px;;
     .v-btn {
-      align-self: end;
       margin-top: 15px;
     }
   }
