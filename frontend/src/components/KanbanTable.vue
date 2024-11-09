@@ -3,6 +3,7 @@ import { defineProps, defineEmits } from 'vue';
 import { VContainer, VDivider } from 'vuetify/components';
 import TicketCard from './TicketCard.vue';
 import type { ITicket } from '@/api/ticket';
+import { EStates } from '@/filters/filter';
 
 const props = defineProps<{
   tickets: ITicket[];
@@ -13,33 +14,33 @@ const emit = defineEmits<{
   (e: 'action-clicked'): void;
 }>();
 
-const filteredTickets = (scope: string) => {
-    return props.tickets.filter((ticket) => ticket.status === scope )
+const filteredTickets = (scope: number) => {
+    return props.tickets.filter((ticket) => Math.min(parseInt(ticket.status), 5) === scope )
 }
 
 const columns = [
   {
     title: 'Requested',
-    status: 0,
-  },
-  {
-    title: 'In Progress',
     status: 1,
   },
-
   {
-    title: 'Valitated',
+    title: 'Clarification needed',
     status: 2,
   },
 
   {
-    title: 'Resolved',
+    title: 'Approved',
     status: 3,
   },
 
   {
-    title: 'Clarification',
+    title: 'In progress',
     status: 4,
+  },
+
+  {
+    title: 'Resolved',
+    status: 5,
   },
 ]
 
@@ -63,7 +64,6 @@ const columns = [
           :ticket="ticket"
         />
       </VCol>
-      
     </VRow>
     </VContainer>
   </template>
@@ -71,7 +71,7 @@ const columns = [
 <style scoped>
 
 .kanban-row {
-  width: 1700px !important;
+  width: 1750px !important;
 }
 
 .column-title {

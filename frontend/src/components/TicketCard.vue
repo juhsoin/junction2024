@@ -19,6 +19,11 @@ const emit = defineEmits<{
 const handleActionClick = () => {
   emit('action-clicked');
 };
+
+const stateHighlight = (ticket: ITicket) => {
+  return parseInt(ticket.status) === 6  ? 'warning-state' :
+   parseInt(ticket.status) === 5 ? 'confirmed-state' : '';
+}
 </script>
 
 <template>
@@ -26,7 +31,7 @@ const handleActionClick = () => {
     <VCardTitle>
       {{ ticket.title }}
     </VCardTitle>
-    <VCardSubtitle>{{ EStates[parseInt(ticket.status)] }}</VCardSubtitle>
+    <VCardText :class="stateHighlight(ticket)">{{ EStates[parseInt(ticket.status)] }}</VCardText>
     <VCardText color="secondary" class="description-paragraph">
       {{ ticket.description.slice(0, 30) + (ticket.description.length > 30 ? '...' : '')}}
     </VCardText>
@@ -57,6 +62,15 @@ const handleActionClick = () => {
 
 .ticket-modal {
   align-self: center;
+}
+
+.warning-state {
+  color: var(--brand-violet);
+  text-decoration: line-through;
+}
+
+.confirmed-state {
+  color: var(--brand-green);
 }
 
 </style>
