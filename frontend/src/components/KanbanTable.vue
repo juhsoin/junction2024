@@ -48,8 +48,6 @@ const columns = [
     title: 'Clarification',
     status: 'Started',
   },
-
-
 ]
 
 </script>
