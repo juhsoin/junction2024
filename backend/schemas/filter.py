@@ -26,8 +26,10 @@ class Filter(SQLModel):
             return False
         if self.categories and target.categories:
             one_found = False
+            # Assume that categories contains categories separated by commas
+            tcats = target.categories.split(",")
             for c in self.categories:
-                if c in target.categories:
+                if c in tcats:
                     one_found = True
             if not one_found:
                 return False

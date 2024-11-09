@@ -1,6 +1,5 @@
 from typing import Optional
 from sqlmodel import SQLModel, Field
-from categories import Category
 
 class Update(SQLModel, table=True):
     id: Optional[str] = Field(default=None, primary_key=True)
@@ -19,4 +18,4 @@ class Update(SQLModel, table=True):
     next_steps: Optional[str]
     workgroup: Optional[str]
     othernotes: Optional[str]
-    categories: Optional[list[Category]]
+    categories: Optional[str]
