@@ -4,6 +4,6 @@
 
 <template>
 	<main>
-		<div>paskaa</div>
+		<div>uwu</div>
 	</main>
 </template>
