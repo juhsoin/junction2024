@@ -8,4 +8,14 @@ class Ticket(SQLModel, table=True):
     status: str
     created_at: Optional[str] = None
     updated_at: Optional[str] = None
-    api_id: str # connect to some api, allow fast filtering of api issues
+    api_id: Optional[str] = None # connect to some api, allow fast filtering of api issues
+    development_proposal: Optional[str] = None
+    development_clarification: Optional[str] = None
+    ball_park_estimate: Optional[str]
+    impact_on_market: Optional[int] = Field(default=None, ge=0, le=3)
+    priority: Optional[int] = Field(default=None, ge=1, le=3)
+    argumentation_for_proposal: Optional[str]
+    proposal_impact: Optional[str]
+    next_steps: Optional[str]
+
+
