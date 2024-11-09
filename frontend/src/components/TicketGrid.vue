@@ -1,15 +1,9 @@
 <script lang="ts" setup>
 import { VCol, VRow, VContainer } from 'vuetify/components';
-import TicketCard from './TicketCard.vue';
-
-interface ticketCardInfo {
-    id: string;
-    title: string;
-    description: string;
-}
+import {type ITicket, type ITicketResponse} from '../api/ticket';
 
 const props = defineProps<{
-  tickets: ticketCardInfo[];
+  tickets: ITicketResponse;
 }>();
 
 const emit = defineEmits<{

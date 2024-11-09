@@ -1,32 +1,12 @@
 <script setup lang="ts">
 import TicketGrid from '@/components/TicketGrid.vue';
 import { VContainer } from 'vuetify/components';
+import { fetchTickets, type ITicketResponse, type ITicket } from '../api/ticket';
 
 
 
 // plaeholder for demo purposes
-const ticketInfo = [
-	{
-		id: '1',
-		title: 'First ticket',
-		description: 'First Description'
-	},
-	{
-		id: '2',
-		title: 'First ticket',
-		description: 'First Description'
-	},
-	{
-		id: '3',
-		title: 'First ticket',
-		description: 'First Description'
-	},
-	{
-		id: '4',
-		title: 'First ticket',
-		description: 'First Description'
-	},
-]
+const ticketInfo: ITicketResponse = await fetchTickets();
 </script>
 
 <template>

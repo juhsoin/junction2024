@@ -1,7 +1,7 @@
 
 import {API_URL} from './common';
 
-export interface Ticket {
+export interface ITicket {
     id?: string;
     title: string;
     description: string;
@@ -20,9 +20,7 @@ export interface Ticket {
     planned_release?: string;
 }
 
-export interface TicketResponse {
-    data: Ticket[];
-}
+export type ITicketResponse = [ITicket]; 
 
 export const fetchTickets = async (): Promise<TicketResponse> => {
     const response = await fetch(
