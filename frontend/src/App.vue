@@ -1,21 +1,28 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import Footer from './components/Footer.vue'
+import Header from './components/Header.vue';
+import { VApp, VMain } from 'vuetify/components';
 </script>
 
 <template>
-	<header>
-		<div class="wrapper">
-			<nav>
-				<RouterLink to="/">Home</RouterLink>
-				<RouterLink to="/apis">APIs</RouterLink>
-			</nav>
-		</div>
-	</header>
-	<RouterView />
+	<VApp>
+		<Header />
+		<VMain>
+			<RouterView />
+		</VMain>
+		<Footer />
+	</VApp>
 </template>
 
 <style scoped>
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.v-application {
+	font-family: Inter !important;
+}
 header {
 	line-height: 1.5;
 	max-height: 100vh;
