@@ -1,4 +1,4 @@
-import { States, API_URL } from "./common"
+import { API_URL, States } from "./common"
 
 export interface Ticket {
 	id: string
@@ -41,7 +41,7 @@ export const fetchTicketsByApi = async (root_id: string): Promise<TicketResponse
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify({})
+		body: JSON.stringify({}) // TODO: add filters
 	})
 	const body: TicketResponse = await response.json()
 	return body
