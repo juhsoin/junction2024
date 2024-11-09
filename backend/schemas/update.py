@@ -9,3 +9,13 @@ class Update(SQLModel, table=True):
     created_at: Optional[str] = None
     updated_at: Optional[str] = None
     root_id: str # ticket id
+    development_proposal: Optional[str] = None
+    development_clarification: Optional[str] = None
+    ball_park_estimate: Optional[str]
+    impact_on_market: Optional[int] = Field(default=None, ge=0, le=3)
+    priority: Optional[int] = Field(default=None, ge=1, le=3)
+    argumentation_for_proposal: Optional[str]
+    proposal_impact: Optional[str]
+    next_steps: Optional[str]
+    workgroup: Optional[str]
+    othernotes: Optional[str]
