@@ -3,7 +3,7 @@ import { VCol, VRow, VContainer } from 'vuetify/components';
 import {type ITicket, type ITicketResponse} from '../api/ticket';
 
 const props = defineProps<{
-  tickets: ITicketResponse;
+  tickets: ITicketResponse | null;
 }>();
 
 const emit = defineEmits<{
