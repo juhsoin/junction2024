@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import router from '../router/index'
 import { VAppBar, VToolbarTitle, VSpacer, VBtn, VIcon } from 'vuetify/components';
-
-const router = useRouter();
 
 const title = ref('Fingrid Service Hub');
 const handleNavigation = (route: string) => {
