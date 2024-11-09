@@ -21,27 +21,26 @@ export interface ITicket {
     planned_release?: string;
 }
 
-export type ITicketResponse = ITicket[]; 
-
-export const fetchTickets = async (): Promise<ITicketResponse> => {
+export const fetchTickets = async (): Promise<ITicket[]> => {
 
     const filterStore = useFilterStore();
     const filterValue = filterStore.$state.filter;
     const response = await fetch(
         API_URL + '/tickets/all', {
             method: 'POST',
-            body: JSON.stringify(filterValue),
+            body: JSON.stringify({}),
             headers: {
                 'Access-Control-Allow-Origin': "*",
                 'Content-Type': 'application/json',
             },
         }
     );
-    const body: ITicketResponse  = await response.json()
+    const body: ITicket[]  = await response.json()
+    console.log(body)
     return body
 }
 
-export const fetchTicketsByApi = async (root_id: string): Promise<TicketResponse> => {
+export const fetchTicketsByApi = async (root_id: string): Promise<ITicket[]> => {
 	const response = await fetch(API_URL + "/tickets/root/" + root_id, {
 		method: "POST",
 		headers: {
@@ -49,18 +48,18 @@ export const fetchTicketsByApi = async (root_id: string): Promise<TicketResponse
 		},
 		body: JSON.stringify({}) // TODO: add filters
 	})
-	const body: TicketResponse = await response.json()
+	const body: ITicket[] = await response.json()
 	return body
 }
 
-export const fetchUsersTickets = async (userId: string): Promise<TicketResponse> => {
+export const fetchUsersTickets = async (userId: string): Promise<ITicket[]> => {
 	const response = await fetch(API_URL + "/tickets/user/" + userId + "/tickets", {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
 		},
 	})
-	const body: TicketResponse = await response.json()
+	const body: ITicket[] = await response.json()
 	return body
 }
 

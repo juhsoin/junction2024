@@ -3,23 +3,20 @@
 import TicketGrid from '@/components/TicketGrid.vue';
 
 import { VContainer } from 'vuetify/components';
-import { fetchTickets, type ITicketResponse, type ITicket } from '../api/ticket';
-
-
-
-// plaeholder for demo purposes
+import { fetchTickets, type ITicket } from '../api/ticket';
 
 import { onMounted, ref, toValue } from 'vue';
 
 
-const ticket = ref<ITicketResponse>([]);
+const tickets = ref<ITicket[]>([]);
 const loading = ref(true);
 
 
-onMounted(async () => {
-	ticket.value = await fetchTickets();
-	console.log(ticket.value);
-	loading.value = false;
+onMounted(() => {
+	fetchTickets().then((response) => {
+		tickets.value = response;
+		loading.value = false;
+	});
 });
 
 </script>
@@ -27,7 +24,8 @@ onMounted(async () => {
 <template>
 <VContainer>
 	<h1>Your Tickets</h1>
-	<TicketGrid :tickets="ticket">
+	<div v-if="loading">Loading...</div>
+	<TicketGrid v-else :tickets="tickets">
 	</TicketGrid>
 	
 </VContainer>

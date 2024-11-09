@@ -1,16 +1,15 @@
 <script lang="ts" setup>
-import { VCol, VRow, VContainer } from 'vuetify/components';
-import {type ITicket, type ITicketResponse} from '../api/ticket';
+import { VCol, VRow, VContainer} from 'vuetify/components';
+import {type ITicket} from '../api/ticket';
+import  TicketCard from './TicketCard.vue';
 
 const props = defineProps<{
-  tickets: ITicketResponse;
+  tickets: ITicket[];
 }>();
 
 const emit = defineEmits<{
   (e: 'ticket-action', ticket: { id: number; title: string; description: string }): void;
 }>();
-
-const tickets = props.tickets;
 
 </script>
 
@@ -23,7 +22,7 @@ const tickets = props.tickets;
         cols="4"
         >
         <TicketCard
-          ticket: ticket;
+          :ticket="ticket";
         />
       </VCol>
     </VRow>

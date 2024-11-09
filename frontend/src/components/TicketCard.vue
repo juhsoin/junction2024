@@ -35,7 +35,7 @@ const handleActionClick = () => {
             </VCardActions>
         </template>
         <template v-slot:default="{ isActive }">
-          <TicketModal :ticket = ticket, class="ticket-modal"></TicketModal>
+          <TicketModal :ticket="ticket", class="ticket-modal"></TicketModal>
         </template>
     </VDialog>
   </VCard>
