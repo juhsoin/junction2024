@@ -6,3 +6,4 @@ nvim-linux64/
 
 __pycache__/
 backend/db.sqlite
+secret
