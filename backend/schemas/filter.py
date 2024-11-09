@@ -20,17 +20,10 @@ class Filter(SQLModel):
             return False
         if self.created_before and target.created_at and self.created_before < target.created_at:
             return False
-        if self.root and self.root != target.root_id:
+        if self.root and target.root and self.root != target.root_id:
             return False
         if self.state and target.state and not self.state in target.state:
             return False
-        if self.categories and target.categories:
-            one_found = False
-            # Assume that categories contains categories separated by commas
-            tcats = target.categories.split(",")
-            for c in self.categories:
-                if c in tcats:
-                    one_found = True
-            if not one_found:
-                return False
+        if self.categories and target.categories != None and self.categories != target.categories:
+            return False
         return True

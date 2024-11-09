@@ -1,27 +1,27 @@
-from enum import IntEnum
+from enum import IntEnum, Enum
 
 
-class Category(IntEnum):
-    KAYTTOPAIKKAPROSESSI = 1
-    TUOTEPROSESSI = 2
-    MITTAUSTIETOPROSESSI = 3
-    ASIAKASTIETOPROSESSI = 4
-    SOPIMUSPROSESSI = 5
-    SANOMAHALLINTA = 6
-    YLEINEN_HALLINTA = 7
-    TIETOSUOJA = 8
-    KYTKENTA_KATKAISUPROSESSI = 9
-    LASKUTUSTIEDOT = 10
-    VALTUUTUSPROSESSI = 11
-    TIETOTURVA = 12
-    ROOLITUS = 13
-    MITTAUSTIEDONHALLINTA = 14
-    RAPORTOINTI = 15
-    TOIMEKSIANTOPROSESSI = 16
-    LOPPUASIAKASKAYTTOLIITTYMA = 17
-    LASKENNAT = 18
-    OSAPUOLITIEDOT = 19
-    KUORMANOHJAUSPROSESSI = 20
+class Category(Enum):
+    KAYTTOPAIKKAPROSESSI = "Käyttöpaikkaprosessi"
+    TUOTEPROSESSI = "Tuoteprosessi"
+    MITTAUSTIETOPROSESSI = "Mittaustietoprosessi"
+    ASIAKASTIETOPROSESSI = "Asiakastietoprosessi"
+    SOPIMUSPROSESSI = "Sopimusprosessi"
+    SANOMAHALLINTA = "Sanomahallinta"
+    YLEINEN_HALLINTA = "Yleinen hallinta"
+    TIETOSUOJA = "Tietosuoja"
+    KYTKENTA_KATKAISUPROSESSI = "Kytkentä/katkaisuprosessi"
+    LASKUTUSTIEDOT = "Laskutustiedot"
+    VALTUUTUSPROSESSI = "Valtuutusprosessi"
+    TIETOTURVA = "Tietoturva"
+    ROOLITUS = "Roolitus"
+    MITTAUSTIEDONHALLINTA = "Mittaustiedonhallinta"
+    RAPORTOINTI = "Raportointi"
+    TOIMEKSIANTOPROSESSI = "Toimeksiantoprosessi"
+    LOPPUASIAKASKAYTTOLIITTYMA = "Loppuasiakaskäyttöliittymä"
+    LASKENNAT = "Laskennat"
+    OSAPUOLITIEDOT = "Osapuolitiedot"
+    KUORMANOHJAUSPROSESSI = "Kuormanohjausprosessi"
 
 
 class States(IntEnum):
