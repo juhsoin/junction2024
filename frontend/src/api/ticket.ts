@@ -1,53 +1,51 @@
 import { API_URL, States } from "./common"
 
-import { useFilterStore } from '../stores/filterStore';
+import { useFilterStore } from "../stores/filterStore"
+import { useUserStore } from "../stores/userStore"
 
 export interface ITicket {
-    id?: string;
-    title: string;
-    description: string;
-    status: string;
-    created_at?: string;
-    updated_at?: string;
-    root_id: string;
-    development_proposal?: string;
-    development_clarification?: string;
-    ball_park_estimate?: string;
-    impact_on_market?: number; // 0 to 3
-    priority?: number; // 1 to 3
-    argumentation_for_proposal?: string;
-    proposal_impact?: string;
-    next_steps?: string;
-    planned_release?: string;
-    categories?: string;
+	id?: string
+	title: string
+	description: string
+	status: string
+	created_at?: string
+	updated_at?: string
+	root_id: string
+	development_proposal?: string
+	development_clarification?: string
+	ball_park_estimate?: string
+	impact_on_market?: number // 0 to 3
+	priority?: number // 1 to 3
+	argumentation_for_proposal?: string
+	proposal_impact?: string
+	next_steps?: string
+	planned_release?: string
+	categories?: string
 }
 
 export interface ITicketComment {
-    id: string
-    title: string
-    comment: string
-    user_id: string
-    created_at?: string
-    updated_at?: string
-    root_id: string
+	id: string
+	title: string
+	comment: string
+	user_id: string
+	created_at?: string
+	updated_at?: string
+	root_id: string
 }
 
 export const fetchTickets = async (): Promise<ITicket[]> => {
-
-    const filterStore = useFilterStore();
-    const filterValue = filterStore.$state.filter;
-    const response = await fetch(
-        API_URL + '/tickets/all', {
-            method: 'POST',
-            body: JSON.stringify({}),
-            headers: {
-                'Access-Control-Allow-Origin': "*",
-                'Content-Type': 'application/json',
-            },
-        }
-    );
-    const body: ITicket[]  = await response.json()
-    return body
+	const filterStore = useFilterStore()
+	const filterValue = filterStore.$state.filter
+	const response = await fetch(API_URL + "/tickets/all", {
+		method: "POST",
+		body: JSON.stringify(filterValue),
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+			"Content-Type": "application/json",
+		},
+	})
+	const body: ITicket[] = await response.json()
+	return body
 }
 
 export const fetchTicketsByApi = async (root_id: string): Promise<ITicket[]> => {
@@ -56,14 +54,15 @@ export const fetchTicketsByApi = async (root_id: string): Promise<ITicket[]> => 
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify({}) // TODO: add filters
+		body: JSON.stringify({}), // TODO: add filters
 	})
 	const body: ITicket[] = await response.json()
 	return body
 }
 
-export const fetchUsersTickets = async (userId: string): Promise<ITicket[]> => {
-	const response = await fetch(API_URL + "/tickets/user/" + userId + "/tickets", {
+export const fetchUsersTickets = async (): Promise<ITicket[]> => {
+	const user = useUserStore()
+	const response = await fetch(API_URL + "/tickets/user/" + user.$id + "/tickets", {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
@@ -73,8 +72,9 @@ export const fetchUsersTickets = async (userId: string): Promise<ITicket[]> => {
 	return body
 }
 
-export const subscRibeToTickets = async (userId: string, ticketId: string) => {
-	const response = await fetch(API_URL + "/tickets/user/" + userId + "/subscribe/" + ticketId, {
+export const subscRibeToTickets = async (ticketId: string) => {
+	const user = useUserStore()
+	const response = await fetch(API_URL + "/tickets/user/" + user.$id + "/subscribe/" + ticketId, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -84,14 +84,14 @@ export const subscRibeToTickets = async (userId: string, ticketId: string) => {
 }
 
 export const fetchTicketMeetingNotes = async (ticketId: string) => {
-    const response = await fetch(API_URL + "/update/get/" + ticketId, {
+	const response = await fetch(API_URL + "/update/get/" + ticketId, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
-        body: JSON.stringify({}),
+		body: JSON.stringify({}),
 	})
 	const body: ITicketComment[] = await response.json()
-    console.log(body)
+	console.log(body)
 	return body
 }

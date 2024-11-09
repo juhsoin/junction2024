@@ -14,12 +14,20 @@ export const useCounterStore = defineStore("counter", () => {
 export const useFilterStore = defineStore("filter", {
 	state: () => {
 		return {
-			filter: {} as IFilter
+			filter: {} as IFilter,
 		}
 	},
 	getters: {
 		getFilter(state) {
 			return state.filter
+		},
+	},
+})
+
+export const useUserStore = defineStore("user", {
+	state: () => {
+		return {
+			id: "1",
 		}
 	},
 })

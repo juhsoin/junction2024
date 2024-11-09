@@ -9,7 +9,7 @@ class Ticket(SQLModel, table=True):
     status: States
     created_at: Optional[float] = None
     updated_at: Optional[float] = None
-    root_id: str # connect to some api, allow fast filtering of api issues
+    root_id: str = Field(default=None, foreign_key="api.id")
     development_proposal_and_clarification: Optional[str] = None
     ball_park_estimate: Optional[str]
     impact_on_market: Optional[int] = Field(default=None, ge=0, le=3)

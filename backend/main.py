@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
+
 from .schemas.database_init import create_db_and_tables
 
 from .routers import users, apis, tickets, update, comment
