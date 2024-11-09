@@ -1,27 +1,27 @@
 import { API_URL, States } from "./common"
 
-export interface Ticket {
-	id: string
-	title: string
-	description: string
-	status: States
-	created_at?: string
-	updated_at?: string
-	root_id: string
-	development_proposal_and_clarification?: string
-	ball_park_estimate?: string
-	impact_on_market?: number // 0 to 3
-	priority?: number // 1 to 3
-	argumentation_for_proposal?: string
-	proposal_impact?: string
-	next_steps?: string
-	categories?: string
-	planned_release_version?: string
+import { useFilterStore } from '../stores/filterStore';
+
+export interface ITicket {
+    id?: string;
+    title: string;
+    description: string;
+    status: string;
+    created_at?: string;
+    updated_at?: string;
+    root_id: string;
+    development_proposal?: string;
+    development_clarification?: string;
+    ball_park_estimate?: string;
+    impact_on_market?: number; // 0 to 3
+    priority?: number; // 1 to 3
+    argumentation_for_proposal?: string;
+    proposal_impact?: string;
+    next_steps?: string;
+    planned_release?: string;
 }
 
-export interface TicketResponse {
-	data: Ticket[]
-}
+export type ITicketResponse = ITicket[]; 
 
 export const fetchTickets = async (): Promise<TicketResponse> => {
 	const response = await fetch(API_URL + "/tickets/all", {
