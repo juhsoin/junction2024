@@ -1,5 +1,6 @@
 from typing import Optional
 from sqlmodel import SQLModel
+from categories import Category, States
 
 class Filter(SQLModel):
     id: Optional[str] = None
@@ -8,7 +9,8 @@ class Filter(SQLModel):
     updated_after: Optional[float] = None
     created_before: Optional[float] = None
     updated_before: Optional[float] = None
-    categories: Optional[list[str]] = None
+    categories: Optional[list[Category]] = None
+    state: Optional[States] = None
     root: Optional[str] = None
 
     def apply(self, target) -> bool:
@@ -20,4 +22,13 @@ class Filter(SQLModel):
             return False
         if self.root and self.root != target.root_id:
             return False
+        if self.state and target.state and not self.state in target.state:
+            return False
+        if self.categories and target.categories:
+            one_found = False
+            for c in self.categories:
+                if c in target.categories:
+                    one_found = True
+            if not one_found:
+                return False
         return True

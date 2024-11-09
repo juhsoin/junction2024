@@ -1,5 +1,6 @@
 from typing import Optional
 from sqlmodel import SQLModel, Field
+from categories import Category
 
 class Update(SQLModel, table=True):
     id: Optional[str] = Field(default=None, primary_key=True)
@@ -9,8 +10,7 @@ class Update(SQLModel, table=True):
     created_at: Optional[float] = None
     updated_at: Optional[float] = None
     root_id: str # ticket id
-    development_proposal: Optional[str] = None
-    development_clarification: Optional[str] = None
+    development_proposal_and_clarification: Optional[str] = None
     ball_park_estimate: Optional[str]
     impact_on_market: Optional[int] = Field(default=None, ge=0, le=3)
     priority: Optional[int] = Field(default=None, ge=1, le=3)
@@ -19,3 +19,4 @@ class Update(SQLModel, table=True):
     next_steps: Optional[str]
     workgroup: Optional[str]
     othernotes: Optional[str]
+    categories: Optional[list[Category]]
