@@ -1,8 +1,6 @@
-.env
 */**/__pycache__/*
 nvim_config
 nvim-linux64/
-*.env
 
 __pycache__/
 backend/db.sqlite
