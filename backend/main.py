@@ -1,11 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from contextlib import asynccontextmanager
-from backend.schemas.database_init import create_db_and_tables, SessionDep
 from sqlmodel import select
+import datetime
 
-#schema imports
-from backend.schemas.ticket import Ticket
-from backend.schemas.user import User
+# schema imports
+from .schemas.user import User
+from .schemas.database_init import create_db_and_tables, SessionDep
+from .schemas.ticket import Ticket
+from .schemas.api import Api
 
 
 @asynccontextmanager
@@ -13,6 +15,9 @@ async def lifespan(app: FastAPI):
     # Code to run on startup, e.g., database connection
     create_db_and_tables()
     yield
+    # Code to run on shutdown, e.g., closing database connection
+    app.state.db.close()
+
 
 app = FastAPI(lifespan=lifespan)
 
@@ -67,12 +72,25 @@ def update_user(user_id: int, user: User, session: SessionDep):
     return db_user
 
 
+@app.post("/api/")
+def create_api(api: Api, session: SessionDep) -> Api:
+    session.add(api)
+    api.created_at = datetime.datetime.now().strftime("%Y-%m-%d--T%H-%M-%S")
+    api.updated_at = datetime.datetime.now().strftime("%Y-%m-%d--T%H-%M-%S")
+    api.id = datetime.datetime.now().strftime("%M%S")
+    session.commit()
+    session.refresh(api)
+    print(api)
+    return api
+
+
 @app.post("/api/ticket/")
 def create_ticket(ticket: Ticket, session: SessionDep) -> Ticket:
     Ticket.model_validate(ticket)
     session.add(ticket)
     session.commit()
     session.refresh(ticket)
+    print(ticket)
     return ticket
 
 
@@ -89,17 +107,19 @@ def read_tickets(session: SessionDep) -> list[Ticket]:
     tickets = session.exec(select(Ticket)).all()
     if not tickets:
         raise HTTPException(status_code=404, detail="Tickets not found")
-    return tickets
+    for t in tickets:
+        print(t)
+    return list(tickets)
 
 
-@app.delete("/ticket/{ticket_id}")
-def delete_ticket(ticket_id: int, session: SessionDep):
-    ticket = session.get(Ticket, ticket_id)
-    if not ticket:
-        raise HTTPException(status_code=404, detail="Ticket not found")
-    session.delete(ticket)
-    session.commit()
-    return {"ok": True}
+@app.get("/api/ticket/{root_id}")
+def get_api_tickets(root_id: int, session: SessionDep) -> list[Ticket]:
+    tickets = session.exec(select(Ticket).where(Ticket.api_id == root_id))
+    if not tickets:
+        raise HTTPException(status_code=404, detail="Hero not found")
+    for t in tickets:
+        print(t)
+    return list(tickets)
 
 
 @app.put("/ticket/{ticket_id}")
