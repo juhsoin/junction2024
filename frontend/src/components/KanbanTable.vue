@@ -20,26 +20,26 @@ const filteredTickets = (scope: string) => {
 const columns = [
   {
     title: 'Requested',
-    status: 'NEW',
+    status: 0,
   },
   {
     title: 'In Progress',
-    status: 'In progress',
+    status: 1,
   },
 
   {
     title: 'Valitated',
-    status: 'Started',
+    status: 2,
   },
 
   {
     title: 'Resolved',
-    status: 'Started',
+    status: 3,
   },
 
   {
     title: 'Clarification',
-    status: 'Started',
+    status: 4,
   },
 ]
 
