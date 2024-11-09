@@ -1,0 +1,849 @@
+id	title	description	status	created_at	updated_at	root_id	development_proposal_and_clarification	ball_park_estimate	impact_on_market	priority	argumentation_for_proposal	proposal_impact	next_steps	categories	planned_release_version
+0	Mistä muutosehdotus on tullut.	in english	x				in english			x	Miksi muutos tarvitaan, mitkä ovat konkreettiset vaikutukset, mikäli muutos jätettäisiin tekemättä (kustannukset/ylimääräinen työ yms.).	Miten muutos vaikuttaa nykyisiin määrittelyihin. 	Miten asiaa edistetään, esim. riittääkö läpikäynti prosessityöryhmässä vai vaatiiko laajemman kyselyn toimialalta.		x
+1	CSUSE0003407	"At the present metering data messages (E66) include only the metering point type (F01-accounting point, E18-production unit, E20-exchange point) but not the accounting point type (AG01-consumption, AG02-production). 
+Is it possible to add also the accounting point type to the E66 messages as an optional additional info?"	Hylätty (tap 3)				"At the present metering data messages (E66) include only the metering point type (F01-accounting point, E18-production unit, E20-exchange point) but not the accounting point type (AG01-consumption, AG02-production). 
+Is it possible to add also the accounting point type to the E66 messages as an optional additional info?"	2	2	2	Datahubin prosessit ovat synkronisia mutta valitettavan usein ATJ synkkaa struktuuridataa MDM:n suuntaan eräajoina esim. kerran tunnissa / päivässä. Erityisesti takautuvissa muutoissa Datahubilta saatetaan saada mittasudataa ennenkuin ATJ on perustanut käyttöpaikan MDM:lle, koska perustaminen tehdään vain kun sopimus aktivoituu. Erityisesti tässä tapauksessa olisi hyödyllistä jos E66 sanoman mukana tulisi käyttöpaikan alityyppi (Accounting point arvoilla AG01=Consumption AG02=Production). Se auttaisi myös validoimaan, onko ATJ toimittanut oikean käyttöpaikan tyypin.	Mittaustiedon välitys	Ei edistetä	Mittaustietoprosessi	
+2	"CSUSE0026681
+CHGUSE0000032147"	In the product information there is VAT percentage. Updating the VAT percentage should be possible without notifying a new product.	Toteutettu				In the product information there is VAT percentage. Updating the VAT percentage should be possible without notifying a new product.	1	1	1	Suomen hallitus kaavailee muutosta veroasteeseen ja jotta ei jouduta luomaan uutta tuotetta datahubiin, pitäisi pystyä päivittämään veroastetietoa.		Määrittelydokumentaation päivitys ja tarjouspyyntö järjestelmätoimittajalta.	Tuoteprosessi	"1.9.0 p/
+2.5?"
+3	"CHGUSE0000032270
+
+"	"In the sales agreement end and cancellation of sales agreement end events, a notification is sent to the supplier of the related accounting point (DH-331-3 and DH-351-3). Currently, the accounting point ID of the main accounting point in the event is sent, but datahub should send the ID of the related accounting point (i.e. the accounting point for which the receiving supplier has an agreement).
+
+Note: Also DH-311 sends a notification (DH-311-4) to the supplier of the related accounting point with the main accounting point ID. "	Toteutuksessa				"In the sales agreement end and cancellation of sales agreement end events, a notification is sent to the supplier of the related accounting point (DH-331-3 and DH-351-3). Currently, the accounting point ID of the main accounting point in the event is sent, but datahub should send the ID of the related accounting point (i.e. the accounting point for which the receiving supplier has an agreement).
+
+Note: Also DH-311 sends a notification (DH-311-4) to the supplier of the related accounting point with the main accounting point ID. "	2	1	1	CMS järjestelmä toimii täysin epäloogisesti	Huom. Mikäli on tarve lähettää molempien käyttöpaikkojen tunnus, on muutos suurempi/muutoksella vaikutus sanomien rakenteeseen. 	Määrittelydokumentaation päivitys ja tarjouspyyntö järjestelmätoimittajalta.	Sopimusprosessi	2.3
+4	"CHGUSE0000031374
+"	"MP: Accounting Point Report to be with AP ID:
+Accounting Point report doesn't have the Accounting Point IDs (but number of Accounting Points).   
+In case  the PowerBI report wouldn't have that information, then the option could be to have it with control reports as search criteria"	Hylätty (tap 11)				"MP: Accounting Point Report to be with AP ID:
+Accounting Point report doesn't have the Accounting Point IDs (but number of Accounting Points).   
+In case  the PowerBI report wouldn't have that information, then the option could be to have it with control reports as search criteria"	1	0	2	Käytettävyysparannus		Todettiin, että ehdotus on nostettu ennen Datahubin käyttöönottoa, jolloin ei ollut tietoa kai-kista Datahubin tarjoamista raporteista. Nyt tiedot ovat saatavilla toiselta raportilta, joten kehitysehdotukselle ei enää ole tarvetta. 	Yleinen hallinta	
+5	CSUSE0006004	It would be usefull to present the logged in person's organization in the datahub UI right in the front page, not after clickig the user information.	Toteutettu				It would be usefull to present the logged in person's organization in the datahub UI right in the front page, not after clickig the user information.	1	0	2	"Osapuolet edustavat toisinaan useaa organisaatiota ja päivittäistä työtä helpottaakseen olisi hyvä jos tieto olisi heti näkyvillä
+
+Käytettävyysparannus"			Yleinen hallinta	2.2
+6	CSUSE0006012	"There is need in the follow-up form for messages to be able to pick-up the GSRN id. Or in worse alternative GSRN id could be shown in message follow-up list.
+
+It would be usefull if in the grid's accounting point data there were possibility to retrieve the messages of the accounting point with limited moment of time seach criteria "	Suunnitteilla				"There is need in the follow-up form for messages to be able to pick-up the GSRN id. Or in worse alternative GSRN id could be shown in message follow-up list.
+
+It would be usefull if in the grid's accounting point data there were possibility to retrieve the messages of the accounting point with limited moment of time seach criteria "	2	0	2	Sanomien seuranta helpottuisi, kun voidaan hakea GSRN-tunnuksella sanomien joukosta			Sanomahallinta	2.4?
+7	CSUSE0006026	"With the 'Search Business Messages' it is possible to follow the number of messages and what kind of messages has been sent and received. There is no functionality to calculate per message type the nuber of messages. The functionality to export the messages to a csv file is not available. When looking the screen carefully the option to export the list of business messages to a csv file is there, but it is difficult to find.
+
+When the 'Search Results' is panned to the right, to the right appears a pale line. When this line is successfully clicked, a menu with option to export the search results to a csv file appears. The csv file can be used for analysis.
+The button to open the menu should be made better visible as this is a functionality that is needed by market parties."	Toteutettu				"With the 'Search Business Messages' it is possible to follow the number of messages and what kind of messages has been sent and received. There is no functionality to calculate per message type the nuber of messages. The functionality to export the messages to a csv file is not available. When looking the screen carefully the option to export the list of business messages to a csv file is there, but it is difficult to find.
+
+When the 'Search Results' is panned to the right, to the right appears a pale line. When this line is successfully clicked, a menu with option to export the search results to a csv file appears. The csv file can be used for analysis.
+The button to open the menu should be made better visible as this is a functionality that is needed by market parties."			2	"Kyseisen painikkeen löytäminen on hankalaa. Muuttamalla painikkeen tyylitystä saataisiin painike näkyvämmäksi ja helpommin löydettäväksi.
+
+Kyseisen painikkeen tyylityksen muokkaus ei ole isompi muutos."			Sanomahallinta	1.8.1.1
+8	"CSUSE0006033
+CSUSE0014749
+"	"Development ideas to the 'List Open Transactions' page:
+1. Create time stamp could present also time besides the date. Sorting of open events in time order.
+
+2. It should be possible to maximize the whole view full screen size. More events at one screen.
+
+3. The number of events presented.
+
+4. The selected row could be visualized with different colour than grey. That would help the see where the selection is at the moment. It is difficult to see differences in the hues of grey."	Toteutettu				"Development ideas to the 'List Open Transactions' page:
+1. Create time stamp could present also time besides the date. Sorting of open events in time order.
+
+2. It should be possible to maximize the whole view full screen size. More events at one screen.
+
+3. The number of events presented.
+
+4. The selected row could be visualized with different colour than grey. That would help the see where the selection is at the moment. It is difficult to see differences in the hues of grey."	1	0	2	Kyseiset muutokset parantaisivat 'List Open Transactions'-sivun käytettävyyttä			Sanomahallinta	2.2
+9	Tiketti CSUSE0006062	Switching state for metering point shall be updated real time into CMS. Switch time is given in one hour accuracy, thus if today comes new switch notification for today, the state shall be updated right away into CMS.	Suositus 1 ok (tap 12)				Switching state for metering point shall be updated real time into CMS. Switch time is given in one hour accuracy, thus if today comes new switch notification for today, the state shall be updated right away into CMS.	1	0	2	Käytettävyysparannus kaikille vastaaville näytöille. 			Kytkentä/katkaisuprosessi	
+10	"Tiketti CSUSE0006144
+CHGUSE0000031236
+CHGUSE0000031375
+
+"	"Validations needed for customer addresses and postal invoicing addresses
+
+At the moment we don't have validations for customer addresses or customer postal invoicing addresses that there should be only either street address or PO Box.
+So we would need new validations to check that if a street address is given then the PO Box is not allowed and vice versa.
+We also need to add a validation that if a building number is given then street name is required. I don't know whether this one issue we had was related to this that the PO box was given then it was possible to add the building number as well.
+
+MP: Customer data update  (just PO Box or Street Address)
+Currently rule force that one of those items need to be updated, but it's not prohibited to update the both of them
+
+Origin: Market Party wish list -selected in January 2022"	Suunnitteilla				"Validations needed for customer addresses and postal invoicing addresses
+
+At the moment we don't have validations for customer addresses or customer postal invoicing addresses that there should be only either street address or PO Box.
+So we would need new validations to check that if a street address is given then the PO Box is not allowed and vice versa.
+We also need to add a validation that if a building number is given then street name is required. I don't know whether this one issue we had was related to this that the PO box was given then it was possible to add the building number as well.
+
+MP: Customer data update  (just PO Box or Street Address)
+Currently rule force that one of those items need to be updated, but it's not prohibited to update the both of them
+
+Origin: Market Party wish list -selected in January 2022"	1	1	1	Käytettävyysparannus ja tiedon tiedon laadun ylläpito.	Ilman sääntöä voi osapuoli ilmoittaa molemmat, postinumero on kuitenkin vain kerran ja postilokeron postinumero poikkeaa katuosoitteen postinumerosta. Tiedon laatu heikkenee ellei muuteta.	"6.9.2023: Määrittelydokumentaation päivitys ja tarjouspyyntö järjestelmätoimittajalta.
+11.5.2023: Ehdotus sai selvän suosituksen ja viedään eteenpäin."	Asiakastietoprosessi	2.4
+11	"CSUSE0007038
+CHGUSE0000032159
+"	"Customer had a fixed term contract valid until 13.9.2022, but a move-out was reported to Datahub for 30.9.2021 (= contract end). After the move-out was reported, the customer notified the supplier of a new invoicing address which the supplier tried to update to Datahub using DH-321. Datahub rejected the DH-321 due to validation rule ""Attribute 'Fixed Term End Date' must be same as or earlier than '2021-09-30T21:00:00Z' (i.e. Datahub does not accept an agreement update where the fixed end date is later than the agreement end date).
+
+In this case, DH-321 did not contain an update to the fixed term dates (dates were the same as already in Datahub) but the dates are always included in the update request (if the agreement is fixed term).
+
+In this case, the supplier would not want to change the fixed term end date in order to keep the original end date in case the move-out (agreement end) gets cancelled."	Toteutettu				"Customer had a fixed term contract valid until 13.9.2022, but a move-out was reported to Datahub for 30.9.2021 (= contract end). After the move-out was reported, the customer notified the supplier of a new invoicing address which the supplier tried to update to Datahub using DH-321. Datahub rejected the DH-321 due to validation rule ""Attribute 'Fixed Term End Date' must be same as or earlier than '2021-09-30T21:00:00Z' (i.e. Datahub does not accept an agreement update where the fixed end date is later than the agreement end date).
+
+In this case, DH-321 did not contain an update to the fixed term dates (dates were the same as already in Datahub) but the dates are always included in the update request (if the agreement is fixed term).
+
+In this case, the supplier would not want to change the fixed term end date in order to keep the original end date in case the move-out (agreement end) gets cancelled."	1	0	1	Sopimuksen päivitys ei mene läpi ellei osapuoli päivitä samalla myös määräaikaisuuden päättymispäivää sopimuksen päättymispäiväksi. 	"Sekä nykyisessä että DH2.0 speksissä on validointisääntö:
+• VR.AGR.052.225: The new fixed term end date must be same as or earlier than the Agreement end date.
+
+Se sopimuksen päivitys kaatuu tähän. Elikkä hubi toimii speksin mukaisesti. Tarvitaan siis speksin muutos"	Määrittelydokumentaation päivitys ja tarjouspyyntö järjestelmätoimittajalta.	Sopimusprosessi	2.0
+12	Tiketti CSUSE0007017	"It cannot be directly concluded from the message e.g. in the switch off notification DH-422 if the switch off is done by supplier based on the switch off request or from DSO's own reasons. 
+
+Original message id field has always the previous messages's id in the chain (e.g. DH-422-2 has DH-422-1 id), thus there cannot be made any conclusion. If it would be used instead the DH-421-1 message id sent by supplier, supplier would see that there is response to their request (but this might disturb the composite process handling). Same situation concern also all events that party can send either by own request or as response to the other party's request (DH-111, DH-122, DH-412, DH-422).
+"	Kehitysehdotus, tapaaminen 15				"It cannot be directly concluded from the message e.g. in the switch off notification DH-422 if the switch off is done by supplier based on the switch off request or from DSO's own reasons. 
+
+Original message id field has always the previous messages's id in the chain (e.g. DH-422-2 has DH-422-1 id), thus there cannot be made any conclusion. If it would be used instead the DH-421-1 message id sent by supplier, supplier would see that there is response to their request (but this might disturb the composite process handling). Same situation concern also all events that party can send either by own request or as response to the other party's request (DH-111, DH-122, DH-412, DH-422).
+"	1	1	2	Myyjän järjestelmässä ei pystytä päättelemään onko katkaisu verkon oma katkaisu vai vastaus tehtyyn katkaisupyyntöön. Tämä tieto tarvitaan, jotta pystytään arvioimaan saadaanko myöhemmin käyttöpaikka kytkettyä kun omat saatavat on peritty asiakkaalta.		Asia aiheuttaa edelleen ongelmia myyjille ja ehdotus on tarpeellinen. Ehdotuksesta voidaan kuitenkin jättää pois muut tapahtumat ja asiaa edistetään vain DH-412- ja DH-422-tapahtumien osalta.	Kytkentä/katkaisuprosessi	
+13	Tiketti CSUSE0007675	Invoice row data validation by agreements, to get to the counter party information about invoicing through other party.	Suositus 1 ei ok (tap 11)				Invoice row data validation by agreements, to get to the counter party information about invoicing through other party.	2	0	3	Laskurivitiedot hyväksytään vaikka sopimuksilla on eri tieto. Tällä hetkellä kuvaus on että osapuoli vastaa ilmoitetusta tiedosta että menee oikealle vastsaanottajalle. 	Pohdittava miten vaikuttaa suorituskykyyn jos kaikki laskurivit validoidaan sopimuksittain. 	Osa kehitystyöryhmästä piti validointia tarpeettomana erityisesti, jos jossain vaiheessa kaikki käyttöpaikat ovat läpilaskutuksessa, mutta osa näki ehdotuksen mukaisen tarkastuksen tarpeellisena. Lisäksi ryhmässä nousi ehdotus myös tarkastukselle siitä, että laskurivitiedot lähetetään oikealle osapuolelle. Päätettiin, että pidetään asia listoilla molempien tarkastusten osalta, mutta ei edistetä asiaa korkealla prioriteetilla.	Laskutustiedot	
+14	CHGUSE0000032271	"DSO to receive info of SAG (sales agreement) end or cancellation:
+In case DDQ ends or cancels a SAG before DSO has confirmed their GAG (grid agreement), DSO doesn't receive information about the SAG end or cancellation. It would be good to notify the DSO also when GAG is not yet confirmed.
+
+Origin: Market Party wish list -selected in January 2022"	Toteutettu				"DSO to receive info of SAG (sales agreement) end or cancellation:
+In case DDQ ends or cancels a SAG before DSO has confirmed their GAG (grid agreement), DSO doesn't receive information about the SAG end or cancellation. It would be good to notify the DSO also when GAG is not yet confirmed.
+
+Origin: Market Party wish list -selected in January 2022"	1	1	1	Verkko saisi tiedon jos myyjä heti peruu tai päättää sopimuksen.		Määrittelydokumentaation päivitys ja tarjouspyyntö järjestelmätoimittajalta.	Sopimusprosessi	2.1
+15	"CHGUSE0000031377
+"	"Customer data characters to be verified:
+With Customer data update there should be verified that there aren't useless characters with customer's name to be updated to Datahub. 
+Eg. ""JÃ¤msÃ¤nkosken MetsÃ¤stysyhdistys ry. "" characters shouldn't be allowed
+
+Origin: Market Party wish list -selected in January 2022"	Suositus 1 ei ok (tap 11)				"Customer data characters to be verified:
+With Customer data update there should be verified that there aren't useless characters with customer's name to be updated to Datahub. 
+Eg. ""JÃ¤msÃ¤nkosken MetsÃ¤stysyhdistys ry. "" characters shouldn't be allowed
+
+Origin: Market Party wish list -selected in January 2022"	1	1	2	Asiakastiedon laatu saadaan pidettyä parempana.	Asiakastiedon laatu saadaan pidettyä parempana.	Kehitystyöryhmässä todettiin, että on vaikea löytää merkistöä, joka sallisi tarvittavasti merkkejä ja estäisi vain todella turhat. Sovittiin, että selvitetään vielä väärien tietojen määriä ja sitä, onko kyse mahdollisesti ollut käyttöönoton ongelmasta vai tuleeko näitä edelleen ja kuinka monelta osapuolelta. 	Asiakastietoprosessi	
+16	Tiketti CSUSE0008779	When supplier updates contract information e.g. invoice address, shall the DH-321-1 message have also fixed term start and end dates. The supplier had development proposal that it would not be necessary to inform those dates because the dates in the message do not necessarily match with existing contract and those have no impact on anything. E.g. case where fixed term contract has started already from year 2014 and fixed term contract start date in the DH-321-1 message can have in maximum 3,5 years retrospective date.	Hylätty (tap 5)				When supplier updates contract information e.g. invoice address, shall the DH-321-1 message have also fixed term start and end dates. The supplier had development proposal that it would not be necessary to inform those dates because the dates in the message do not necessarily match with existing contract and those have no impact on anything. E.g. case where fixed term contract has started already from year 2014 and fixed term contract start date in the DH-321-1 message can have in maximum 3,5 years retrospective date.	2	1	2			Ei edistetä	Sopimusprosessi	
+17	Tiketti CSUSE0008783	DH-342 event description has following rule: Grid contract termination information will be forwarded to the supplier that has valid sales contract on the accounting point at the time the termination is valid. It would be good system would validate if sales contract correspond to grid contract has been terminated, and it would inform the for the supplier that came valid again. Expecially if there is different customer's contract in that case.	Hylätty (tap 4)				DH-342 event description has following rule: Grid contract termination information will be forwarded to the supplier that has valid sales contract on the accounting point at the time the termination is valid. It would be good system would validate if sales contract correspond to grid contract has been terminated, and it would inform the for the supplier that came valid again. Expecially if there is different customer's contract in that case.	2	0	2	Mikäli verkkoyhtiö lähettää oman peruuttamisilmoituksensa DH-342 oikein vastauksena DH-341 komposiittiprosessiin, niin silloin ei lähde sanomaa myyjälle. Tämän perusteella ei ole tarvetta muuttaa toiminnallisuutta. Ohjeistusta on jo ohjeistettu tietämyskannassa (XXX).		Ei edistetä	Sopimusprosessi	
+18	"Tiketti CSUSE0008919
+CHGUSE0000031378
+"	"Email  invoice to be updateable only if the correct Invoice channel chosen:
+Market party  has received updates to agreements with invoicing email address, allthough agreement invoice channel is not  email address."	Hylätty (tap 2)				"Email  invoice to be updateable only if the correct Invoice channel chosen:
+Market party  has received updates to agreements with invoicing email address, allthough agreement invoice channel is not  email address."	1	1	1	Tietojen laadun ylläpito.	Tietojen laadun ylläpito.	Ei edistetä	Sopimusprosessi	
+19	"Tiketti CSUSE0009058
+"	We have a lot of cases where metering point cannot be found because DSO or supplier has incorrect postal code in the address. We propose possibility to make search without postal code by giving asterix (*) into search.	Kehitysehdotus				We have a lot of cases where metering point cannot be found because DSO or supplier has incorrect postal code in the address. We propose possibility to make search without postal code by giving asterix (*) into search.	1	0	3				Asiakastietoprosessi	
+20	Tiketti CSUSE0008395	"The user interface sorts the numeric fields as strings. For that reason for example the sorting done in order ""1, 121, 13, 2,..."""	Toteutettu				"The user interface sorts the numeric fields as strings. For that reason for example the sorting done in order ""1, 121, 13, 2,..."""			2	Parantaa käyttöliittymän toiminnallisuutta				1.9.0
+21	"CSUSE0003905
+CHGUSE0000032275
+"	"Data interface is using person id or company id for requests. Those URL requests are logged into log file and that shall not happen.
+
+Example:
+https://dh-fingrid-sat01-b2b.azurewebsites.net/rest/FGR/DIFGetCustomerData?organisationUser=B2BCGdso1AAdmin&TenantCode=FGR&customerIdentification=DDMMYY-1234
+
+See https://stackoverflow.com/questions/39568719/rest-api-get-with-sensitive-data
+
+This is a data privacy issues."	Toteutuksessa				"Data interface is using person id or company id for requests. Those URL requests are logged into log file and that shall not happen.
+
+Example:
+https://dh-fingrid-sat01-b2b.azurewebsites.net/rest/FGR/DIFGetCustomerData?organisationUser=B2BCGdso1AAdmin&TenantCode=FGR&customerIdentification=DDMMYY-1234
+
+See https://stackoverflow.com/questions/39568719/rest-api-get-with-sensitive-data
+
+This is a data privacy issues."	?	1	1	Parantaa tietoturvaa.	Järjestelmätoimittajat joutuvat toteuttamaan tuen uudelle rajapintakutsumetodille. Voidaan tarvittaessa rakentaa väliaikainen tuki molemmille metodeille ja esim. 6 kk jälkeen vanha metodi otetaan pois käytöstä.	Määrittelydokumentaation päivitys ja tarjouspyyntö järjestelmätoimittajalta.	Tietoturva	2.3
+22	"Tiketti CSUSE0007163
+"	Accounting point has been without supplier and switched off. Supplier notifies new sales contract into datahub. The supplier has found out the status of the accounting point (switched off). Later DSO informs retrospective switch on, the switch on date is previous day of the contract start date -> supplier does not get information about switch on, because the information is disclosed only to the current supplier of the accounting point. 	Suositus 1 ei ok (tap 6)				Accounting point has been without supplier and switched off. Supplier notifies new sales contract into datahub. The supplier has found out the status of the accounting point (switched off). Later DSO informs retrospective switch on, the switch on date is previous day of the contract start date -> supplier does not get information about switch on, because the information is disclosed only to the current supplier of the accounting point. 	1+2	1	2	Helpottaisi myyjää kyllä jos saisi tiedon. Voiko muuttaa käsittelyä niin, että jos tuo käyttöpaikan päivitys ilmoitetaan sopimuksen voimaantulon jälkeen (vaikka itse muutospäivä olisi aikaisemmalle päivälle) niin myyjä saisi tiedot. 		Asia viedään alityöryhmän käsittelyyn. GDPR asia tuskin on muutettavissa, mutta tätä tarkastetaan myös, mikäli oikeuspuolen kevennyksellä asia olisi ratkottavissa yksinkertaisemmin.	Sopimusprosessi	
+23	"Tiketti CSUSE0011351
+"	Now the datahub works so that end customer update accepted automatically in the system (supplier master). In the current model end customer address can go mess because of language in case there is grid customer has service language in Swedish and supplier delivers address in Finnish. This cannot be controlled or fixed. According to the system vendor, in case there were language information in the address information, vendor system could compare and thus find above mentioned cases and thus fix can be made. Language code can be a part of end customer address and also a part of messages/events where address information is included (postal address, invoice address).	Hylätty (tap 11)				Now the datahub works so that end customer update accepted automatically in the system (supplier master). In the current model end customer address can go mess because of language in case there is grid customer has service language in Swedish and supplier delivers address in Finnish. This cannot be controlled or fixed. According to the system vendor, in case there were language information in the address information, vendor system could compare and thus find above mentioned cases and thus fix can be made. Language code can be a part of end customer address and also a part of messages/events where address information is included (postal address, invoice address).	2	1	2	Kielikoodi on ongelmallinen asiakkaan tiedoissa jos joku tarjoaa palvelua useammalla kielellä ja toinen ei. 		Kehitystyöryhmässä todettiin, että asia on ratkaistavissa muutoin, eikä kielikoodin lisäykselle osoitetietoihin ole tarvetta.	Asiakastietoprosessi	
+24	"Tiketti CSUSE0016632
+"	Phone number format shall get a validation rule. Datahub has defined phone number is format ITU-T.164 (+358501234567) but datahub does not validate this.	Suunnitteilla				Phone number format shall get a validation rule. Datahub has defined phone number is format ITU-T.164 (+358501234567) but datahub does not validate this.	1	1	2	Tiedon laadun ylläpito paranee	Uusi validointisääntö	Kehitysehdotusta kannatetaan ja se viedään eteenpäin huomioiden prosessit DH-321/322, joissa ei tarkasteta kolmatta kohtaa (Maatunnusta '+358' seuraava numero ei saa olla nolla).	Asiakastietoprosessi	2.4
+25	Tiketti CSUSE0019860	"As a DSO we see the cancellation code AR04  very complex. AR04 code can be used even supplier has made contract as delivery contract. That cannot happen in real that end customer cancels only selling if there is delivery contract. Datahub should conclude that delivery contract cannot be cancelled with AR04 code or if it can be cancelled, then grid contract shall be cancelled as well. It is not possible that end customer can get from other supplier delivery contract if delivery responsible supplier has already cancelled the contract.
+
+Could this cancellation reason and its rules be re-evaluated in development workgroup. This requires new definitions to the datahub rules."	Toteutuksessa				"As a DSO we see the cancellation code AR04  very complex. AR04 code can be used even supplier has made contract as delivery contract. That cannot happen in real that end customer cancels only selling if there is delivery contract. Datahub should conclude that delivery contract cannot be cancelled with AR04 code or if it can be cancelled, then grid contract shall be cancelled as well. It is not possible that end customer can get from other supplier delivery contract if delivery responsible supplier has already cancelled the contract.
+
+Could this cancellation reason and its rules be re-evaluated in development workgroup. This requires new definitions to the datahub rules."	1+2	1	2	Aiheuttaa paljon manuaalikäsittelyä verkon suunnalla ja jos verkkosopimusta ei erikseen peruta voi tieto toimitussopimuksesta jäädä väärin ja aiheuttaa ongelmia mm. asiakkaan laskutuksessa. 	Uusi validointisääntö?	Määrittelydokumentaation päivitys ja tarjouspyyntö järjestelmätoimittajalta.	Sopimusprosessi	2.3
+26	Tiketti CSUSE0020080	"Agreement identification should be added to the DH-341-3 notification.
+
+We had a case where a metering point had a valid sales agreement and also a sales agreement starting in the future. Another supplier reported a move-in ending the valid agreement and cancelling the future agreement.
+
+Move-in made by the other supplier was cancelled and datahub sent two DH-341-3 notifications (fully identical except for the message id). How should the notifications be connected to the restored agreements when they include only a metering point id and the date of the cancelled moved-in?"	Toteutettu				"Agreement identification should be added to the DH-341-3 notification.
+
+We had a case where a metering point had a valid sales agreement and also a sales agreement starting in the future. Another supplier reported a move-in ending the valid agreement and cancelling the future agreement.
+
+Move-in made by the other supplier was cancelled and datahub sent two DH-341-3 notifications (fully identical except for the message id). How should the notifications be connected to the restored agreements when they include only a metering point id and the date of the cancelled moved-in?"	1+2	1	2	Myyjä ei pysty kohdistamaan kumpaa sopimusta ilmoitus koskee mikäli on ollut kaksi sopimusta jotka palautetaan voimaan uuden sopimuksen peruutuksessa.		Määrittelydokumentaation päivitys ja tarjouspyyntö järjestelmätoimittajalta.	Sopimusprosessi	2.2
+27	"CSUSE0020895
+"	"Metering point state change from ""Under costruction"" to the ""Switched"" rules shall be re-evaluated. The current rules say that if metering point ""Under costruction"" has valid contract when it is switch on, datahub will automatically contract valid start from date according to the switching date. This servers handling of new metering points. But same functionality/rules are valid also when metering point has been changed due to renovation to the ""Under costruction"" state, without updates on contract state. In that case if DSO changes the stae directly to switched on, changes the contract valid from date with same rules, even should not in this case."	Toteutuksessa				"Metering point state change from ""Under costruction"" to the ""Switched"" rules shall be re-evaluated. The current rules say that if metering point ""Under costruction"" has valid contract when it is switch on, datahub will automatically contract valid start from date according to the switching date. This servers handling of new metering points. But same functionality/rules are valid also when metering point has been changed due to renovation to the ""Under costruction"" state, without updates on contract state. In that case if DSO changes the stae directly to switched on, changes the contract valid from date with same rules, even should not in this case."	2	2	2	Toteutettu malli aiheuttaa tällä hetkellä paljon harmia osapuolille. Kytkentätilan muutos aiheuttaa sopimusten voimaantuloaikojen päivityksen myös silloin, kun kohde on saneerauksessa ja muutettu tilaan rakenteilla. On ohjeistettu että tällöin käyttöpaikka tulee ensin muuttaa tilaan katkaistu, ennen kytkentää. Näin vältytään sopimusten päivitykseltä. 	Myyjälle ja jakeluverkonhaltijalle lähetetään ilmoitus oman sopimuksen muuttuneesta päivämäärästä. Tätä varten lisätään uusi sanomatyyppi. 	"2.11.2022: Edistetään vaihtoehtoa 2
+19.12.2022: Alityöryhmän käsittelyyn esitetyn uuden ’saneerauksessa’ -tilatiedon osalta ja vaih-toehtoisena ratkaisuna pidetään vielä sopimuksen aloituspäivämäärän muutoslogiikan päivitys sekä esitetty uusi sanoma muutoksen ilmoitukselle. Käydään myös läpi mittaustiedon validointi eri tilanteissa sekä tarve sille, että mittaustiedot tuotaisiin myös ’rakenteilla’ -tilaisille kohteille, sopimuksen ensimmäisen päivän osalta. Lisäksi kustannusarvioita vaihtoehdoille tarkennettava.
+13.4.2023: Alityöryhmän suositus on että toteutetaan vaihtoehto 2.
+21.9.2023: Kuvaajan 3 tapauksessa perutaan turhaksi jäävä rakenteilla-jakson aikainen sopimus (myynti/verkko) ja ilmoitetaan myyjälle/verkolle oman sopimuksen peruuntumisesta. Kuvaajaan 7 tapauksessa toimitaan nyt kuvatun mukaisesti, eli käyttöpaikan sopimuksiin ei tule kytkennän yhteydessä muutoksia."	Käyttöpaikkaprosessi	2.3
+28	Tiketti CSUSE0020482	DSO shall inform always first contract ending in case meter has been removed and after that the switch off. This would help supplier to recognize that switch off is related to the meter removal, not e.g. switch off made based on the grid receivables.	Suositus 1 ei ok (tap 5)				DSO shall inform always first contract ending in case meter has been removed and after that the switch off. This would help supplier to recognize that switch off is related to the meter removal, not e.g. switch off made based on the grid receivables.	0	0	2	"Keskusteltavaksi työryhmään, onko tämä mahdollista jakeluverkonhaltijoiden näkökulmasta. Ohjeistuksen teko tämän mukaisesti. Ei muutostarpeita datahub järjestelmään. Onko tarve muuttaa jotain verkkojen osalta? 
+
+Lisätietoa ehdotuksesta sen tekijältä:
+""Jos meille tulee katkaisutiedon välitys DH-422-2 ensimmäiseksi, ja ilmoitus sopimuksen päättymisestä viiveellä sen jälkeen, (tässä tarkoitan monien tuntien viivettä, muutama minuutti ei haittaa), pitää meidän manuaalisesti alkaa selvittämään mistä katkaisuilmoitus johtuu. Tämä meidän pitää selvittää koska katkaisutiedon välitys DH-422-2 ei sisällä syytä. Jos katkaisu johtuu mittarin poistosta esimerkiksi, on asia ok, mutta tärkeintä on meidän kohdalla selvittää, ettei katkaisu johdu maksamattomista laskuista, jonka johdosta verkko katkaisee sopimuksen.
+Mikäli tämä prosessi menisi kuten ilmeisesti on tarkoitus, että sopimuksen päättyminen tulisi aina ensin, niin kaikki menisi automaattisesti eikä meidän tarvitsisi manuaalisesti tarkistaa mitään."""		Selvitettävä tarkemmin taustoja tarkemmin ongelmaan ja sitten uudelleen käsittelyyn kehitystyöryhmässä	Sopimusprosessi	
+29	CSUSE0020576	New validatio rule for the event DH-124-1 so that supplier cannot requested as user group BE14 in case there has been defined specific user group for the metering point. At the moment DSO systems updates user group automatically and thus the specific user group information is updated and lost.	Suositus 1 ei ok (tap 12)				New validatio rule for the event DH-124-1 so that supplier cannot requested as user group BE14 in case there has been defined specific user group for the metering point. At the moment DSO systems updates user group automatically and thus the specific user group information is updated and lost.	1	1	2	Tiedon laadun ylläpito paranee. Tällä hetkellä käyttäjäryhmä menee automatiikalla käyttöpaikalle verkon järjestelmissä ja jo tarkemmaksi määritelty tieto häviää ja rapautuu tämän myötä.	Myyjä ei pysty päivittämään käyttäjäryhmää mikäli se on jo jakeluverkkoyhtiön toimesta määritelty.	"Selvitetään tilannetta tiketin nostajan kanssa tarkemmin. Jatkotoimet näiden pohjalta.
+26.3.2024: Selvitetään BE14-käyttäjäryhmää lähettävät osapuolet ja haetaan asiaan ratkaisua osapuolten kontaktoinnilla ja ohjeistuksella. "	Käyttöpaikkaprosessi	
+30	"CSUSE0017588
+"	"It should be possible to select different time resolution on ""Time Series Data For Accounting Points"" report. At the moment report can be run only with one hour resolution. To be able to make consumption comparisions by daily or monthly level would be usefull.
+
+"	Suositus 1 ei ok (tap 3)				"It should be possible to select different time resolution on ""Time Series Data For Accounting Points"" report. At the moment report can be run only with one hour resolution. To be able to make consumption comparisions by daily or monthly level would be usefull.
+
+"	2	0	2			Tarkastetaan kustannusarvio	Mittaustiedonhallinta	
+31	"CSUSE0016539
+"	It should be possible to view balance contract history, e.g. grid contract history is visible under metering point/contract&product.	Suositus 1 ok (tap 4)				It should be possible to view balance contract history, e.g. grid contract history is visible under metering point/contract&product.	1	0	2				Sopimusprosessi	
+32	"CSUSE0009450
+"	Time series data would be sent to datahub with 1 Wh accuracy on accounting points with fuse size or equivalent electric power max. 3x63 A.  The instructions clarified for accuracy to be used for sending of data with different fuse sizes.	Toteutettu				Time series data would be sent to datahub with 1 Wh accuracy on accounting points with fuse size or equivalent electric power max. 3x63 A.  The instructions clarified for accuracy to be used for sending of data with different fuse sizes.	0	0	2				Mittaustietoprosessi	2.1
+33	"CHGUSE0000032759
+"	"Virtual production units are composed within DH-122 and DH-311 processes:
+- DH-122: 
+	 New vPU is created when production type of an accounting point is updated if there is also a valid sales agreement on the same date. 
+- DH-311
+	 New vPU is created with the active production type on the start date of the sales agreement
+
+At present possible chages in production type in the future or sales agreements starting later than the update of the accounting point are not taken into account. There have been cases that vPU is not composed in certain retrospective changes and it has not been possible to report that production to eSett without the vPU.
+
+Possible changes in the production type (after the start date of the new sales agreement) or sales agreements starting later on in the future (after the update of the accounting point takes effect) should be taken into account. Creation of the virtual production unit should take those also into account and possible create multiple vPUs at once."	Toteutuksessa				"Virtual production units are composed within DH-122 and DH-311 processes:
+- DH-122: 
+	 New vPU is created when production type of an accounting point is updated if there is also a valid sales agreement on the same date. 
+- DH-311
+	 New vPU is created with the active production type on the start date of the sales agreement
+
+At present possible chages in production type in the future or sales agreements starting later than the update of the accounting point are not taken into account. There have been cases that vPU is not composed in certain retrospective changes and it has not been possible to report that production to eSett without the vPU.
+
+Possible changes in the production type (after the start date of the new sales agreement) or sales agreements starting later on in the future (after the update of the accounting point takes effect) should be taken into account. Creation of the virtual production unit should take those also into account and possible create multiple vPUs at once."	1	0	2	"Eli on tilanteita, joissa tuotantoyksikköä ei generoidu ollenkaan ja siitä johtuen tietoa ei saada raportoitua eSett:lle, joten tämä on täten korjattava.
+
+There is cases where production unit is not generated at all and that causes that information cannot be reported to the eSett. But this does not require changes to interface on the eSett site."	Ei  vaadi  muutoksia  rajapintoihin tms eSett:n puolella.		Käyttöpaikkaprosessi	2.3
+34	"CHGUSE0000031589
+"	"Dormant user report in GUI is now only accessible for MOP. 
+Market party admins, would benefit from the report and it would make it easier for them to identify and manage Dormant user and through this make Datahub more secure.
+
+Add system function RPT-SEC-DMT  to roles Security report and authorize these for DSO_Admin, DDQ_Admin and THP_admin "	Suunnitteilla				"Dormant user report in GUI is now only accessible for MOP. 
+Market party admins, would benefit from the report and it would make it easier for them to identify and manage Dormant user and through this make Datahub more secure.
+
+Add system function RPT-SEC-DMT  to roles Security report and authorize these for DSO_Admin, DDQ_Admin and THP_admin "	1	0	2			"Tarkastetaan kustannusarvio
+19.12.2023: Tuotteeseen tulevat parannus"	Roolitus	2.3
+35	"CHGUSE0000031603
+"	"The most urgent need in changing the personal identification system is related to ensuring that there are enough personal identification numbers in the future. 
+From the beginning of 2023, new divider signs/letters will be introduced into the personal identity number for those born in the 20th and 21st centuries:
+- For those born in the 21st century, letters starting from B, in addition to the current letter A (A, B, C, D, E, F, H, J, K, L, M).
+- For those born in the 20th century, letters starting from Y, in addition to the current sign - (-, Y, X, W, V, U, T, S, R, P, N).
+
+Datahub must accept the new divider signs/letters in the personal identification number.
+
+In addition, there can be 'estate of deceased person' customers that have personal IDs for people born in the 19th century (sign '+' in the personal ID, e.g. DDMMYY+1234), and therefore '+' must also be accepted as a divider sign in the personal identification."	Toteutettu				"The most urgent need in changing the personal identification system is related to ensuring that there are enough personal identification numbers in the future. 
+From the beginning of 2023, new divider signs/letters will be introduced into the personal identity number for those born in the 20th and 21st centuries:
+- For those born in the 21st century, letters starting from B, in addition to the current letter A (A, B, C, D, E, F, H, J, K, L, M).
+- For those born in the 20th century, letters starting from Y, in addition to the current sign - (-, Y, X, W, V, U, T, S, R, P, N).
+
+Datahub must accept the new divider signs/letters in the personal identification number.
+
+In addition, there can be 'estate of deceased person' customers that have personal IDs for people born in the 19th century (sign '+' in the personal ID, e.g. DDMMYY+1234), and therefore '+' must also be accepted as a divider sign in the personal identification."	1	0	2	The new dividers can be issued both to newborn children but also the immigrants getting a finnish personal identification, which is why the change needs to be in affect from the beginning of year 2023.		Määrittelydokumentaation päivitys ja tarjouspyyntö järjestelmätoimittajalta.	Asiakastietoprosessi	2.0
+36	"CSUSE0013988
+"	Is there an idea how the sender can validate data transfer into datahub reliable? There is possibility (in the datahub portal, https://portaali.datahub.fi/) to examine in maximum 1000 rows that are sent on same time. E.g. 3.3.2022 at 16:44 is sent over 4000 invoice rows from which 1000 can be exported. Anyway the acknowledgment message comes back from datahub, thus that is one way to examine that messages has been received, but is that enough? Anyway the 1000 limit prevents to examine large message volumes.	Suositus 1 ei ok (tap 13)				Is there an idea how the sender can validate data transfer into datahub reliable? There is possibility (in the datahub portal, https://portaali.datahub.fi/) to examine in maximum 1000 rows that are sent on same time. E.g. 3.3.2022 at 16:44 is sent over 4000 invoice rows from which 1000 can be exported. Anyway the acknowledgment message comes back from datahub, thus that is one way to examine that messages has been received, but is that enough? Anyway the 1000 limit prevents to examine large message volumes.	?	0	2			Asia on edelleen ajankohtainen ja voitaisiin hoitaa raportilla. Ryhmästä tuotiin myös esiin, että raportti voitaisiin ajaa tietyn päivämäärän perusteella ja myös myyjälle olisi tälle käyttöä, näkisi ”näin paljon on lähetetty” eli kuinka paljon verkoittain tullut näitä tietoja.	Sanomahallinta	
+37	"CSUSE0022178
+"	"Open request of disconnection prevents the notification of connection.
+
+Supplier request disconnection on accounting point XX on 30.5.2022. It was not possible on that time and the agreement ended on 31.5.2022. The accounting point had received new agreement staring from 6.6.2022. The disconnection was made on accounting points 2.6.2022 where there was no valid agreement and the accounting point was connected 6.6.2022 when new agreement started. It is not possible to report the connection to datahub as system gives error message that accounting point has open request for disconnection. It is not possible either report to supplier that disconnection has been made from the request of them as that is not the case. How to get that connection reported and correct status for connection on the accounting point. The balance settlement has changed to the supplier starting from 6.6.2022. "	Kehitysehdotus, tapaaminen 15				"Open request of disconnection prevents the notification of connection.
+
+Supplier request disconnection on accounting point XX on 30.5.2022. It was not possible on that time and the agreement ended on 31.5.2022. The accounting point had received new agreement staring from 6.6.2022. The disconnection was made on accounting points 2.6.2022 where there was no valid agreement and the accounting point was connected 6.6.2022 when new agreement started. It is not possible to report the connection to datahub as system gives error message that accounting point has open request for disconnection. It is not possible either report to supplier that disconnection has been made from the request of them as that is not the case. How to get that connection reported and correct status for connection on the accounting point. The balance settlement has changed to the supplier starting from 6.6.2022. "	0	0	2				Kytkentä/katkaisuprosessi	
+38	"CSUSE0022467
+"	"Control report for grid company for checking of the supplier information and agreement status.
+
+Grid company requests control report that can be used to compare the agreement information in own system and datahub up to date and specially supplier information. Now the reminder of measurement data is the only way to check that is seen in measurement data system instead of customer information (time series is not reported because sales is not valid with our local sales company but is valid in datahub).
+
+Prototype of that kind of report was available during the dress rehersial but not in the production system anymore."	Suositus 1 ei ok (tap 11)				"Control report for grid company for checking of the supplier information and agreement status.
+
+Grid company requests control report that can be used to compare the agreement information in own system and datahub up to date and specially supplier information. Now the reminder of measurement data is the only way to check that is seen in measurement data system instead of customer information (time series is not reported because sales is not valid with our local sales company but is valid in datahub).
+
+Prototype of that kind of report was available during the dress rehersial but not in the production system anymore."	1	0	2			Kehitystyöryhmässä todettiin, että asia on edelleen ajankohtainen ja verkkoyhtiöllä pitäisi olla enemmän näkyvyyttä myyntisopimusasioihin (esimerkiksi verkkosopimuksiin liittyvien myyntisopimusten tunnuksiin), jotta tietojen täsmäytys omaan järjestelmään olisi mahdollista. Verkkoyhtiölle tarpeellisista raporteista todettiin olevan avoinna myös muita kehitysehdotuksia, kuten #135, ja nämä olisi hyvä tuoda käsittelyyn kokonaisuutena samalla kertaa. 	Yleinen hallinta	
+39	"CSUSE0022826
+"	"Limitation of unnecessary customer data discrepancies with data validations for data fields  according to the data standard and Titta data migration.
+
+Examples for different types of data and daily number of information:
+
+1. Phone number is same in market party system and datahub but in datahub without the contry code (+358501234567/0501234567). According to the data standard phone number's allowed in format is ITU-T E.164 (+358501234567). Unnecessary messages because of this daily about ten.
+
+2. Customer house letter ""AS"" in our system ""as"". That has several variations and causes about ten messages daily.
+
+3. Capital letters written data: end customer name is same in market party system and datahub but the one coming from datahub is written with capital letters, e.g. DONALD DUCK, in market party system Donald Duck. Also in the street names with capital letters.
+
+4. Foreign addresses; Titta's validation for street name field had full address without postal number and post office information. Street number got zero (0). Now the address updates can give what ever.
+
+Datahub 1.0 commissioning project with Titta validated the delivered data and market parties used a lot of time to make data correct. Now there is a big worry that data quality goes down and the big effort done the go-live is lost. The market party systems work differently, some system do not validate anything and some systems use e.g. robotics."	Suositus 1 ok (tap 10)				"Limitation of unnecessary customer data discrepancies with data validations for data fields  according to the data standard and Titta data migration.
+
+Examples for different types of data and daily number of information:
+
+1. Phone number is same in market party system and datahub but in datahub without the contry code (+358501234567/0501234567). According to the data standard phone number's allowed in format is ITU-T E.164 (+358501234567). Unnecessary messages because of this daily about ten.
+
+2. Customer house letter ""AS"" in our system ""as"". That has several variations and causes about ten messages daily.
+
+3. Capital letters written data: end customer name is same in market party system and datahub but the one coming from datahub is written with capital letters, e.g. DONALD DUCK, in market party system Donald Duck. Also in the street names with capital letters.
+
+4. Foreign addresses; Titta's validation for street name field had full address without postal number and post office information. Street number got zero (0). Now the address updates can give what ever.
+
+Datahub 1.0 commissioning project with Titta validated the delivered data and market parties used a lot of time to make data correct. Now there is a big worry that data quality goes down and the big effort done the go-live is lost. The market party systems work differently, some system do not validate anything and some systems use e.g. robotics."	1	0	2			Ohjeistuksesta tarkistetaan nollan käyttäminen talonumerokentässä. Muuten ei toteuta uusia tarkastuksia	Asiakastietoprosessi	
+40	"CSUSE0023507
+"	"Development of the email sent to the previous supplier.
+
+The email content (the one sent to the previous supplier) is missleading if new (supplier that notifies the retrospective sales agreement) supplier has notified several retrospective agreement to the datahub. There can be many of these and always those require additional explanation that ""ignore this email contenct, your agreement has been ended in real"".
+
+E.g. message: ""Notified sales agreement start date DD on accounting point X cannot be created because of validation error. Sales contract Y continues unchanged on the accounting point."" But the sales agreement is not valid on the user interface. Incorrect information?
+"	Suunnitteilla				"Development of the email sent to the previous supplier.
+
+The email content (the one sent to the previous supplier) is missleading if new (supplier that notifies the retrospective sales agreement) supplier has notified several retrospective agreement to the datahub. There can be many of these and always those require additional explanation that ""ignore this email contenct, your agreement has been ended in real"".
+
+E.g. message: ""Notified sales agreement start date DD on accounting point X cannot be created because of validation error. Sales contract Y continues unchanged on the accounting point."" But the sales agreement is not valid on the user interface. Incorrect information?
+"	1	0	1				Sopimusprosessi	2.4
+41	"CSUSE0024260
+"	"Customer merge with VAT number within the market party's own account.
+
+It shall be possible to do custome merge also for end customers with VAT number (meaning custtomer type for companyt AB01). There comes a lot of these ind of tickets and the only way to fix the situation is that market parties cancel the contract and notify is again. As customer merge is possible for end customer, it shall be possible for companies as well.
+
+(E.g. end customer XXX_YYY and house hold company ZZZZ shall be merged under market party account to the VAT number TTTTT.)."	Suunnitteilla				"Customer merge with VAT number within the market party's own account.
+
+It shall be possible to do custome merge also for end customers with VAT number (meaning custtomer type for companyt AB01). There comes a lot of these ind of tickets and the only way to fix the situation is that market parties cancel the contract and notify is again. As customer merge is possible for end customer, it shall be possible for companies as well.
+
+(E.g. end customer XXX_YYY and house hold company ZZZZ shall be merged under market party account to the VAT number TTTTT.)."	1	1	2				Asiakastietoprosessi	2.4
+42	"CSUSE0024435
+"	"Can datahub be changed in ""under contraction"" states connect? E.g. contract start date is changed only if accounting point has been under construction before accounting point was changed to under construction state and the state change to conneced would not change agreement start date. If the agreement has become valid after the accounting point has been changed to the under construction state, agreement start date can be changes as current rules say. Is the ruling factor the agreement notification date or contract start date?"	Suositus 1 ok (tap 3)				"Can datahub be changed in ""under contraction"" states connect? E.g. contract start date is changed only if accounting point has been under construction before accounting point was changed to under construction state and the state change to conneced would not change agreement start date. If the agreement has become valid after the accounting point has been changed to the under construction state, agreement start date can be changes as current rules say. Is the ruling factor the agreement notification date or contract start date?"	?	?	TU			Edistetään vaihtoehtoa 2 (#57)	Sopimusprosessi	
+43	"CSUSE0024674
+"	The end customer has valid grid agreement at the moment in two accounting points and we have sales agreement to one of those. The other accounting point has another supplier.  	Suositus 1 ei ok (tap 11)				The end customer has valid grid agreement at the moment in two accounting points and we have sales agreement to one of those. The other accounting point has another supplier.  	2	?	1			Kehitysehdotuksessa oli mainittu monta asiaa, joista osaan on otettu kantaa asiakastiedon laadun parantamiseksi tehdyn työn (ohjeistuksen parannus ja uudet tarkastussäännöt) myötä. Kehitystyöryhmässä päätettiin, että pidetään ehdotus vielä listalla ja selvitetään sen nostajalta, onko heillä alkuperäiseen yhteydenottoon liittyen vielä ajankohtaisia kehitettäviä asioita. 	Asiakastietoprosessi	
+44	"CSUSE0024715
+"	"Can you add validation check for connect requests by supplier: connect request cannot be sent if there has not been sent disconnect request for the account point.
+
+E.g. accounting point XXX disconnect request has arrived on earlier day that there is now disconnection planned to happen. There is also available connect requests even there is no disconnect requests. E.g. XXX. And there comes e.g. in move cases disconnect requests from supplier even there is no disconnect planned to happen at all.
+
+Issues is that events remain open in datahub for us because we cannot remove them by ourselves."	Suositus 1 ei ok (tap 12)				"Can you add validation check for connect requests by supplier: connect request cannot be sent if there has not been sent disconnect request for the account point.
+
+E.g. accounting point XXX disconnect request has arrived on earlier day that there is now disconnection planned to happen. There is also available connect requests even there is no disconnect requests. E.g. XXX. And there comes e.g. in move cases disconnect requests from supplier even there is no disconnect planned to happen at all.
+
+Issues is that events remain open in datahub for us because we cannot remove them by ourselves."	1	0	2			Todettiin, että ongelmallisia tapauksia tulee, kun esimerkiksi myyjät lähettävät muuton yhteydessä virheellisesti erillisen kytkentäpyynnön, mutta ryhmän näkemyksen mukaan määrät ovat hyvin pieniä. Validointisäännön rakentaminen ei ole yksinkertainen ratkaisu, sillä esimerkiksi myyjänvaihdossa uuden myyjän voi tarvita lähettää kytkentäpyyntö, eikä tätä tällöin edellä katkaisupyyntö. Päätettiin selvittää vielä tiketin nostajalta, onko ehdotus edelleen ajankohtainen ja kuinka suuresta ongelmasta on kyse.  	Kytkentä/katkaisuprosessi	
+45	"CSUSE0024790
+"	"The cancelled agreements to the DSO's accounting point history.
+
+It would be good if supplier's cancelled agreements could be visible on e.g. accounting point history information. The fixing situations cause extra harm and the cancelled agreements visibility would help in finding out the issues."	Suositus 1 ei ok (tap 3)				"The cancelled agreements to the DSO's accounting point history.
+
+It would be good if supplier's cancelled agreements could be visible on e.g. accounting point history information. The fixing situations cause extra harm and the cancelled agreements visibility would help in finding out the issues."	2	0	1			Tarkastetaan kustannusarvio ja uudestaan käsittelyyn, mikäli kustannus poikkeaa alustavasta arviosta.	Sopimusprosessi	
+46	"CSUSE0025402
+"	"Unnecessary grid agreement confirmations to be removed automatically from open events when supplier cancels the agreement.
+
+(E.g. can you remove open DH-312-1 event on accounting point XX on day 29.3.2022. Supplier has cancelled sales agreement starting on the 30.3. Sales company's delivery has started on 30.3.2022. Isn't there rule to remove unnecessary grid agreement confirmations from open events when supplier cancels the agreement? If not, it would be good to have one, so that those will be removed automatically and those do not remain unnecessarily in grid company's open events.) 
+"	Hylätty (tap 5)				"Unnecessary grid agreement confirmations to be removed automatically from open events when supplier cancels the agreement.
+
+(E.g. can you remove open DH-312-1 event on accounting point XX on day 29.3.2022. Supplier has cancelled sales agreement starting on the 30.3. Sales company's delivery has started on 30.3.2022. Isn't there rule to remove unnecessary grid agreement confirmations from open events when supplier cancels the agreement? If not, it would be good to have one, so that those will be removed automatically and those do not remain unnecessarily in grid company's open events.) 
+"	1+2	0	2	Myyntisopimuksen peruutusprosessin DH-341 tulisi jo tällä hetkellä toimia niin, että kun myyjä peruu sopimuksen, jonka vastaavaa verkkosopimusta ei ole vielä vahvistettu, vahvistamaton verkkosopimus peruutetaan automaattisesti ja tähän liittyvät avoin tapahtuma sulkeutuu. Datahubissa on ilmennyt muutamia tapauksia, joissa prosessi ei ole toiminut oikein ja näiden osalta korjaustarpeiden selvitys on menossa. 		Korjataan kuitenkin yksittäiset tunnistetut virhetilanteet.	Sopimusprosessi	
+47	"CSUSE0025793
+"	"DSO needs to get information about the ending of a sales agreement if a supplier has first cancelled the agreement ending and after that ends the agreement again for same day.
+
+(E.g. from accouting point XXX we received information that the 24.6.2022 00:00 ending date is cancelled. Now it seems that the sales agreement has ended on that day anyway. Has there been a new ending after the cancellation of ending which has not been notified to the DSO?"	Suositus 1 ok (tap 4)				"DSO needs to get information about the ending of a sales agreement if a supplier has first cancelled the agreement ending and after that ends the agreement again for same day.
+
+(E.g. from accouting point XXX we received information that the 24.6.2022 00:00 ending date is cancelled. Now it seems that the sales agreement has ended on that day anyway. Has there been a new ending after the cancellation of ending which has not been notified to the DSO?"	1	0	2				Sopimusprosessi	
+48	"CSUSE0026373
+"	"Service provider cannot see supplier's agreement data, even as end customer's electricity purchase responbility service provider we should have full access to agreement data. This causes cases where we need to request agreement basic data from supplier by email, as if agreement is fixed term and cancellation rules.
+
+Agreement information shall be released also to third parties. Another alternative is that datahub's market party authorization shall be developed so that supplier can give authorization to third party for the agreements' data."	Kehitysehdotus, tapaaminen 15				"Service provider cannot see supplier's agreement data, even as end customer's electricity purchase responbility service provider we should have full access to agreement data. This causes cases where we need to request agreement basic data from supplier by email, as if agreement is fixed term and cancellation rules.
+
+Agreement information shall be released also to third parties. Another alternative is that datahub's market party authorization shall be developed so that supplier can give authorization to third party for the agreements' data."	2/3	1	2		"Sopimustietojen näyttämiseen liittyy vahvasti se, että sopimus on aina kahden osapuolen välinen asia, asiakkaan ja myyjän tai jakeluverkonhaltijan. Tämän vuoksi on aikanaan prosesseja määritellessä jätetty valtuutettavista tiedoista pois nuo sopimustiedot. Jos tätä lähdetään muuttamaan, on myös loppuasiakkaiden tiedostettava, että valtuutuksella palveluntarjoaja pääsee tähän tietoon kiinni. Osapuolivaltuutuksessa on se huono puoli, että sillä valtuutetaan osapuoli kokonaan tiettyyn prosessiin ja tiettyyn tietoon. Sillä ei voida erotella esim. asiakaskohtaisesti, että mitä asiakkaita tämä osapuolivaltuutus koskee. Näkisin, että tulisi olla lisäksi mekanismi, jolla varmistetaan vielä se, että asiakas on myös erikseen valtuuttanut tähän tietoon muiden tietojensa lisäksi.
+Mutta tämä otetaan käsittelyyn ja katsotaan voidaanko tähän löytää ratkaisu, jolla teidänkin tarpeet tiedon saannin osalta voitaisiin toteuttaa."		Valtuutusprosessi	
+49	"CSUSE0026496
+"	"Grid needs to be able to handle ending event
+
+Grid cannot handle ending event because the agreement is ended because of new move-in. In case there is new move-in notified into the accounting point, then the agreement would be revert incorrectly valid even there has been made notification with ending event to the accounting point separately.
+
+E.g. We request to remove accounting point XXX's open transaction from the grid agreement YYY about ending for time 30.8.2022. Grid cannot handle ending event because is has ended because of new move-in. Shall the agreement revert valid if new move-in is cancelled?"	Toteutuksessa				"Grid needs to be able to handle ending event
+
+Grid cannot handle ending event because the agreement is ended because of new move-in. In case there is new move-in notified into the accounting point, then the agreement would be revert incorrectly valid even there has been made notification with ending event to the accounting point separately.
+
+E.g. We request to remove accounting point XXX's open transaction from the grid agreement YYY about ending for time 30.8.2022. Grid cannot handle ending event because is has ended because of new move-in. Shall the agreement revert valid if new move-in is cancelled?"	1+2	0	2	Aiheuttaa nykyisellään paljon käsin työtä myös datahub operaattorille.		"Viedään alityöryhmän käsittelyyn.
+13.4.2023: Alityöryhmän suositus on että toteutetaan."	Sopimusprosessi	2.3
+50	"CSUSE0026532
+"	"Possibility to have fuse size 10xZZZZ
+
+It is not possible to add new fuse sizes (10x3x100 and 10x3x1250) into the customer information system as datahub accepts only the fuse size with one number in the name e.g. 9xZZZ. The power of accounting point connections increase and the new fuse sizes are necessary. Can datahub accept fuse sizes starting with ""10xZZZ""? "	Suositus 1 ei ok (tap 3)				"Possibility to have fuse size 10xZZZZ
+
+It is not possible to add new fuse sizes (10x3x100 and 10x3x1250) into the customer information system as datahub accepts only the fuse size with one number in the name e.g. 9xZZZ. The power of accounting point connections increase and the new fuse sizes are necessary. Can datahub accept fuse sizes starting with ""10xZZZ""? "	1	1	1			Selvitettävä tarkemmin tarvetta/ratkaisua ja tuodaan uudestaan kehitystyöryhmään.	Käyttöpaikkaprosessi	
+51	"CSUSE0026678
+"	"Datahub to validate personal id/name information match.
+
+We are receiving weekly data privacy notifications that customer name informations have been changed incorrect because of update from datahub. The root cause is incorrect DH -112 (end customer personal id and name do not match) or new agreement has been made with incorrect name/personal id combination. "	Kehitysehdotus, tapaaminen 15				"Datahub to validate personal id/name information match.
+
+We are receiving weekly data privacy notifications that customer name informations have been changed incorrect because of update from datahub. The root cause is incorrect DH -112 (end customer personal id and name do not match) or new agreement has been made with incorrect name/personal id combination. "			1	Kun väestötietojärjestelmään lakiin on vast' ikään lisätty (eli muutaman vuoden sisällä) erityinen säännös 31 a § tietojen luovuttamisesta sähköalan yrityksille siten, että tietoihin on oikeutettu nimenomaan myyjät ja jakeluverkon haltijat, niin ei voida tulkita tuota laajentavasti niin, että myös Datahubilla olisi oikeus saada tietoja suoraan VTJ:stä. Varsinkin kun otetaan huomioon, että tuo lisäys lakiin on tehty datahubia koskevan lainsäädännön yhteydessä (HE 144/2018 vp: https://www.eduskunta.fi/FI/vaski/HallituksenEsitys/Sivut/HE_144+2018.aspx ). Jos Datahubille olisi haluttu antaa myös oikeus saada tietoja VTJ:stä, olisi lainsäätäjän tullut mainita se tässä samassa pykälässä.		Selvitetään datahubin oikeutta VTJ:stä	Asiakastietoprosessi	
+52	"INCUSE0000061289
+"	"There needs to be cured the problem with 
+-interpreting the reason for agreement start on the accounting point and 
+-possibility for the same DDQ to update new SAG without EC.AGR. 215  (reason for agreement start interpreted incorrectly?)
+There is a valid grid agreement for the customer whose new sales agreement is being rejected (because DSO has not cancelled the grid agreement just yet) but the valid sales agreement on the ACP is for completely different customer. 
+
+Submitting a new agreement fails incorrectly because of validation rule EC.AGR.215 (reason for agreement start interpreted incorrectly?)
+Tested in SAT01, version 1.9.0. Found this problem when re-testing PTASK0010150. 
+Test case simulates situation where customer wants to postpone the start date of the agreement. 
+In these situations it's quite common that the supplier cancels the original agreement and submits a new agreement for the same customer with different start date before DSO reacts to the cancellation 
+
+1. I created a new accounting point XXXXXXXXXXXXX and submitted a fixed term agreement for customer YYYYYYYYY starting from 3.7. Grid agreement was also confirmed. 
+2. Then I submitted a new agreement for different supplier and different customer (customer YYYYYYYYC) starting from 1.8. Agreement was accepted because it is a move in and corresponding grid agreement was also confirmed. 
+3. I cancelled the later sales agreement (customer YYYYYYYYYC's agreement) with cancellation reason AR02. Corresponding grid agreement was not cancelled before the next step. 
+4. I tried to submit a new sales agreement for the same customer (customer YYYYYYYYC) starting from 1.9.  Agreement is rejected because of the validation rule EC.AGR.215 (If an Accounting Point has a valid fixed-term Sales Agreement (on Start of Occurrence) where the customer type is ""Consumer"" and the latest fixed term period is less than or equal to 2 years, then a Change of Supplier cannot be reported). 
+
+Rejection makes no sense because the agreement that is rejected has completely different customer than on the agreement on step 1. See attachment ""Agreement rejection"" for error code received when testing and attachment ""sales agreement"" for current sales agreement's information. "	Kehitysehdotus, tapaaminen 15				"There needs to be cured the problem with 
+-interpreting the reason for agreement start on the accounting point and 
+-possibility for the same DDQ to update new SAG without EC.AGR. 215  (reason for agreement start interpreted incorrectly?)
+There is a valid grid agreement for the customer whose new sales agreement is being rejected (because DSO has not cancelled the grid agreement just yet) but the valid sales agreement on the ACP is for completely different customer. 
+
+Submitting a new agreement fails incorrectly because of validation rule EC.AGR.215 (reason for agreement start interpreted incorrectly?)
+Tested in SAT01, version 1.9.0. Found this problem when re-testing PTASK0010150. 
+Test case simulates situation where customer wants to postpone the start date of the agreement. 
+In these situations it's quite common that the supplier cancels the original agreement and submits a new agreement for the same customer with different start date before DSO reacts to the cancellation 
+
+1. I created a new accounting point XXXXXXXXXXXXX and submitted a fixed term agreement for customer YYYYYYYYY starting from 3.7. Grid agreement was also confirmed. 
+2. Then I submitted a new agreement for different supplier and different customer (customer YYYYYYYYC) starting from 1.8. Agreement was accepted because it is a move in and corresponding grid agreement was also confirmed. 
+3. I cancelled the later sales agreement (customer YYYYYYYYYC's agreement) with cancellation reason AR02. Corresponding grid agreement was not cancelled before the next step. 
+4. I tried to submit a new sales agreement for the same customer (customer YYYYYYYYC) starting from 1.9.  Agreement is rejected because of the validation rule EC.AGR.215 (If an Accounting Point has a valid fixed-term Sales Agreement (on Start of Occurrence) where the customer type is ""Consumer"" and the latest fixed term period is less than or equal to 2 years, then a Change of Supplier cannot be reported). 
+
+Rejection makes no sense because the agreement that is rejected has completely different customer than on the agreement on step 1. See attachment ""Agreement rejection"" for error code received when testing and attachment ""sales agreement"" for current sales agreement's information. "	?	0	2				Sopimusprosessi	
+53	CSUSE0016057	"Datahub accounting point internal net calculation:
+We have accounting points that have production and consumption accounting points on different end customers name. That is customer wish and Energy Industry has confirmed that it is possible. In these kind of cases customer does not want to have net calculation. How should it work? Is the grid company going to inform those  anyway as parallel accounting points? Grid company does not necessarily know when new production accounting point appears that it will not have same customer as on the consumption accounting point. How the supplier can get separate time series for production and consumption? How supplier should act? Documentation did not answer on that. Only in energy community case ""no netting"" is allowed on certain cases? E.g. in which case grid can choose (DH-122-2/DH-122-3) ""no netting""? Only in case of energy community?
+
+Supplier DH-124 event is not mentioned in the 2.0 documentation, thus energy community or netting data is not a part of supplier message?
+
+I remember that at the moment supplier gets 3 time series, production, consumption and possible netting and can choose, is this going to change in 2.0? We have also customers that have agreement for both production and concumption accounting point, but do not want to have netting. There is also customers that want to made agreement only for production. How netting works on those cases or isn't it possible to made those kind of agreements?"	Hylätty (tap 6)				"Datahub accounting point internal net calculation:
+We have accounting points that have production and consumption accounting points on different end customers name. That is customer wish and Energy Industry has confirmed that it is possible. In these kind of cases customer does not want to have net calculation. How should it work? Is the grid company going to inform those  anyway as parallel accounting points? Grid company does not necessarily know when new production accounting point appears that it will not have same customer as on the consumption accounting point. How the supplier can get separate time series for production and consumption? How supplier should act? Documentation did not answer on that. Only in energy community case ""no netting"" is allowed on certain cases? E.g. in which case grid can choose (DH-122-2/DH-122-3) ""no netting""? Only in case of energy community?
+
+Supplier DH-124 event is not mentioned in the 2.0 documentation, thus energy community or netting data is not a part of supplier message?
+
+I remember that at the moment supplier gets 3 time series, production, consumption and possible netting and can choose, is this going to change in 2.0? We have also customers that have agreement for both production and concumption accounting point, but do not want to have netting. There is also customers that want to made agreement only for production. How netting works on those cases or isn't it possible to made those kind of agreements?"			2	"Verkko voi halutessaan poistaa näiden kohteiden osalta rinnakkaisuuden, jolloin tuota netotusta ei tehdä. Toki tämä vaatisi sen, että verkolla on tieto siitä että näiden käyttöpaikkojen osalta netotusta ei haluta. Ainakaan toistaiseksi datahub ei tue tapahtumaa jolla myyjä voisi tämän ilmoittaa, joten tätä pitää verkoilta erikseen pyytää olemalla suoraan niihin yhteydessä.
+
+Verkko ei voi itse ilmoittaa tuota ""ei netotusta"" -tilaa vaan datahub päättelee tuon tilan käyttöpaikan rinnakkaisuuden ja tuotantokäyttöpaikkaan liitetyn tuotantolaitteen maksimitehon (pientuotantolaitteiden yhteenlaskettu maksimiteho alle 100kVA) perusteella. Eli verkko ei siis tuota netotustilaa datahubiin ilmoita.
+
+Myyjät eivät tosiaan yhteisöihin tai netotukseen liittyen ilmoita datahubiin tietoja, vaan nämä ovat verkkojen hallitsemia tietoja. Myyjä saa nämä verkon tekemät muutokset käyttöpaikkatietojen tilapäivityksinä (DH-122-2).
+
+Tällä hetkellä datahub ei laske netotusta, eli datahubista tulee yksi aikasarja per käyttöpaikka. Jatkossa myyjä saa sekä mitatun (DH-211) sekä mahdollisen netotetun (DH-231) ja/tai energiayhteisölaskennan (DH-241) tulokset."		Kehitysehdotukselle ei nähdä tarvetta, jätetään ehdotus vielä mukaan tauolle listalle, jotta tähän voidaan tarvittaessa palata myöhemmin.	Laskennat	
+54	CSUSE0026959	"Supplier role should have same authorizations for data as for third party.
+
+With customer authorization supplier should get metering data and other data from same time period as third party gets. The current limitation has no arguments and get supplier for unfare situation with sales consult and causes unnecessary tricks, when e.g. there is need to establish third party role (for supplier) that then can make those actions."	Suositus 1 ok (tap 14)				"Supplier role should have same authorizations for data as for third party.
+
+With customer authorization supplier should get metering data and other data from same time period as third party gets. The current limitation has no arguments and get supplier for unfare situation with sales consult and causes unnecessary tricks, when e.g. there is need to establish third party role (for supplier) that then can make those actions."	1	0	2			Todettiin että tämä on sama tarve, kun aiemmin läpikäyty kehitysehdotus #55	Valtuutusprosessi	
+55	CSUSE0027334	"DH-311-4 is also sent to same supplier who reported a move-in to the related accounting point.
+
+Could datahub add the same rule to the DH-311-4 notification as there is for the DH-311-3 notification? ""Is the supplier that notifies the move-in the same as the supplier of the related accounting point?"" If yes, then DH-311-4 is not sent.
+
+There have been cases in production where agreements on related accounting points have been reported at different times.
+
+E.g. move-in to the comsumption accounting point on 25.7. and move-in to the production accounting point on 29.7. The later move-in has caused a DH-311-4 notification to the supplier of the consumption accounting point even though both accounting points have the same supplier and the same customer."	Kehitysehdotus, tapaaminen 16?				"DH-311-4 is also sent to same supplier who reported a move-in to the related accounting point.
+
+Could datahub add the same rule to the DH-311-4 notification as there is for the DH-311-3 notification? ""Is the supplier that notifies the move-in the same as the supplier of the related accounting point?"" If yes, then DH-311-4 is not sent.
+
+There have been cases in production where agreements on related accounting points have been reported at different times.
+
+E.g. move-in to the comsumption accounting point on 25.7. and move-in to the production accounting point on 29.7. The later move-in has caused a DH-311-4 notification to the supplier of the consumption accounting point even though both accounting points have the same supplier and the same customer."	1	1	2	Mahdollisesti poistaa tarpeettomia sanomia riippuen osapuolen pään toteutuksesta.		"Suositus tarkennuksella ehdotettuun ratkaisukuvaukseen, että DH-311-4 ei lähde, jos sekä myyjä että asiakas ovat samat kulutus- ja tuotantokäyttöpaikoilla.
+21.9.2023: Kehitystyöryhmässä oli tähän erilaisia näkemyksiä, myös sen suhteen, tulisiko muutosta toteuttaa ollenkaan. Selvennetään vielä tähän liittyvää kysymystä ja jatketaan ehdotuksen käsittelyä seuraavassa kehitystyöryhmässä.
+09.11.2023 Lopputulemana päädyttiin siihen, että selvitetään vielä, onko asia tarve viedä alityöryhmään keskusteltavaksi. Muussa tapauksessa suositeltiin, että viedään kehitettäväksi eteenpäin niin, että tarkastellaan vain käyttöpaikkojen asiakastietoja."	Sopimusprosessi	
+56	CSUSE0027758	"Reports: 
+ Balance calculation input control report:
+ - report does not include GSRN number in .sd file and GLN supplier id in .md file
+
+ Balance quality and location control panel:
+ - possiblity to limit longer period of time to the seach -> accounting points for selected period of time series data
+ - search with status ""null"", ""missing"" or ""uncertain"", e.g. when checking the invoicing monthly
+ - possibility to export only ""null"", ""missing"" or ""uncertain"" data lists into MS Excel
+ - NOBS by accounting point id according to the different statuses
+
+- Link from report to the accounting point data details.
+- e.g. Number of Accounting points -> list shall contain accounting point ids to avoid run separate accounting point report or filter if accounting point is connected but not metered.
+- e.g. Number of Load Curve Accounting Points -> now only number of accounting points but also have accounting point ids
+- accounting point lists on reports or directly to MS Excel (no need to modify in between)
+- drilling down to data would be easier if datahub had more sheets for reports and same time possibility to lood at accounting point data (e.g. if checking on accounting point level report ""Accounting Points without Balance Supplier"")
+Porautuminen tietoon olisi helpompaa, jos DH avautuisi useampi välilehti niin että haettu raportti ei katoa, jos välillä esim 
+     "	Alustettu sis				"Reports: 
+ Balance calculation input control report:
+ - report does not include GSRN number in .sd file and GLN supplier id in .md file
+
+ Balance quality and location control panel:
+ - possiblity to limit longer period of time to the seach -> accounting points for selected period of time series data
+ - search with status ""null"", ""missing"" or ""uncertain"", e.g. when checking the invoicing monthly
+ - possibility to export only ""null"", ""missing"" or ""uncertain"" data lists into MS Excel
+ - NOBS by accounting point id according to the different statuses
+
+- Link from report to the accounting point data details.
+- e.g. Number of Accounting points -> list shall contain accounting point ids to avoid run separate accounting point report or filter if accounting point is connected but not metered.
+- e.g. Number of Load Curve Accounting Points -> now only number of accounting points but also have accounting point ids
+- accounting point lists on reports or directly to MS Excel (no need to modify in between)
+- drilling down to data would be easier if datahub had more sheets for reports and same time possibility to lood at accounting point data (e.g. if checking on accounting point level report ""Accounting Points without Balance Supplier"")
+Porautuminen tietoon olisi helpompaa, jos DH avautuisi useampi välilehti niin että haettu raportti ei katoa, jos välillä esim 
+     "	?	0	2				Yleinen hallinta	
+57	CSUSE0028271	"Reporting need: 
+
+From grid company point of view it would be good to know in this kind of energy business situation at least own grid area (and whole Finland) fixed term sales contracts validation times on sum level if it is not possible to delivery that information on accounting point level:
+- on year 2022 monthly / daily ended fixed term agreements
+- on year 2022 new fixed term agreements / ended fixed term agreements next step agreements
+- ended fixed term agreements next step open ended agreements (not fixed term)
+- on year 2023 ending fixed term agreements
+- raport would be more valuable if sales agreements were grouped by annual consumption e.g. agreement using over and under 10 000 kWh and number of those.
+
+From grid company perspective it would be valuable to get visibility on own MGA's sales agreement status and customer status on changing energy price situation.
+Grid company could thus predict for customer cost preasure on changing market situation and prepare for different scenarios from own debt point of view when the overall visibility on market situation is available. On the other hand customer overall situation would help also to study different demand response actions impact on customers."	Kehitysehdotus, tapaaminen 16?				"Reporting need: 
+
+From grid company point of view it would be good to know in this kind of energy business situation at least own grid area (and whole Finland) fixed term sales contracts validation times on sum level if it is not possible to delivery that information on accounting point level:
+- on year 2022 monthly / daily ended fixed term agreements
+- on year 2022 new fixed term agreements / ended fixed term agreements next step agreements
+- ended fixed term agreements next step open ended agreements (not fixed term)
+- on year 2023 ending fixed term agreements
+- raport would be more valuable if sales agreements were grouped by annual consumption e.g. agreement using over and under 10 000 kWh and number of those.
+
+From grid company perspective it would be valuable to get visibility on own MGA's sales agreement status and customer status on changing energy price situation.
+Grid company could thus predict for customer cost preasure on changing market situation and prepare for different scenarios from own debt point of view when the overall visibility on market situation is available. On the other hand customer overall situation would help also to study different demand response actions impact on customers."	2	0	1				Yleinen hallinta	
+58	CSUSE0028392	"We have also had issues with customer data quality in messages from datahub, e.g. tickets CSUSE0027420 and CSUSE0027248.
+
+In both cases we have correct personal id and correct natural person, event brought wrong customer data.
+Proposal 1: DH validates incoming event for customer data against VTJ service and return it to the sending party in case validation fails.
+Proposal 2:   DH validates incoming event against own customer database and sends notification about abnormal data to a party -> event stays open to wait validation. The sender needs to check if they have correct data. If they have, they have to ask Fingrid to inform other party(parties) to check the customer data.
+Proposal 3: Is it possible to do similar customer data check from VTJ service as was implemented on migration service before go-live and deliver correction lists to the market parties one more time."	Kehitysehdotus, tapaaminen 15				"We have also had issues with customer data quality in messages from datahub, e.g. tickets CSUSE0027420 and CSUSE0027248.
+
+In both cases we have correct personal id and correct natural person, event brought wrong customer data.
+Proposal 1: DH validates incoming event for customer data against VTJ service and return it to the sending party in case validation fails.
+Proposal 2:   DH validates incoming event against own customer database and sends notification about abnormal data to a party -> event stays open to wait validation. The sender needs to check if they have correct data. If they have, they have to ask Fingrid to inform other party(parties) to check the customer data.
+Proposal 3: Is it possible to do similar customer data check from VTJ service as was implemented on migration service before go-live and deliver correction lists to the market parties one more time."			1			Selvitetään vielä mahdollisuuksia lainsäädännön osalta datahubin tarkastuksille ja mitä tarkoittaisi datahubin kannalta.	Asiakastietoprosessi	
+59	CSUSE0028737	"How shall we act if disconnection delay cannot be done on time frames? It is not possible to get safe connection confirmation to a customer.
+
+DH documentation: day after Lastest on the following business day from the supplier request connection day if 
+7.2 there is no notification made for that request. Notification is received still after that time, but late send notifications will be validated.
+- Grid company needs to confirm safe connection. If grid does not get information about safe connection - connection request can stay incomplete for longer time. Assumption is that this issue is not removed totally even customer is tried to be contacted from us but not succeeded.
+
+Most of sales companies and their collection agencies make sure safety but information is not transferred from datahub to grid company."	Hylätty (tap 12)				"How shall we act if disconnection delay cannot be done on time frames? It is not possible to get safe connection confirmation to a customer.
+
+DH documentation: day after Lastest on the following business day from the supplier request connection day if 
+7.2 there is no notification made for that request. Notification is received still after that time, but late send notifications will be validated.
+- Grid company needs to confirm safe connection. If grid does not get information about safe connection - connection request can stay incomplete for longer time. Assumption is that this issue is not removed totally even customer is tried to be contacted from us but not succeeded.
+
+Most of sales companies and their collection agencies make sure safety but information is not transferred from datahub to grid company."	2/3	2	3			Kehitystyöryhmä ei nähnyt lisäarvoa sille, että tieto turvallisesta kytkennästä tuotaisiin Datahubiin. Aikarajoista poikkeavaa kytkennän viivästymisen ilmoittamista ei pidetty ongelmana, sillä Datahub sallii ilmoituksen myös aikarajoista poiketen, ja mikäli esimerkiksi perinnän yhteydessä kytkentää ei tehdä asiakkaan maksun suorituksen jälkeen, asiakas on hyvin nopeasti yhteydessä asiasta. Todettiin myös, että nykyinen dokumentaatio on riittävä eikä siihen tarvita muutosta. 	Käyttöpaikkaprosessi	
+60	CHGUSE0000032138	Proposal 1: 	Toteutettu				Proposal 1: 	2	0	1	Fingrid needs specific data for distribution systen operators overall consumption to be able to manage better possible lack of electricity in Finland.			Raportointi	1.9.0 p/2.0
+61	INCUSE0000065774	"When a sales agreement is cancelled (DH-341), previous agreements ended using a bulk process are not handled the same way as previous agreements that have been ended with DH-331 or DH-311. DH-341 does not restore a previous agreement ""if the previous Sales Agreement already had an end date (followed by gap or not) that was explicitly reported by the Previous Supplier using the (DH-311) creation process or (DH-331) termination process.""
+This also needs to include the bulk process so that agreements ended with that are not restored. 
+"	Toteutettu				"When a sales agreement is cancelled (DH-341), previous agreements ended using a bulk process are not handled the same way as previous agreements that have been ended with DH-331 or DH-311. DH-341 does not restore a previous agreement ""if the previous Sales Agreement already had an end date (followed by gap or not) that was explicitly reported by the Previous Supplier using the (DH-311) creation process or (DH-331) termination process.""
+This also needs to include the bulk process so that agreements ended with that are not restored. 
+"	2	0	1	Jos/kun näitä konkursseja tulee enemmän syksyn aikana niin tää puute määrittelyssä tulee työllistään ASPA:a ihan älyttömiä määriä, kun saadaan koko ajan olla käsin päättämässä noita uudestaan, jos uusi sopimus peruutetaan.			Sopimusprosessi	2.1
+62	"CSUSE0029459
+
+INCUSE0000055887
+CHGUSE0000032203 "	"(Process document) Making a grid agreement: 
+Datahub will decide whether a new grid agreement is necessary based on data reported by the supplier and on the accounting point's customer and agreement status at the given time. If the matter concerns a move in, a new grid agreement is always made. If the matter concerns a change in supplier or agreement, a new grid agreement is required in those situations wherein the valid 
+grid agreement for an accounting point is held by a customer that differs from the customer in the upcoming sales agreement. ... Even if the customers of the agreements would match, a new grid agreement is needed if the “delivery agreement” attributes of the agreements do not match, ...
+
+At the moment, the check on the ""delivery agreement"" field only takes into account the previous sales agreement and not the grid agreement. In situations where a new sales agreement is created and there already is a grid agreement but no previous sales agreement on the accounting point, this can lead to a mismatch between the sales and the grid agreement's ""delivery agreement"" information."	Toteutettu				"(Process document) Making a grid agreement: 
+Datahub will decide whether a new grid agreement is necessary based on data reported by the supplier and on the accounting point's customer and agreement status at the given time. If the matter concerns a move in, a new grid agreement is always made. If the matter concerns a change in supplier or agreement, a new grid agreement is required in those situations wherein the valid 
+grid agreement for an accounting point is held by a customer that differs from the customer in the upcoming sales agreement. ... Even if the customers of the agreements would match, a new grid agreement is needed if the “delivery agreement” attributes of the agreements do not match, ...
+
+At the moment, the check on the ""delivery agreement"" field only takes into account the previous sales agreement and not the grid agreement. In situations where a new sales agreement is created and there already is a grid agreement but no previous sales agreement on the accounting point, this can lead to a mismatch between the sales and the grid agreement's ""delivery agreement"" information."	1	0	1	Tämän datahubin virheellisen toiminnan vuoksi aiheutuu tällä erää merkittävää haittaa jo asiakkaille astikin, koska kiertotienä on ainoastaan verkkosopimuksen päättäminen ja sen jälkeen uuden sopimuksen teko myyjän toimesta. Tämä aiheuttaa tämä tilanteita, joissa asiakas ei näe kulutustietojaan online-palveluissa, ennen kuin myyjä saa tehtyä sopimuksen uudestaan. Tämä korostuu erityisesti nyt, kun toivotaan, että uusi myyjä aloittaa myyntinsä jopa takautuvasti tilanteissa, joissa nykyisen myyjän toiminta päättyy. Sen lisäksi, että tämä asia näkyy loppuasiakkaille, tämä virhe on todella työllistävä, niin käyttöönoton jälkeen olemme kiertotien mukaisesti ”kikkailleet” tuhansia ja tuhansia sopimuksia ja osassa tarvinneet operaattorinkin apua, sillä välillä verkkosopimus on päätettävä takautuvastikin.			Sopimusprosessi	2.1
+63	CSUSE0011242	Datahub connection verification	Alustettu sis				Datahub connection verification	0	1	2				Sanomahallinta	
+64	CSUSE0019767	"Foreign addresses
+
+Datahub name and address instruction:
+2.5 Foreign addresses
+When datahub has received address that has some other country than Finland, datahub does not validate the content of the address. That makes it possible to use the address fields more freely.
+
+It is not possible to start the event (from market party site) without house number. We need to add zero (0) to house number for all foreign addresses.
+
+Vendor response: 
+Stage 7 Validation Rules - Update 1.xlsx document:
+Either the PO Box number or the Street Name with Building Number must be submitted.
+That means that foreign customer invoice address has to have street number (0 if address does not exist) or Box number."	Suositus 1 ok (tap 10)				"Foreign addresses
+
+Datahub name and address instruction:
+2.5 Foreign addresses
+When datahub has received address that has some other country than Finland, datahub does not validate the content of the address. That makes it possible to use the address fields more freely.
+
+It is not possible to start the event (from market party site) without house number. We need to add zero (0) to house number for all foreign addresses.
+
+Vendor response: 
+Stage 7 Validation Rules - Update 1.xlsx document:
+Either the PO Box number or the Street Name with Building Number must be submitted.
+That means that foreign customer invoice address has to have street number (0 if address does not exist) or Box number."	1	1	1		On vaikutusta osapuoliin, jos ovat jo toteuttaneet jotain sääntöjä tämän osalta omissa järjestelmissään.	Tehdään ehdotettu päivitys ohjetekstiin. 	Asiakastietoprosessi	
+65	CSUSE0027141	"Agreement net invoice data has too long identification?
+
+Has there been any cases  that agreement net invoice address would be too long in datahub? According to our understanding that identification shall include, when using net invoice with Finvoice format, into the data field that has 35 characters. Datahub identification has 50 characters. That has caused challenges and messages returning error message in the market party system, when system follows that Finvoice character limitation."	Alustettu sis				"Agreement net invoice data has too long identification?
+
+Has there been any cases  that agreement net invoice address would be too long in datahub? According to our understanding that identification shall include, when using net invoice with Finvoice format, into the data field that has 35 characters. Datahub identification has 50 characters. That has caused challenges and messages returning error message in the market party system, when system follows that Finvoice character limitation."	?	?	2				Laskutustiedot	
+66	"CHGUSE0000032012
+CSUSE0007508
+CSUSE0025982"	"As discussed on INCUSE0000063038:
+Validation rule VR.MPT.010.208 allows status changes only to status ""Removed from use"" or ""Under construction"" via CMS GUI. This validation rule is NOT a valid rule for exchange points as DH-400 processes are not applicable for them and statuses of exchange points are only updated via CMS GUI.
+
+Several different status changes should be enable for exchange points, however changing status to ""Deleted"" shall be possible only to MOP users. 
+That is not to update status ""Deleted"" anymore to other statuses, which has been an issue in CSUSE0007508 (ADO 6217). In addition there should be a rule which would not allow status change from ""Deleted"" to any other statuses.
+
+The new validation rule/change in existing rule shall take following point into account exchange points:
+- DSO users: change of Exchange Point Status allowed to: Disconnected, Connected, Under construction, Removed from use
+- MOP users: change of Exchange Point Status allowed to: Disconnected, Connected, Under construction, Removed from use, Deleted
+- It shall not be possible to update deleted exchange point to other statuses (considers all users) - not to cause issues in CSUSE0007508 (ADO 6217)
+
+Updating of exchange points should work a bit similarly as it does now on Production units as both of these metering point types do not have DH-400 processes."	Kehitysehdotus, tapaaminen 15				"As discussed on INCUSE0000063038:
+Validation rule VR.MPT.010.208 allows status changes only to status ""Removed from use"" or ""Under construction"" via CMS GUI. This validation rule is NOT a valid rule for exchange points as DH-400 processes are not applicable for them and statuses of exchange points are only updated via CMS GUI.
+
+Several different status changes should be enable for exchange points, however changing status to ""Deleted"" shall be possible only to MOP users. 
+That is not to update status ""Deleted"" anymore to other statuses, which has been an issue in CSUSE0007508 (ADO 6217). In addition there should be a rule which would not allow status change from ""Deleted"" to any other statuses.
+
+The new validation rule/change in existing rule shall take following point into account exchange points:
+- DSO users: change of Exchange Point Status allowed to: Disconnected, Connected, Under construction, Removed from use
+- MOP users: change of Exchange Point Status allowed to: Disconnected, Connected, Under construction, Removed from use, Deleted
+- It shall not be possible to update deleted exchange point to other statuses (considers all users) - not to cause issues in CSUSE0007508 (ADO 6217)
+
+Updating of exchange points should work a bit similarly as it does now on Production units as both of these metering point types do not have DH-400 processes."	1	0	2				Käyttöpaikkaprosessi	
+67	CSUSE0028993	"Search for e.g. accouting point
+Is it possible that datahub could search more than one accounting point/customer/agreement at time?"	Suositus 1 ei ok (tap 13)				"Search for e.g. accouting point
+Is it possible that datahub could search more than one accounting point/customer/agreement at time?"			2			Tämä on ollut haasteena erityisesti pientuotantokäyttöpaikkojen osalta. Muutos datahubiin voi olla iso, mutta todettiin että selvitetään muutoksen laajuus.	Yleinen hallinta	
+68	CSUSE0029082	"Datahub - Retrospective Sales Agreement notification
+We have received a retrospective agreement start request for accounting point XXX from another supplier. We have assumed that retrospective start requests concern only move-in cases, but the agreement on accounting point XXX has now ended retrospectively due to change of supplier. We have not received information that this was about a supplier change. In case of retrospective move-ins we have made compromises and accepted those from another supplier, but change of supplier is not something that we want to accept retrospectively. How can we know if a retrospective agreement start request from another supplier is a move-in or a change of supplier? We are not willing to accept retrospective agreement start requests from other suppliers if we do not receive the information whether these concern a move-in or a supplier change without separately asking the other supplier."	Suositus 1 ok (tap 5)				"Datahub - Retrospective Sales Agreement notification
+We have received a retrospective agreement start request for accounting point XXX from another supplier. We have assumed that retrospective start requests concern only move-in cases, but the agreement on accounting point XXX has now ended retrospectively due to change of supplier. We have not received information that this was about a supplier change. In case of retrospective move-ins we have made compromises and accepted those from another supplier, but change of supplier is not something that we want to accept retrospectively. How can we know if a retrospective agreement start request from another supplier is a move-in or a change of supplier? We are not willing to accept retrospective agreement start requests from other suppliers if we do not receive the information whether these concern a move-in or a supplier change without separately asking the other supplier."	1	0	2			Kasvatetaan merkkimäärää myyjän täyttämälle lisätietokentälle.	Sopimusprosessi	
+69	CSUSE0030325	"Supplier: Refusing of agreement restoring returns error accounting point XXX agreement YYY.
+
+We have received 341-3 message 3.10. concerning sales agreement restore to supplier's sales on accounting point. Agreement has originally ended on 1.10. If I now sent refusing so agreement ending to the original time, it would give error notification to the message: Failed to send notification of refusal of contract restore for customer XXXX, contract 2.
+Deviation message: Ending cannot be notified before 3.10. If there is refusal, it should be possible to end the agreement on the original time.
+
+I want to get the accounting point on ""no supplier"" state to be able to do on accounting point, according to  business transfer from supplier to another, agreement for supplier 2 starting 1.10."	Hylätty (tap 3)				"Supplier: Refusing of agreement restoring returns error accounting point XXX agreement YYY.
+
+We have received 341-3 message 3.10. concerning sales agreement restore to supplier's sales on accounting point. Agreement has originally ended on 1.10. If I now sent refusing so agreement ending to the original time, it would give error notification to the message: Failed to send notification of refusal of contract restore for customer XXXX, contract 2.
+Deviation message: Ending cannot be notified before 3.10. If there is refusal, it should be possible to end the agreement on the original time.
+
+I want to get the accounting point on ""no supplier"" state to be able to do on accounting point, according to  business transfer from supplier to another, agreement for supplier 2 starting 1.10."	1	0	2	Ei voida toteuttaa, koska voi aiheuttaa tilanteen, jossa käyttöpaikan kulutus siirtyy takautuvasti jakeluverkon häviöihin (mikäli uutta myyntisopimusta ei tule ollenkaan ko. jaksolle). Takautuvan sopimuksen ilmoittaminen voidaan hoitaa muilla olemassa olevilla prosesseilla. Tästä on käyty keskustelu myös ET:n kanssa (11.11.2022).		Tarkastuksen jälkeen todettu että ei voida edistää. Katso perustelut.	Sopimusprosessi	
+70	PTASK0010270	"Remove the country code restriction (DK, EE, FI, NO, SE) from the F16 Party Information message and allow all country codes. 
+
+Now DH-921 requests fail with a soap validation error if the results include a party with a country code other than those currently allowed."	Suositus 1 ok (tap 4)				"Remove the country code restriction (DK, EE, FI, NO, SE) from the F16 Party Information message and allow all country codes. 
+
+Now DH-921 requests fail with a soap validation error if the results include a party with a country code other than those currently allowed."	1	1	1				Osapuolitiedot	2.4
+71	CSUSE0029876	Over six weeks ago terminated sales agreement and fixed time series data: Supplier's XXXX agreement YYYY has been terminated on accounting point on 16.3.2022. There has been made time series data correction in august 2022 on this accounting point and supplier informed that they had received the corrected data on 17.8.2022 from datahub and they had fixed the invoice based on new information. When agreement has been terminated over six weeks before (fix 17.8.2022 and agreement termination 16.3.2022), the question is why time series have been delivered to the supplier whose responsibility to fix data has been terminated?	Suositus 1 ok (tap 6)				Over six weeks ago terminated sales agreement and fixed time series data: Supplier's XXXX agreement YYYY has been terminated on accounting point on 16.3.2022. There has been made time series data correction in august 2022 on this accounting point and supplier informed that they had received the corrected data on 17.8.2022 from datahub and they had fixed the invoice based on new information. When agreement has been terminated over six weeks before (fix 17.8.2022 and agreement termination 16.3.2022), the question is why time series have been delivered to the supplier whose responsibility to fix data has been terminated?	1	0	2				Mittaustiedonhallinta	
+72	CSUSE0030905	"Joker sign in accounting point search: 
+Current accounting point DH-131 uses joker sign as default. E.g. search ""Markontiet 1"" returns together with exact search result also all combinations where there is number 1:
+- Markontie 1
+- Markontie 1 B
+- Markontie 1 A 12
+
+Is there way to force the accounting point search to ignore the joker sign? The search results should give only the ""Markontie 1"".
+
+Why the joker sign is used as default anyway? It should be additional sign to be used."	Kehitysehdotus, tapaaminen 15				"Joker sign in accounting point search: 
+Current accounting point DH-131 uses joker sign as default. E.g. search ""Markontiet 1"" returns together with exact search result also all combinations where there is number 1:
+- Markontie 1
+- Markontie 1 B
+- Markontie 1 A 12
+
+Is there way to force the accounting point search to ignore the joker sign? The search results should give only the ""Markontie 1"".
+
+Why the joker sign is used as default anyway? It should be additional sign to be used."	1/2	1	2				Käyttöpaikkaprosessi	
+73	CSUSE0030610	"Datahub reporting:
+Balance settelement quality and place control panel
+
+1) All below mentioned information shall be possible to be exported to csv file, not just viewable in the view. List of MGA accounting points and related information (e.g. time period that is missing data).
+
+2) There shall be possible to get accounting point level data to csv file in the following reports:
+- Number of accounting points report, that have breakdown by combination of accounting point type, state, metering method and production type."	Alustettu sis				"Datahub reporting:
+Balance settelement quality and place control panel
+
+1) All below mentioned information shall be possible to be exported to csv file, not just viewable in the view. List of MGA accounting points and related information (e.g. time period that is missing data).
+
+2) There shall be possible to get accounting point level data to csv file in the following reports:
+- Number of accounting points report, that have breakdown by combination of accounting point type, state, metering method and production type."	1/2	0	2	"1) tuotemuutoksia
+2) konfiguroitava"			Raportointi	
+74	CSUSE0032991	"Data notification out of netting calculation to the DSO:
+DSO shall be possible to get notification if accounting points belong to the netting calculation using separate event/message (from datahub to DSO). From DSO point of view it would be necessary in the metering data systems to be able to know for sure when they need to send the metered data and when netted time series data for the customer information system invoicing.
+In the current implementation this data is available only in the datahub GUI. The data shall be availble when there is change in the information if it belongs to netting calculation."	Suositus 1 ei ok (ali tap 6)				"Data notification out of netting calculation to the DSO:
+DSO shall be possible to get notification if accounting points belong to the netting calculation using separate event/message (from datahub to DSO). From DSO point of view it would be necessary in the metering data systems to be able to know for sure when they need to send the metered data and when netted time series data for the customer information system invoicing.
+In the current implementation this data is available only in the datahub GUI. The data shall be availble when there is change in the information if it belongs to netting calculation."	2	2	1	Jakeluverkonhaltija saa tiedon käyttöpaikkojen kuulumisesta netotuslaskentaan.	Kts. Ratkaisukuvaus.	"1.2.2023: Viedään alityöryhmälle kannanottoon.
+13.4.2023: Alityöryhmä ei suositellut, ongelma yksittäisissä järjestelmissä, jatketaan selvittelyä järjestelmätoimittajien kanssa.
+31.1.2024: Tehdään kysely jakeluverkonhaltijoille, jolla selvitetään tarve vaihtoehdon 1 mukaisille uusille sanomille.  "	Käyttöpaikkaprosessi	
+75	CSUSE0033489	"Supplier role, balance deviation calculation summary information view:
+Supplier shall also be albe to get summary report of balance deviation calculation round about fixes by MGA. Thus it would snow all different MGAs where supplier has sales and fixes by numbers and sums. Similar as DSOs have possibility to see all MGAs suppliers number of fixes and sums on same time series view. "	Suositus 1 ok (tap 6)				"Supplier role, balance deviation calculation summary information view:
+Supplier shall also be albe to get summary report of balance deviation calculation round about fixes by MGA. Thus it would snow all different MGAs where supplier has sales and fixes by numbers and sums. Similar as DSOs have possibility to see all MGAs suppliers number of fixes and sums on same time series view. "	2	0	2				Laskennat	
+76	CSUSE0033913	"Time series data for full day on the meter installation/removal day:
+When there is new accounting point meter installation (or removal of old ones) datahub does not require metering data set for the full day on that day when installation/removal is done, even agreements are required to start/stop on day level.
+
+Because of that supplier does not get full set of data for invoincing as there is missing data from the beginning or end of the time and many supplier invoicing systems typically are not able to full the missing data as the responsibility on the measurements is on the DSO. And also instructions are that supplier is not allowed to manipulate the time series data by itself.
+
+At the moment the accounting points are ""under construction"" before the meter is installed (or after the meter is removed) and datahub does not require data for that period. A part of the DSOs sends full set of data for those days and fill the hours before or after (meter change) with zero values, but some DSO do not do that.
+Most of the invoicing systems require that all hours are available for agreement validity period. The best resolution would be that DSO just fill those days when there is meter installation/removal. This is more complicated for supplier to automate this and it is not supplier's responsibility to do that.
+
+It is undertandable that data is missing on those days as there is no meter available, but it should not cause issues for supplier as agreements are on day level, not according to the start of connection state."	Suositus 1 ei ok (tap 7)				"Time series data for full day on the meter installation/removal day:
+When there is new accounting point meter installation (or removal of old ones) datahub does not require metering data set for the full day on that day when installation/removal is done, even agreements are required to start/stop on day level.
+
+Because of that supplier does not get full set of data for invoincing as there is missing data from the beginning or end of the time and many supplier invoicing systems typically are not able to full the missing data as the responsibility on the measurements is on the DSO. And also instructions are that supplier is not allowed to manipulate the time series data by itself.
+
+At the moment the accounting points are ""under construction"" before the meter is installed (or after the meter is removed) and datahub does not require data for that period. A part of the DSOs sends full set of data for those days and fill the hours before or after (meter change) with zero values, but some DSO do not do that.
+Most of the invoicing systems require that all hours are available for agreement validity period. The best resolution would be that DSO just fill those days when there is meter installation/removal. This is more complicated for supplier to automate this and it is not supplier's responsibility to do that.
+
+It is undertandable that data is missing on those days as there is no meter available, but it should not cause issues for supplier as agreements are on day level, not according to the start of connection state."	"V1:0
+V2:2/3->1/2
+V3:1->2
+V4: 2"		DO			"11.5.2023: Viedään alityöryhmään arvioitavaksi järjestelmätoimittajien kannalta eri etenemisvaihtoehdot.
+13.6.2023: Nykyinen malli pidetään eikä oteta väliaikaista mallia käyttöön.  Lähdetään dokumentoimaan tätä paremmin ja lähetetään aiheesta uutiskirjettä ja tiedotetaan päätöksistä."	Mittaustietoprosessi	
+77	CSUSE0032966	"Open events:
+Most correct way process works on accounting point XXX, where all happens automatically by events/messages (cancellation of previous move out and new termination message). On my opinion move outs shall happen also with events/messages and rather create RC code that notifies supplier about retrospective move out.
+
+Development topic for open transactions:
+
+3) It feels that entity list is not fixed and it is hard to follow what has been already handled. The order of list cannot be managed by user. It is not possbile to overview and system does not show all search results on same time and user cannot denyi events. Excel export does not either help in this case.
+"	Suunnitteilla				"Open events:
+Most correct way process works on accounting point XXX, where all happens automatically by events/messages (cancellation of previous move out and new termination message). On my opinion move outs shall happen also with events/messages and rather create RC code that notifies supplier about retrospective move out.
+
+Development topic for open transactions:
+
+3) It feels that entity list is not fixed and it is hard to follow what has been already handled. The order of list cannot be managed by user. It is not possbile to overview and system does not show all search results on same time and user cannot denyi events. Excel export does not either help in this case.
+"			2				Sanomahallinta	2.2/2.3
+78	CSUSE0034295	"With Datahub's Data Interface, it is possible to retrieve customer, accounting point, contract, and measurement information for a party's 'own' customers. Offer authorization from the customer provides access to customer details, accounting point, and measurement data. Would it be possible to enhance this by also including the end date of fixed-term agreement with offer authorization?
+
+Currently, we have to attempt new agreement using the DH-300 process, and only during the new agreement creation process  get information about customer's fixed-term duration (or rejection if the fixed term is more than 3 months in the future). The desired start date for a new agreement obtained from a customer often differs from the end date of their previous fixed-term agreement. The fixed-term end date also significantly impacts pricing for contracts offered to customers.
+
+This change would avoid unnecessary messages between DH and parties, reduce pricing risks for the involved parties, and enable better electricity pricing for customers based on their actual consumption."""	Kehitysehdotus, tapaaminen 15				"With Datahub's Data Interface, it is possible to retrieve customer, accounting point, contract, and measurement information for a party's 'own' customers. Offer authorization from the customer provides access to customer details, accounting point, and measurement data. Would it be possible to enhance this by also including the end date of fixed-term agreement with offer authorization?
+
+Currently, we have to attempt new agreement using the DH-300 process, and only during the new agreement creation process  get information about customer's fixed-term duration (or rejection if the fixed term is more than 3 months in the future). The desired start date for a new agreement obtained from a customer often differs from the end date of their previous fixed-term agreement. The fixed-term end date also significantly impacts pricing for contracts offered to customers.
+
+This change would avoid unnecessary messages between DH and parties, reduce pricing risks for the involved parties, and enable better electricity pricing for customers based on their actual consumption."""	1/2	1	2				Valtuutusprosessi	
+79	CSUSE0033135	DSO has received a DH-342-1 (cancel grid agreement) from a DDQ, but hasn't responded to it quick enough so the grid agreement has already ended because of a new agreement on accounting point. When the DSO in these situations tries to respond to the canceling event they receive an error stating that an ended agreement cannot be cancelled. 	Toteutuksessa				DSO has received a DH-342-1 (cancel grid agreement) from a DDQ, but hasn't responded to it quick enough so the grid agreement has already ended because of a new agreement on accounting point. When the DSO in these situations tries to respond to the canceling event they receive an error stating that an ended agreement cannot be cancelled. 	1+2	1	2				Sopimusprosessi	2.3
+80	CSUSE0033941	Hi, I need help in such a case when XXX has many DH-311-11 events waiting to be processed. When checking a few accounting points, I noticed that agreement issues have becomen clear and request is unnecessary, but the event is hanging still in the process. Who that could be removed? Or is there need to full fill the contact information and write into additional information that the event can be completed and the additional information request is unnecessary? There is no button for that? E.g. GSRN YYYYY. Thanks	Tupla				Hi, I need help in such a case when XXX has many DH-311-11 events waiting to be processed. When checking a few accounting points, I noticed that agreement issues have becomen clear and request is unnecessary, but the event is hanging still in the process. Who that could be removed? Or is there need to full fill the contact information and write into additional information that the event can be completed and the additional information request is unnecessary? There is no button for that? E.g. GSRN YYYYY. Thanks			TU				Sanomahallinta	
+81	CSUSE0040110	Can you remove all open transactions in cases where message transfer has already taken care of cases. Open transactions view needs a lot of development, at the moment cause extra work and if there is changes related to the agreements, that are not notified with message transfer, then there shall be sent email notification or acknowledgment as in event step DH-311-14 and DH-311-11.	Alustettu sis				Can you remove all open transactions in cases where message transfer has already taken care of cases. Open transactions view needs a lot of development, at the moment cause extra work and if there is changes related to the agreements, that are not notified with message transfer, then there shall be sent email notification or acknowledgment as in event step DH-311-14 and DH-311-11.			2				Sanomahallinta	
+82	CSUSE0040330	"Measurement status report also for the supplier.
+
+Currently the ""Measurement status"" report is only available for the grid companpy. Is it possible to get is also for the suppliers?"	Suositus 1 ok (tap 9)				"Measurement status report also for the supplier.
+
+Currently the ""Measurement status"" report is only available for the grid companpy. Is it possible to get is also for the suppliers?"	1		2			Kyseinen ehdotus sai suosituksen siten, että lisätään myyjän raportille suodattimeksi verkkoyhtiö, ja viedään ehdotus eteenpäin.	Raportointi	
+83	CHGUSE0000032341	It was discovered that there is an extra space at the end of customer ID (business ID), and thus the ID does not match when trying to report the authorisation. The customer ID should be fixed so that there is no extra space in the end of the ID.	Kehitysehdotus, tapaaminen 15				It was discovered that there is an extra space at the end of customer ID (business ID), and thus the ID does not match when trying to report the authorisation. The customer ID should be fixed so that there is no extra space in the end of the ID.			1				Asiakastietoprosessi	
+84	CSUSE0047044	"Accounting point structural data corrections and impact on the netting calculation.
+
+Datahub does not return measurement data as netted because of ""technical reasons"" (e.g. corrections to production unit power leaves a one day gap)? In these cases, consumer customer invoicing is not possible because the time series is not ""complete"". The regulation states that netted values must be used in invoicing.
+
+Proposal for a change: 
+- As a default, all related accounting point measurement data is netted, only exception is when power capacity is over the allowed limit. 
+- In principle, corrections to structural data should be allowed for the current date and in the past."	Suunnitteilla				"Accounting point structural data corrections and impact on the netting calculation.
+
+Datahub does not return measurement data as netted because of ""technical reasons"" (e.g. corrections to production unit power leaves a one day gap)? In these cases, consumer customer invoicing is not possible because the time series is not ""complete"". The regulation states that netted values must be used in invoicing.
+
+Proposal for a change: 
+- As a default, all related accounting point measurement data is netted, only exception is when power capacity is over the allowed limit. 
+- In principle, corrections to structural data should be allowed for the current date and in the past."	2+3	1	1			"Korjaukset rinnakkaisuustietoihin tulee olla mahdollista tehdä vuoden 2023 alusta alkaen. Selvitetään käytöstä poistetun käyttöpaikan tilan muuttamisen mahdollisuutta ja tuodaan asia uudestaan kehitystyöryhmään.
+21.11.2023: Kehitysehdotus #276 sai alityöryhmän kannatuksen kuvatulla ratkaisuehdotuksella listatut tarkennukset huomioiden. Takautuvien korjausten aikarajaksi todettiin 90 päivää menneisyyteen sen jälkeen, kun vanhemmat tilanteet on ensin saatu korjattua muutoksen tuotantoon viennin jälkeen. Sovittiin, että #176 tuodaan uudelleen käsittelyyn tammikuun alityöryhmään. "	Käyttöpaikkaprosessi	2.4
+85	CSUSE0047793	"When running the business report ""Open transactions"" with filter by Step Type = DH-422-1… Development idea that report shall contain GSRN id. I searched the message from business transaction dosier with message id that gives the GSRN id. When comparing the a couple of accounting points to the list of open transaction, I could not find them all. How shall the report's data be concidered? What open transactions this report should contain?"	Alustettu sis				"When running the business report ""Open transactions"" with filter by Step Type = DH-422-1… Development idea that report shall contain GSRN id. I searched the message from business transaction dosier with message id that gives the GSRN id. When comparing the a couple of accounting points to the list of open transaction, I could not find them all. How shall the report's data be concidered? What open transactions this report should contain?"			3	Raportin käytettävyyden parantaminen vaikka käyttöliittymällä avoimista tapahtumista käyttöpaikkatunnus näkyy.			Sanomahallinta	
+86	CSUSE0047823	From the BTD list it is difficult to find data and follow what has happened, expecially if there is a lot of events. Development proposal is get clearer view that give the information what messages are done using DH B2B events and what using datahub UI. It would also help if there were symbols or additional information of the top of the functions to tell what it contains (e.g. moving mouse of top of the symbol would open a tool tip type of short instruction).	Toteutuksessa				From the BTD list it is difficult to find data and follow what has happened, expecially if there is a lot of events. Development proposal is get clearer view that give the information what messages are done using DH B2B events and what using datahub UI. It would also help if there were symbols or additional information of the top of the functions to tell what it contains (e.g. moving mouse of top of the symbol would open a tool tip type of short instruction).			2				Sanomahallinta	2.3
+87	CSUSE0049820	"It is not possible to make restrospective changes to related accounting point information even by MOP. The need for such corrections is often noticed with a delay and if nothing can be done about them, they prevent invoicing. It should  be possible to also change this information  retrospectively.
+
+Production accounting point XXXXX has never been connected. The accounting point has been completely removed from datahub, but it still appears as the related accounting point of the consumption accounting point YYYYY until March 27th.
+
+Production accounting point ZZZZ has been completely removed from datahub, but it appears as the related accounting point of the consumption accounting point WWWW until January 16th.
+
+Can you remove these relations? These are now blocking the invoicing of our consumption accounting points.
+Ticket used as basis for contact: CSUSE0046442 | deletion of places of use."	Toteutuksessa				"It is not possible to make restrospective changes to related accounting point information even by MOP. The need for such corrections is often noticed with a delay and if nothing can be done about them, they prevent invoicing. It should  be possible to also change this information  retrospectively.
+
+Production accounting point XXXXX has never been connected. The accounting point has been completely removed from datahub, but it still appears as the related accounting point of the consumption accounting point YYYYY until March 27th.
+
+Production accounting point ZZZZ has been completely removed from datahub, but it appears as the related accounting point of the consumption accounting point WWWW until January 16th.
+
+Can you remove these relations? These are now blocking the invoicing of our consumption accounting points.
+Ticket used as basis for contact: CSUSE0046442 | deletion of places of use."			DO			Korjataan Datahubin dokumentaatio virheellisen tarkastussäännön osalta.  	Käyttöpaikkaprosessi	2.3
+88	CSUSE0061669	"List of open transaction
+
+It is difficult to use the open transactions list as there is a lot of events. Can you add new filtering field for the search of open transactions? Another development idea is to list more rows in the view. Now there is only 4 rows and the rest needs to be scrolled. Only a half of the page view is currently used, so there is space to extend the view."	Toteutuksessa				"List of open transaction
+
+It is difficult to use the open transactions list as there is a lot of events. Can you add new filtering field for the search of open transactions? Another development idea is to list more rows in the view. Now there is only 4 rows and the rest needs to be scrolled. Only a half of the page view is currently used, so there is space to extend the view."			2			Tuotteeseen tuleva parannus.	Sanomahallinta	2.3
+89	CSUSE0062292	"Authorisations Report (Reporting/Business/Authorisations)  should be developed in order to serve both market parties and MOP.
+The current report should benefit the following:
+-for MOP usage: timeline of yhe DH-812 (status=confirmed) timely follow-up trend
+-for market party: pie charts ..............TO BE SPECIFIED
+-the table should be wider to visualise all the data included
+
+Development of the Report should be included with the Authorisations Process development
+
+In addition to the issues mentioned in the description, it would be good that there where some sort of a graph which visualises all confirmed authorisations per market party. That is, the sum of authorisations given by customer and the authorised party itself, per market party (with status: confirmed). A bar chart would be suitable for this purpose."	Kehitysehdotus, tapaaminen 15				"Authorisations Report (Reporting/Business/Authorisations)  should be developed in order to serve both market parties and MOP.
+The current report should benefit the following:
+-for MOP usage: timeline of yhe DH-812 (status=confirmed) timely follow-up trend
+-for market party: pie charts ..............TO BE SPECIFIED
+-the table should be wider to visualise all the data included
+
+Development of the Report should be included with the Authorisations Process development
+
+In addition to the issues mentioned in the description, it would be good that there where some sort of a graph which visualises all confirmed authorisations per market party. That is, the sum of authorisations given by customer and the authorised party itself, per market party (with status: confirmed). A bar chart would be suitable for this purpose."			2				Valtuutusprosessi	
+90	CSUSE0063146	"I'm testing related accounting point contract restoration in VEN02 enviroment and i found a bug.
+DDQ1:
+I have SA1 (contract ID ZZ) for consumption ACP (XXX).
+I have SA2 (contract ID WW) for production ACP (YYY).
+DDQ2:
+Now im creating new contract SA3 for different customer in future for consumption ACP.
+
+That will send to SA1 and SA2 DH-311-4 messages that contract will end.
+Now im cancelling SA3 and this will send to SA1 DH-341-3, but DH-341-3 message is not sent for SA2.
+Why related accounting point YYY is not getting the same DH-341-3, messages?
+
+CUSTOMER SERVICE:
+If you check from the events document https://palvelut.datahub.fi/api/documents/file/0-232449-1-294924 figure 37 'DH-341 NOTIFICATION OF SALES AGREEMENT CANCELLATION' in chapter 6.9.1, there is no message sent to the supplier of the related AP when the sales agreement of the related AP is cancelled."	Alustettu sis				"I'm testing related accounting point contract restoration in VEN02 enviroment and i found a bug.
+DDQ1:
+I have SA1 (contract ID ZZ) for consumption ACP (XXX).
+I have SA2 (contract ID WW) for production ACP (YYY).
+DDQ2:
+Now im creating new contract SA3 for different customer in future for consumption ACP.
+
+That will send to SA1 and SA2 DH-311-4 messages that contract will end.
+Now im cancelling SA3 and this will send to SA1 DH-341-3, but DH-341-3 message is not sent for SA2.
+Why related accounting point YYY is not getting the same DH-341-3, messages?
+
+CUSTOMER SERVICE:
+If you check from the events document https://palvelut.datahub.fi/api/documents/file/0-232449-1-294924 figure 37 'DH-341 NOTIFICATION OF SALES AGREEMENT CANCELLATION' in chapter 6.9.1, there is no message sent to the supplier of the related AP when the sales agreement of the related AP is cancelled."			2				Sopimusprosessi	
+91	CSUSE0065519	"Authorizations should be able to be granted for a longer period than just one year at a time. Ideally, the authorizer could set a deadline for the authorization or make it valid until further notice.
+
+The current one-year time limit has problems: a) it requires parties to remember which authorizations in Datahub need to be renewed; b) measurement data can easily be missing for a few hours because the renewal of authorization does not take effect without caps, or renewing authorization without caps requires a lot of adjustment and real-time action. For example, if an authorization in Datahub ends on 20.11 and the new authorization can start from the current day, e.g., 21.11, then measurement data from the 20th will be missing from the authorized party, and the misising data must be manually patched up between parties.
+
+There has also arisen a need for authorizations to be made by another party, not just the measurement-responsible party. Could the operational logic of Datahub regarding exchange point measurements be changed so that this would be possible?"	Kehitysehdotus, tapaaminen 15				"Authorizations should be able to be granted for a longer period than just one year at a time. Ideally, the authorizer could set a deadline for the authorization or make it valid until further notice.
+
+The current one-year time limit has problems: a) it requires parties to remember which authorizations in Datahub need to be renewed; b) measurement data can easily be missing for a few hours because the renewal of authorization does not take effect without caps, or renewing authorization without caps requires a lot of adjustment and real-time action. For example, if an authorization in Datahub ends on 20.11 and the new authorization can start from the current day, e.g., 21.11, then measurement data from the 20th will be missing from the authorized party, and the misising data must be manually patched up between parties.
+
+There has also arisen a need for authorizations to be made by another party, not just the measurement-responsible party. Could the operational logic of Datahub regarding exchange point measurements be changed so that this would be possible?"			2				Valtuutusprosessi	
+92	CSUSE0067015	"The user interface should display the measurement data for which the authorised party has received authorisation from DSOs or end customers. Now it turns out that exchange point measurements do not appear and it is a very tricky situation. We have authorizations mainly related to excange points.
+The contact was based on a ticket: CSUSE0064399 | Display of authorized measurements in the user interface."	Suositus 1 ok (tap 14)				"The user interface should display the measurement data for which the authorised party has received authorisation from DSOs or end customers. Now it turns out that exchange point measurements do not appear and it is a very tricky situation. We have authorizations mainly related to excange points.
+The contact was based on a ticket: CSUSE0064399 | Display of authorized measurements in the user interface."			2				Valtuutusprosessi	
+93	CSUSE0065516	At the moment, the DSO responsible for measurement cannot obtain a list of authorisations related to its exchange points from the user interface. The DSO responsible for measurement should be able to report all exchange point authorisations it has issued.	Kehitysehdotus, tapaaminen 15				At the moment, the DSO responsible for measurement cannot obtain a list of authorisations related to its exchange points from the user interface. The DSO responsible for measurement should be able to report all exchange point authorisations it has issued.			2				Valtuutusprosessi	
+94	CSUSE0067699	"DH-333-2 message for future commencing agreements. Why this message and how should it be directed to the correct agreement with the seller? Why is a message not sent instead with the identifier of the agreement to be cancelled?
+
+DH-333-2 how to direct if the network and seller decide to end agreements simultaneously. For example, the network decides to end the agreement on the 1st of January, 2024, and the seller almost immediately for the 24th of December, 2023. The seller receives a DH-333-2 message with the termination date when the agreement is no longer valid. Under what condition should the message be directed to the correct agreement with the seller, considering that the datahub also sends DH-333-2 messages for the termination of future agreements?
+
+DH-352-3 message, why does this not have the identifier for the seller's agreement to be reinstated? What logic should the recipient use to direct this to the correct seller agreement?"""	Alustettu sis				"DH-333-2 message for future commencing agreements. Why this message and how should it be directed to the correct agreement with the seller? Why is a message not sent instead with the identifier of the agreement to be cancelled?
+
+DH-333-2 how to direct if the network and seller decide to end agreements simultaneously. For example, the network decides to end the agreement on the 1st of January, 2024, and the seller almost immediately for the 24th of December, 2023. The seller receives a DH-333-2 message with the termination date when the agreement is no longer valid. Under what condition should the message be directed to the correct agreement with the seller, considering that the datahub also sends DH-333-2 messages for the termination of future agreements?
+
+DH-352-3 message, why does this not have the identifier for the seller's agreement to be reinstated? What logic should the recipient use to direct this to the correct seller agreement?"""			3				Sanomahallinta	
+95	CSUSE0068498	"""Hello, parties acting in the DSO role face significant challenges in maintaining Datahub authorization processes in the current model. In many situations, MSCONS message traffic has been utilized to simplify maintenance.
+
+Currently, we have nearly 500 separateaxchange point measurements for parties XXX, YYY, and ZZZ, with most falling under our own measurement responsibility. Additionally, there are several exchange points authorized to us where we do not act in the DSO role. We need measurement data from these authorized exchange points for customer billing and network operation and monitoring modeling. Furthermore, we have also authorized multiple exchange points to third parties for similar reasons or when an external service provider supports the non-measurement-responsible counterpart DSO role in the opposite network, allowing them access to measurement data from Datahub without authorization.
+
+Here are our proposed development ideas regarding exchange point authorization processes, which may partially apply to conventional accounting points as well. To our knowledge, WWW has drafted proposals related to the top three points, and some of the existing authorization process improvement suggestions may overlap with these themes:
+
+1) Authorization for an exchange point should be possible retroactively, e.g., up to 90 days in the past.
+2) Authorization for an exchange point should cover longer time periods than the current maximum of 1 year, such as up to 3 years at a time or until further notice (for an unspecified duration).
+3) Authorization for an exchange point should be extendable before it expires. For example, if there are only 32 days left, but we want to extend it until the end of the year (+120 days).
+4) Non-measurement-responsible networks should be able to give authorizations (I’m unsure if this is already possible via CMS).
+5) Authorized parties should be able to view structural and measurement data for exchange points through Datahub’s CMS interface.
+6) Management of exchange  point authorizations should be available in a dedicated module within Datahub’s user interface. This module would display all market participant interface points and their active authorizations. It would also show exchaneg points authorized by another market party. This makes it easy to track authorization validity for different parties and add new authorizations.
+7) If the above option is not feasible, consider implementing a new report in Datahub. This report would allow market parties to see all active authorizations for their exchange points and those authorized to them. The report should include at least the interface point’s GSRN identifier, station code, authorized measurements (e.g., consumption + losses), authorization validity, party identifier, party name, etc.
+8) If an authorization is about to expire, a notification should be sent to both the granting and receiving parties 7 days in advance."""	Kehitysehdotus, tapaaminen 15				"""Hello, parties acting in the DSO role face significant challenges in maintaining Datahub authorization processes in the current model. In many situations, MSCONS message traffic has been utilized to simplify maintenance.
+
+Currently, we have nearly 500 separateaxchange point measurements for parties XXX, YYY, and ZZZ, with most falling under our own measurement responsibility. Additionally, there are several exchange points authorized to us where we do not act in the DSO role. We need measurement data from these authorized exchange points for customer billing and network operation and monitoring modeling. Furthermore, we have also authorized multiple exchange points to third parties for similar reasons or when an external service provider supports the non-measurement-responsible counterpart DSO role in the opposite network, allowing them access to measurement data from Datahub without authorization.
+
+Here are our proposed development ideas regarding exchange point authorization processes, which may partially apply to conventional accounting points as well. To our knowledge, WWW has drafted proposals related to the top three points, and some of the existing authorization process improvement suggestions may overlap with these themes:
+
+1) Authorization for an exchange point should be possible retroactively, e.g., up to 90 days in the past.
+2) Authorization for an exchange point should cover longer time periods than the current maximum of 1 year, such as up to 3 years at a time or until further notice (for an unspecified duration).
+3) Authorization for an exchange point should be extendable before it expires. For example, if there are only 32 days left, but we want to extend it until the end of the year (+120 days).
+4) Non-measurement-responsible networks should be able to give authorizations (I’m unsure if this is already possible via CMS).
+5) Authorized parties should be able to view structural and measurement data for exchange points through Datahub’s CMS interface.
+6) Management of exchange  point authorizations should be available in a dedicated module within Datahub’s user interface. This module would display all market participant interface points and their active authorizations. It would also show exchaneg points authorized by another market party. This makes it easy to track authorization validity for different parties and add new authorizations.
+7) If the above option is not feasible, consider implementing a new report in Datahub. This report would allow market parties to see all active authorizations for their exchange points and those authorized to them. The report should include at least the interface point’s GSRN identifier, station code, authorized measurements (e.g., consumption + losses), authorization validity, party identifier, party name, etc.
+8) If an authorization is about to expire, a notification should be sent to both the granting and receiving parties 7 days in advance."""	2/3	0	2				Valtuutusprosessi	
+96	CSUSE0068976	"SQP dashboard to csv file.
+
+Datahub should have possibility to export the undeliverable accounting points to excel. This functionality is available for other reports, but not for this one."	Alustettu sis				"SQP dashboard to csv file.
+
+Datahub should have possibility to export the undeliverable accounting points to excel. This functionality is available for other reports, but not for this one."			2				Raportointi	
+97	CSUSE0065641	" Authorization for exchange points can currently only be granted for one year at a time. As a first improvement idea, consider extending this duration significantly or implementing an option for “until further notice” authorization.
+
+Secondly, I currently have authorizations from XXXXX to YYYYY, which expire on April 20, 2024. Simultaneously, a new exchange point was added, and I granted authorization for it, which expires on November 20, 2024. I tried to synchronize the previous authorizations so that they all expire on November 20, 2024, allowing me to renew them all at once, but unfortunately, I couldn’t find a way to do it. How should I proceed?"	Kehitysehdotus, tapaaminen 15				" Authorization for exchange points can currently only be granted for one year at a time. As a first improvement idea, consider extending this duration significantly or implementing an option for “until further notice” authorization.
+
+Secondly, I currently have authorizations from XXXXX to YYYYY, which expire on April 20, 2024. Simultaneously, a new exchange point was added, and I granted authorization for it, which expires on November 20, 2024. I tried to synchronize the previous authorizations so that they all expire on November 20, 2024, allowing me to renew them all at once, but unfortunately, I couldn’t find a way to do it. How should I proceed?"			2				Valtuutusprosessi	
+98	CSUSE0071213.	Outbound time series data (e.g. energy communities' and netting calculation results) is not limited and shall be limited to prevent sending too large messages to market parties e.g. in the case where measurement data corrections are delivered to datahub from longer period of time and accounting point of those time series belong to larger energy community and the measurement step is 15 minutes.	Suunnitteilla				Outbound time series data (e.g. energy communities' and netting calculation results) is not limited and shall be limited to prevent sending too large messages to market parties e.g. in the case where measurement data corrections are delivered to datahub from longer period of time and accounting point of those time series belong to larger energy community and the measurement step is 15 minutes.			1				Laskennat	2.4
+99	CSUSE0073014	"Development proposal for the development group: At the moment, DH stops delivering time series on the end date of the service provider's authorisation, i.e. in practice from the end of the authorization period, or in the case of move out, the consumption data for the last few days is always missed.
+
+ This is a challenge, especially with regard to the data reporting services provided by the service provider, as the customer does not then receive actual consumption data from the service provider's portal for the expired access points. 
+
+If the reason for the termination of the authorisation is the termination of the entire customer relationship, there is no significant problem in this as such, but in the case of customer relationship with several accounting points, it is important to receive consumption data for the entire delivery and authorisation period to the service provider, and further for the customer's use.
+
+ => Implementation proposal: Change the data transmission parameters towards service providers so that DH also delivers time series data to the service provider retrospectively for the entire period during which the service provider's authorisation has been valid for accounting point."	Kehitysehdotus, tapaaminen 15				"Development proposal for the development group: At the moment, DH stops delivering time series on the end date of the service provider's authorisation, i.e. in practice from the end of the authorization period, or in the case of move out, the consumption data for the last few days is always missed.
+
+ This is a challenge, especially with regard to the data reporting services provided by the service provider, as the customer does not then receive actual consumption data from the service provider's portal for the expired access points. 
+
+If the reason for the termination of the authorisation is the termination of the entire customer relationship, there is no significant problem in this as such, but in the case of customer relationship with several accounting points, it is important to receive consumption data for the entire delivery and authorisation period to the service provider, and further for the customer's use.
+
+ => Implementation proposal: Change the data transmission parameters towards service providers so that DH also delivers time series data to the service provider retrospectively for the entire period during which the service provider's authorisation has been valid for accounting point."	?	?	2				Valtuutusprosessi	
