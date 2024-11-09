@@ -65,8 +65,10 @@ const columns = [
         class="kanban-column"
       > 
         <h3 class="column-title">{{ column.title }}</h3>
+        <VDivider></VDivider>
         <TicketCard
           v-for="ticket in filteredTickets(column.status)"
+          class="kanban-card"
           :key="ticket.id"
           :title="ticket.title"
           :description="ticket.description"
@@ -95,5 +97,9 @@ const columns = [
   border-radius: 8px;
   min-height: 400px;
   min-width: 300px;
+}
+
+.kanban-card {
+  margin-top: 5px;
 }
 </style>

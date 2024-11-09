@@ -38,8 +38,7 @@ const release_version = '3.2.1'
               {{ title }}
             </VCardTitle>
             <VCardText>
-              <span class="card-section-title">State: </span> 
-              <p class="text-wrap"> {{ state }} </p>
+              <span class="card-section-title">State: </span> {{ state }}
             </VCardText>
             <VCardText>
               <span class="card-section-title">Category: </span>{{ category }}
