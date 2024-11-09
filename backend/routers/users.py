@@ -38,8 +38,8 @@ def read_user_tickets(user_id: str, session: SessionDep) -> list[Ticket]:
         select(Ticket).select_from(Ticket).join(TicketSubscription)
     ).all()
 
-    if not tickets:
-        raise HTTPException(status_code=404, detail="Tickets not found")
+    # if not tickets:
+    #     raise HTTPException(status_code=404, detail="Tickets not found")
 
     return list(tickets)
 
@@ -55,10 +55,9 @@ def subscribe_user_to_ticket(user_id: str, ticket_id: str, session: SessionDep):
         raise HTTPException(status_code=404, detail="Ticket not found")
 
     subscription = session.exec(
-        select(TicketSubscription).where(
-            TicketSubscription.user_id == user_id
-            and TicketSubscription.ticket_id == ticket_id
-        )
+        select(TicketSubscription)
+        .where(TicketSubscription.user_id == user_id)
+        .where(TicketSubscription.ticket_id == ticket_id)
     ).all()
 
     if subscription:

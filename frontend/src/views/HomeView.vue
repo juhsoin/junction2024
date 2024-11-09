@@ -15,6 +15,7 @@ const loading = ref(true);
 
 onMounted(() => {
 	fetchUsersTickets().then((response) => {
+		console.log(response)
 		tickets.value = response
 		loading.value = false;
 	});

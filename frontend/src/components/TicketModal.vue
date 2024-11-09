@@ -4,6 +4,7 @@ import { defineProps, defineEmits, ref } from 'vue';
 import { VCard, VCardTitle, VCardText, VBtn, VDivider, VContainer } from 'vuetify/components';
 import TicketChat from './TicketChat.vue';
 import { EStates } from '@/filters/filter';
+import SubscribeButton from "./SubscribeButton.vue"
 
 // Define the props
 const props = defineProps<{
@@ -61,11 +62,6 @@ const private_save = ref([
 	{ user: 'Helen 4', description: 'This is the fourth item.' },
 ]);
 
-const subscribe = () => {
-	console.log("subscriibattu!")
-	subscRibeToTickets(props.ticket.id)
-}
-
 </script>
 
 <template>
@@ -87,10 +83,7 @@ const subscribe = () => {
 						<span class="card-section-title">Planned release version: </span>{{ release_version }}
 					</VCardText>
 				</div>
-				<div class="modal-header-interactions">
-					<VBtn icon="mdi-thumb-up" color="primary"></VBtn> <br>
-					<VBtn color="primary" @click="subscribe">Follow</VBtn>
-				</div>
+				<SubscribeButton :ticket_id="ticket.id"></SubscribeButton>
 			</div>
 			<VDivider></VDivider>
 			<VCardText class="card-section-top">

@@ -1,7 +1,7 @@
-import { API_URL, States } from "./common"
+import { API_URL } from "./common"
 
 import { useFilterStore } from "../stores/filterStore"
-import { useUserStore } from "../stores/userStore"
+import { get_user_id } from "../stores/userState"
 
 export interface ITicket {
 	id?: string
@@ -62,8 +62,8 @@ export const fetchTicketsByApi = async (root_id: string): Promise<ITicket[]> => 
 }
 
 export const fetchUsersTickets = async (): Promise<ITicket[]> => {
-	const user = useUserStore()
-	const response = await fetch(API_URL + "/users/" + user.$state.id + "/tickets", {
+	const user = get_user_id()
+	const response = await fetch(API_URL + "/users/" + user + "/tickets", {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
@@ -74,8 +74,9 @@ export const fetchUsersTickets = async (): Promise<ITicket[]> => {
 }
 
 export const subscRibeToTickets = async (ticketId: string) => {
-	const user = useUserStore()
-	const response = await fetch(API_URL + "/users/" + user.$state.id + "/subscribe/" + ticketId, {
+	const user = get_user_id()
+	console.log(user)
+	const response = await fetch(API_URL + "/users/" + user + "/subscribe/" + ticketId, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
