@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, ref } from 'vue';
 import { VCard, VCardTitle, VCardText, VCardActions, VBtn, VDialog, VDivider, VContainer } from 'vuetify/components';
+import TicketChat from './TicketChat.vue';
 
 // Define the props
 const props = defineProps<{
@@ -17,6 +18,15 @@ const handleActionClick = () => {
 };
 
 const meetingNotesVisible = ref(false);
+const publicCommentsVisible = ref(false);
+const privateCommentsVisible = ref(false);
+
+const addItemToPublic = (newItem: { user: string; description: string }) => {
+  public_save.value.push(newItem);
+};
+const addItemToPrivate = (newItem: { user: string; description: string }) => {
+  private_save.value.push(newItem);
+};
 
 const title = "First ticket"
 const state = 'In progress'
@@ -27,6 +37,25 @@ const meetingNotes = ['good', 'poopoo', 'nice']
 const publicComments = ['comment', 'comment', 'comment']
 const privateComments = ['comment', 'comment', 'comment']
 const release_version = '3.2.1'
+const user = ref({
+  company: 'Fortum 1',
+});
+const public_save = ref([
+    { user: 'Helen 1', description: 'This is the first item.' },
+    { user: 'Vattenfal 2', description: 'This is the second item.' },
+    { user: 'Fortum 3', description: 'This is the third item.' },
+    { user: 'Helen 4', description: 'This is the fourth item.' },
+  ]);
+  const private_save = ref([
+    { user: 'Helen 1', description: 'This is the first item.' },
+    { user: 'Vattenfal 2', description: 'This is the second item.' },
+    { user: 'Fortum 3', description: 'This is the third item.' },
+    { user: 'Helen 4', description: 'This is the fourth item.' },
+  ]);
+
+
+
+
 </script>
 
 <template>
@@ -72,30 +101,28 @@ const release_version = '3.2.1'
         </VCardText>
 
         <VCardText class="card-section-public-comments">
-          <span class="card-section-title">Public comments</span>
-          <VBtn>Add comment</VBtn>
-        </VCardText>
-        <VDivider></VDivider>
-          <VCardText
-            v-for="comment in publicComments"
-            class="meeting-note"
-          >
-          {{ comment }}
-          <VDivider></VDivider>
-        </VCardText>
+            <span class="card-section-title">Public comments</span>
+            <VBtn @click="publicCommentsVisible = !publicCommentsVisible">
+              {{ publicCommentsVisible ? 'Hide Comments' : 'Show Comments' }}
+            </VBtn>
+          </VCardText>
+          <VDivider v-if="publicCommentsVisible"></VDivider>
+  
+        <TicketChat v-if="publicCommentsVisible" :items="public_save" :user="user" @add-item="addItemToPublic" />
 
+
+        <!-- change the color scheme of the private comment  -->
         <VCardText class="card-section-private-comments">
-          <span class="card-section-title">Private comments</span>
-          <VBtn>Add comment</VBtn>
-        </VCardText>
-        <VDivider></VDivider>
-          <VCardText
-            v-for="comment in privateComments"
-            class="meeting-note"
-          >
-          {{ comment }}
-          <VDivider></VDivider>
-        </VCardText>
+            <span class="card-section-title">Private comments</span>
+            <VBtn @click="privateCommentsVisible = !privateCommentsVisible">
+              {{ privateCommentsVisible ? 'Hide Comments' : 'Show Comments' }}
+            </VBtn>
+          </VCardText>
+          <VDivider v-if="privateCommentsVisible"></VDivider>
+  
+        <TicketChat v-if="privateCommentsVisible" :items="private_save" :user="user" @add-item="addItemToPrivate" />
+
+
   </VCard>
   </VContainer>
 </template>
