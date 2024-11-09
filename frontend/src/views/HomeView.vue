@@ -9,17 +9,16 @@ import { fetchTickets, type ITicketResponse, type ITicket } from '../api/ticket'
 
 // plaeholder for demo purposes
 
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, toValue } from 'vue';
 
 
-const tickest = ref<ITicket[]>([]);
+const ticket = ref<ITicketResponse>([]);
 const loading = ref(true);
 
-const ticketInfo = ref<ITicketResponse | null>(null);
 
 onMounted(async () => {
-	ticketInfo.value = await fetchTickets();
-	console.log(ticketInfo.value);
+	ticket.value = await fetchTickets();
+	console.log(ticket.value);
 	loading.value = false;
 });
 
@@ -28,7 +27,7 @@ onMounted(async () => {
 <template>
 <VContainer>
 	<h1>Your Tickets</h1>
-	<TicketGrid :tickets="ticketInfo">
+	<TicketGrid :tickets="ticket">
 	</TicketGrid>
 	
 </VContainer>

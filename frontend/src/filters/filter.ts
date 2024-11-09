@@ -18,3 +18,4 @@ export enum EStates {
     READY = 5,
     REJECTED = 6
 }
+
