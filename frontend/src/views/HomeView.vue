@@ -6,7 +6,7 @@ import router from '../router/index'
 import { VContainer } from 'vuetify/components';
 import { fetchTickets, type ITicket } from '../api/ticket';
 
-import { onMounted, ref, toValue } from 'vue';
+import { onMounted, ref } from 'vue';
 
 
 const tickets = ref<ITicket[]>([]);
@@ -15,7 +15,7 @@ const loading = ref(true);
 
 onMounted(() => {
 	fetchTickets().then((response) => {
-		tickets.value = response;
+		tickets.value = response.slice(0, 6);
 		loading.value = false;
 	});
 });

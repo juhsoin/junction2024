@@ -1,40 +1,26 @@
 <script setup lang="ts">
+import { fetchTickets, type ITicket } from '@/api/ticket';
 import KanbanTable from '@/components/KanbanTable.vue';
+import { onMounted, ref } from 'vue';
 import { VContainer } from 'vuetify/components';
 
-// plaeholder for demo purposes
-const ticketInfo = [
-	{
-		id: '1',
-		title: 'First ticket',
-		description: 'First Description',
-        scope: "In progress",
-	},
-	{
-		id: '2',
-		title: 'First ticket',
-		description: 'First Description',
-        scope: "In progress",
-	},
-	{
-		id: '3',
-		title: 'First ticket',
-		description: 'First Description',
-        scope: "In progress",
-	},
-	{
-		id: '4',
-		title: 'First ticket',
-		description: 'First Description',
-        scope: "In progress",
-	},
-]
+const tickets = ref<ITicket[]>([]);
+const loading = ref(true);
+
+onMounted(() => {
+	fetchTickets().then((response) => {
+		tickets.value = response;
+		loading.value = false;
+	});
+});
+
 </script>
 
 <template>
     <VContainer class="kanban-table">
         <h1>Tickets workflow view</h1>
-        <KanbanTable :tickets="ticketInfo"></KanbanTable>
+		<div v-if="loading">Loading...</div>
+        <KanbanTable v-else :tickets="tickets"></KanbanTable>
     </VContainer>
 </template>
 
