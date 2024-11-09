@@ -5,6 +5,8 @@ import router from '../router/index'
 
 import { VContainer } from 'vuetify/components';
 
+
+
 // plaeholder for demo purposes
 const ticketInfo = [
 	{

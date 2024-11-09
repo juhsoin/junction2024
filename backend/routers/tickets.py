@@ -19,7 +19,6 @@ def create_ticket(ticket: Ticket, session: SessionDep) -> Ticket:
     session.add(ticket)
     session.commit()
     session.refresh(ticket)
-    print(ticket)
     return ticket
 
 
@@ -36,8 +35,6 @@ def read_tickets(f: Filter, session: SessionDep) -> list[Ticket]:
     tickets = session.exec(select(Ticket)).all()
     if not tickets:
         raise HTTPException(status_code=404, detail="Tickets not found")
-    for t in tickets:
-        print(t)
     return list(filter(f.apply, tickets))
 
 
