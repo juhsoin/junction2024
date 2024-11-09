@@ -5,7 +5,7 @@ import TicketCard from './TicketCard.vue';
 
 const props = defineProps<{
 	tickets: ITicket[];
-	followed?: bool
+	followed?: boolean;
 }>();
 
 const emit = defineEmits<{
