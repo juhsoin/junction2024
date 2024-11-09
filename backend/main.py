@@ -14,6 +14,7 @@ app = FastAPI(lifespan=lifespan)
 
 @app.post("/api/ticket/")
 def create_hero(ticket: Ticket, session: SessionDep) -> Ticket:
+    Ticket.model_validate(ticket)
     session.add(ticket)
     session.commit()
     session.refresh(ticket)
@@ -28,7 +29,6 @@ def read_hero(ticket_id: int, session: SessionDep) -> Ticket:
 
 @app.get("/api/tickets/")
 def read_heroes(session: SessionDep) -> list[Ticket]:
-    print("working")
     tickets = session.exec(select(Ticket)).all()
     if not tickets:
         raise HTTPException(status_code=404, detail="Tickets not found")
@@ -45,6 +45,7 @@ def delete_hero(ticket_id: int, session: SessionDep):
 
 @app.put("/ticket/{ticket_id}")
 def update_hero(ticket_id: int, ticket: Ticket, session: SessionDep):
+    Ticket.model_validate(ticket)
     db_ticket = session.get(Ticket, ticket_id)
     if not db_ticket:
         raise HTTPException(status_code=404, detail="Ticket not found")
