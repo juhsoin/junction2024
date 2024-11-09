@@ -15,7 +15,7 @@ const loading = ref(true);
 
 onMounted(() => {
 	fetchTickets().then((response) => {
-		tickets.value = response;
+		tickets.value = response.slice(0, 6);
 		loading.value = false;
 	});
 });
