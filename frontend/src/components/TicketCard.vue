@@ -2,11 +2,11 @@
 import { defineProps, defineEmits } from 'vue';
 import { VCard, VCardTitle, VCardText, VCardActions, VBtn } from 'vuetify/components';
 import TicketModal from './TicketModal.vue';
+import type { ITicket } from '@/api/ticket';
 
 // Define the props
 const props = defineProps<{
-  title: string;
-  description: string;
+  ticket: ITicket;
 }>();
 
 // Emit an action event when the button is clicked
@@ -23,10 +23,10 @@ const handleActionClick = () => {
 <template>
    <VCard class="ticket-card">
     <VCardTitle>
-      {{ title }}
+      {{ ticket.title }}
     </VCardTitle>
     <VCardText color="secondary">
-      {{ description }}
+      {{ ticket.description }}
     </VCardText>
     <VDialog scrollable>
         <template v-slot:activator="{ props: activatorProps }">
@@ -35,7 +35,7 @@ const handleActionClick = () => {
             </VCardActions>
         </template>
         <template v-slot:default="{ isActive }">
-          <TicketModal class="ticket-modal"></TicketModal>
+          <TicketModal :ticket="ticket" class="ticket-modal"></TicketModal>
         </template>
     </VDialog>
   </VCard>

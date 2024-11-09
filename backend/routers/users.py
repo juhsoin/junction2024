@@ -80,7 +80,7 @@ def read_user_tickets(user_id: str, session: SessionDep) -> list[Ticket]:
     return tickets
 
 
-@router.post("/api/users/{user_id}/tickets/{ticket_id}")
+@router.post("/api/users/{user_id}/subscribe/{ticket_id}")
 def subscribe_user_to_ticket(user_id: str, ticket_id: str, session: SessionDep):
     user = session.get(User, user_id)
     if not user:

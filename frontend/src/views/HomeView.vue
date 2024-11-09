@@ -4,32 +4,22 @@ import TicketGrid from '@/components/TicketGrid.vue';
 import router from '../router/index'
 
 import { VContainer } from 'vuetify/components';
+import { fetchTickets, type ITicket } from '../api/ticket';
+
+import { onMounted, ref, toValue } from 'vue';
 
 
+const tickets = ref<ITicket[]>([]);
+const loading = ref(true);
 
-// plaeholder for demo purposes
-const ticketInfo = [
-	{
-		id: '1',
-		title: 'First ticket',
-		description: 'First Description'
-	},
-	{
-		id: '2',
-		title: 'First ticket',
-		description: 'First Description'
-	},
-	{
-		id: '3',
-		title: 'First ticket',
-		description: 'First Description'
-	},
-	{
-		id: '4',
-		title: 'First ticket',
-		description: 'First Description'
-	},
-]
+
+onMounted(() => {
+	fetchTickets().then((response) => {
+		tickets.value = response;
+		loading.value = false;
+	});
+});
+
 
 const apiInfo = [
 	{
@@ -54,7 +44,8 @@ const handleNavigation = (route: string) => {
 <template>
 	<VContainer>
 		<h1>Your Tickets</h1>
-		<TicketGrid :tickets="ticketInfo">
+		<div v-if="loading">Loading...</div>
+	<TicketGrid v-else :tickets="tickets">
 		</TicketGrid>
 		<VBtn variant="plain" color="primary" @click="handleNavigation('/tickets')">Show All</VBtn>
 	</VContainer>
