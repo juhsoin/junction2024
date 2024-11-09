@@ -54,6 +54,17 @@ def subscribe_user_to_ticket(user_id: str, ticket_id: str, session: SessionDep):
     if not ticket:
         raise HTTPException(status_code=404, detail="Ticket not found")
 
+    subscription = session.exec(
+        select(TicketSubscription).where(
+            TicketSubscription.user_id == user_id
+            and TicketSubscription.ticket_id == ticket_id
+        )
+    ).all()
+
+    if subscription:
+        print("Already subscribed")
+        return subscription
+
     id = datetime.datetime.now().strftime("%M%S")
     subscription = TicketSubscription(id=id, user_id=user_id, ticket_id=str(ticket_id))
     session.add(subscription)
@@ -63,35 +74,18 @@ def subscribe_user_to_ticket(user_id: str, ticket_id: str, session: SessionDep):
     return subscription
 
 
-# @router.get("/api/users/")
-# def read_users(session: SessionDep) -> list[User]:
-#     users = session.exec(select(User)).all()
-#     if not users:
-#         raise HTTPException(status_code=404, detail="Users not found")
-#     return list(users)
+@router.delete("/api/users/{user_id}/subscribe/{ticket_id}")
+def unsubscribe_user_from_ticket(user_id: str, ticket_id: str, session: SessionDep):
+    subscription = session.exec(
+        select(TicketSubscription).where(
+            TicketSubscription.user_id == user_id
+            and TicketSubscription.ticket_id == ticket_id
+        )
+    )
 
-
-# @router.delete("/api/users/{user_id}")
-# def delete_user(user_id: str, session: SessionDep):
-#     user = session.get(User, user_id)
-#     if not user:
-#         raise HTTPException(status_code=404, detail="User not found")
-#     session.delete(user)
-#     session.commit()
-#     return {"ok": True}
-
-
-# @router.put("/api/users/{user_id}")
-# def update_user(user_id: str, user: User, session: SessionDep):
-#     User.model_validate(user)
-#     db_user = session.get(User, user_id)
-#     if not db_user:
-#         raise HTTPException(status_code=404, detail="User not found")
-#     update_data = user.dict(exclude_unset=True)
-#     for key, value in update_data.items():
-#         setattr(db_user, key, value)
-#     session.add(db_user)
-#     session.commit()
-#     session.refresh(db_user)
-#     return db_user
-
+    if subscription:
+        res = subscription.one()
+        session.delete(res)
+        return subscription
+    else:
+        raise HTTPException(status_code=404, detail="User not found")
