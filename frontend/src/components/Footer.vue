@@ -14,6 +14,4 @@ const currentYear = new Date().getFullYear();
 
 <style scoped>
 /* Add any custom styling here */
-.v-footer {
-}
 </style>
