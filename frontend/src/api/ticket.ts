@@ -1,4 +1,4 @@
-import { API_URL } from "./common"
+import { API_URL, States } from "./common"
 
 import { useFilterStore } from "../stores/filterStore"
 import { get_user_id } from "../stores/userState"
@@ -92,6 +92,18 @@ export const unsubscRibeToTickets = async (ticketId: string) => {
 		headers: {
 			"Content-Type": "application/json",
 		},
+	})
+	return response
+}
+
+export const createTicket = async(ticket) => {
+	ticket.status = States.NEW
+	const response = await fetch(API_URL + "/tickets", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(ticket)
 	})
 	return response
 }
