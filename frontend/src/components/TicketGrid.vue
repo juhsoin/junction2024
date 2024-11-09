@@ -22,7 +22,7 @@ const emit = defineEmits<{
         cols="4"
         >
         <TicketCard
-          :ticket="ticket";
+          :ticket="ticket"
         />
       </VCol>
     </VRow>
