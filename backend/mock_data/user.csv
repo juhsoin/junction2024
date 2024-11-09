@@ -1,0 +1,6 @@
+id	organization_id	username	email	is_active
+U1234	101	JDoe	jdoe@powerco.com	True
+U5678	102	ASmith	asmith@electrify.com	False
+U9101	103	MLee	mlee@energyplus.com	True
+U1121	104	KTan	ktan@brightpower.com	True
+U3141	105	LWang	lwang@voltconnect.com	False
