@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AddNewTicket from '@/components/AddNewTicket.vue';
 import ApiGrid from '@/components/ApiGrid.vue';
 
 const apiInfo = [
@@ -24,4 +25,5 @@ const apiInfo = [
 		<h1>Active Fingrid Services</h1>
 		<ApiGrid :api-list="apiInfo" :short-form="false" />
 	</VContainer>
+	<AddNewTicket />
 </template>
