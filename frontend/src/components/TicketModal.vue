@@ -187,7 +187,6 @@ const emitDeleted = () => {
 	.v-btn {
 		color: var(--brand-light-blue-gray);
 		margin-left: 20px;
-		;
 	}
 }
 

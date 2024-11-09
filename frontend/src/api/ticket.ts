@@ -105,6 +105,5 @@ export const fetchTicketMeetingNotes = async (ticketId: string) => {
 		body: JSON.stringify({}),
 	})
 	const body: ITicketComment[] = await response.json()
-	console.log(body)
 	return body
 }
