@@ -13,14 +13,17 @@ def main():
         mock_api = pd.read_csv("./mock_data/api.csv", sep="\t")
         mock_api.to_sql(name="api", con=connection, if_exists='append', index=False)
 
-        mock_tickets = pd.read_csv("./mock_data/ticket.csv", sep="\t")
-        mock_tickets.to_sql(name="ticket", con=connection, if_exists='append', index=False)
+        mock_ticket = pd.read_csv("./mock_data/ticket.csv", sep="\t")
+        mock_ticket.to_sql(name="ticket", con=connection, if_exists='append', index=False)
 
         mock_comment = pd.read_csv("./mock_data/comment.csv", sep="\t")
         mock_comment.to_sql(name="comment", con=connection, if_exists='append', index=False)
 
-        mock_subs = pd.read_csv("./mock_data/ticket_subs.csv", sep="\t")
-        mock_subs.to_sql(name="ticket_subscription", con=connection, if_exists='append', index=False)
+        mock_sub = pd.read_csv("./mock_data/ticket_subs.csv", sep="\t")
+        mock_sub.to_sql(name="ticket_subscription", con=connection, if_exists='append', index=False)
+
+        mock_update = pd.read_csv("./mock_data/update.csv", sep="\t")
+        mock_update.to_sql(name="update", con=connection, if_exists='append', index=False)
 
 
     engine.dispose()
