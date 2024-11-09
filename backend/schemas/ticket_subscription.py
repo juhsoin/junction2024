@@ -3,5 +3,5 @@ from typing import Optional
 
 class TicketSubscription(SQLModel, table=True):
     id: Optional[str] = Field(default=None, primary_key=True)
-    user_id: int
-    ticket_id: int
+    user_id: str
+    ticket_id: str

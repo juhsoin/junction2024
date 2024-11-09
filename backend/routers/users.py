@@ -3,7 +3,7 @@ from ..schemas.user import User
 from ..schemas.ticket_subscription import TicketSubscription
 from ..schemas.ticket import Ticket
 
-
+import datetime
 from fastapi import APIRouter, HTTPException
 from sqlmodel import select
 
@@ -21,7 +21,7 @@ def create_user(user: User, session: SessionDep) -> User:
 
 
 @router.get("/api/users/{user_id}")
-def read_user(user_id: int, session: SessionDep) -> User:
+def read_user(user_id: str, session: SessionDep) -> User:
     user = session.get(User, user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -37,7 +37,7 @@ def read_users(session: SessionDep) -> list[User]:
 
 
 @router.delete("/api/users/{user_id}")
-def delete_user(user_id: int, session: SessionDep):
+def delete_user(user_id: str, session: SessionDep):
     user = session.get(User, user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -47,7 +47,7 @@ def delete_user(user_id: int, session: SessionDep):
 
 
 @router.put("/api/users/{user_id}")
-def update_user(user_id: int, user: User, session: SessionDep):
+def update_user(user_id: str, user: User, session: SessionDep):
     User.model_validate(user)
     db_user = session.get(User, user_id)
     if not db_user:
@@ -62,13 +62,16 @@ def update_user(user_id: int, user: User, session: SessionDep):
 
 
 @router.get("/api/users/{user_id}/tickets")
-def read_user_tickets(user_id: int, session: SessionDep) -> list[Ticket]:
+def read_user_tickets(user_id: str, session: SessionDep) -> list[Ticket]:
     user = session.get(User, user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
     tickets = session.exec(
-        select(Ticket).join(TicketSubscription).where(TicketSubscription.user_id == user_id)
+        select(Ticket)
+        .select_from(Ticket)
+        .join(TicketSubscription, Ticket.id == TicketSubscription.ticket_id)
+        .where(TicketSubscription.user_id == user_id)
     ).all()
     
     if not tickets:
@@ -78,7 +81,7 @@ def read_user_tickets(user_id: int, session: SessionDep) -> list[Ticket]:
 
 
 @router.post("/api/users/{user_id}/tickets/{ticket_id}")
-def subscribe_user_to_ticket(user_id: int, ticket_id: int, session: SessionDep):
+def subscribe_user_to_ticket(user_id: str, ticket_id: str, session: SessionDep):
     user = session.get(User, user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -87,7 +90,8 @@ def subscribe_user_to_ticket(user_id: int, ticket_id: int, session: SessionDep):
     if not ticket:
         raise HTTPException(status_code=404, detail="Ticket not found")
     
-    subscription = TicketSubscription(user_id=user_id, ticket_id=ticket_id)
+    id = datetime.datetime.now().strftime("%M%S")
+    subscription = TicketSubscription(id=id, user_id=user_id, ticket_id=str(ticket_id))
     session.add(subscription)
     session.commit()
     session.refresh(subscription)
