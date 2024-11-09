@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-toolbar-title>{{ title }}</v-toolbar-title>
+        
   
       <!-- Displaying the list of items -->
       <v-list>
@@ -30,7 +30,7 @@
           />
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" @click="addItem">Add Item</v-btn>
+          <v-btn color="primary" @click="submitNewItem">Add Item</v-btn>
           <v-btn color="secondary" @click="toggleForm">Cancel</v-btn>
         </v-card-actions>
       </v-card>
@@ -39,25 +39,17 @@
   
   <script lang="ts" setup>
   import { ref } from 'vue';
-  
-  // Sample list of items
-  const items = ref([
-    { user: 'Item 1', description: 'This is the first item.' },
-    { user: 'Item 2', description: 'This is the second item.' },
-    { user: 'Item 3', description: 'This is the third item.' },
-    { user: 'Item 4', description: 'This is the fourth item.' },
-  ]);
-
-
-  // User who has logged in
-  const user = ref({
-    company: 'Fortum',
-    });
     
-    // title props from parent component
-    const props = defineProps<{
-  title: string;
+
+  const props = defineProps<{
+  items: Array<{ user: string; description: string }>;
+  user: { company: string };
 }>();
+
+const emit = defineEmits<{
+  (e: 'add-item', item: { user: string; description: string }): void;
+}>();
+
   // New item form data
   //const newTitle = ref<string>('');
   const newDescription = ref<string>('');
@@ -73,17 +65,19 @@
     }
   };
   
-  // Function to add a new item to the list
-  const addItem = () => {
-    if (newDescription.value.trim()) {
-      items.value.push({
-        user: user.value.company,
-        description: newDescription.value.trim(),
-      });
-      newDescription.value = '';
-      showForm.value = false; // Hide the form after adding the item
-    }
-  };
+  // Function to submit a new item
+  const submitNewItem = () => {
+  if (newDescription.value.trim()) {
+    const newItem = {
+      user: props.user.company,
+      description: newDescription.value.trim(),
+    };
+    emit('add-item', newItem); // Emit the new item to the parent
+    newDescription.value = '';
+    showForm.value = false;
+  }
+};
+
   </script>
   
   <style scoped>
