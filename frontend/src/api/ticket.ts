@@ -19,6 +19,7 @@ export interface ITicket {
     proposal_impact?: string;
     next_steps?: string;
     planned_release?: string;
+    categories?: string;
 }
 
 export interface ITicketComment {

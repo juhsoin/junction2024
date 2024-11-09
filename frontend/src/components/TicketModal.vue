@@ -35,7 +35,7 @@ const loading = ref(true)
 
 const title = props.ticket.title;
 const state = EStates[parseInt(props.ticket.status)]
-const category = 'Work'
+const category = props.ticket.categories;
 const description = props.ticket.description;
 const release_version = props.ticket.planned_release ?? 'unknown';
 const meetingNotes = ref<string[]>([])
