@@ -80,7 +80,7 @@ const columns = [
 <style scoped>
 
 .kanban-row {
-  width: 2500px !important;
+  width: 1500px !important;
 }
 
 .column-title {
