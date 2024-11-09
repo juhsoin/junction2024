@@ -11,10 +11,16 @@ import { fetchTickets, type ITicketResponse, type ITicket } from '../api/ticket'
 
 import { onMounted, ref } from 'vue';
 
+
+const tickest = ref<ITicket[]>([]);
+const loading = ref(true);
+
 const ticketInfo = ref<ITicketResponse | null>(null);
 
 onMounted(async () => {
 	ticketInfo.value = await fetchTickets();
+	console.log(ticketInfo.value);
+	loading.value = false;
 });
 
 </script>

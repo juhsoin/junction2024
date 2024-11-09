@@ -23,16 +23,22 @@ export interface ITicket {
 
 export type ITicketResponse = ITicket[]; 
 
-export const fetchTickets = async (): Promise<TicketResponse> => {
-	const response = await fetch(API_URL + "/tickets/all", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({})
-	})
-	const body: TicketResponse = await response.json()
-	return body
+export const fetchTickets = async (): Promise<ITicketResponse> => {
+
+    const filterStore = useFilterStore();
+    const filterValue = filterStore.$state.filter;
+    const response = await fetch(
+        API_URL + '/tickets/all', {
+            method: 'POST',
+            body: JSON.stringify(filterValue),
+            headers: {
+                'Access-Control-Allow-Origin': "*",
+                'Content-Type': 'application/json',
+            },
+        }
+    );
+    const body: ITicketResponse  = await response.json()
+    return body
 }
 
 export const fetchTicketsByApi = async (root_id: string): Promise<TicketResponse> => {
