@@ -2,6 +2,8 @@
 import TicketGrid from '@/components/TicketGrid.vue';
 import { VContainer } from 'vuetify/components';
 
+
+
 // plaeholder for demo purposes
 const ticketInfo = [
 	{
@@ -28,10 +30,10 @@ const ticketInfo = [
 </script>
 
 <template>
-	
 <VContainer>
 	<h1>Your Tickets</h1>
 	<TicketGrid :tickets="ticketInfo">
 	</TicketGrid>
+	
 </VContainer>
 </template>
