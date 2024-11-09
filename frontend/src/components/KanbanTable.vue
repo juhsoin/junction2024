@@ -2,17 +2,10 @@
 import { defineProps, defineEmits } from 'vue';
 import { VContainer, VDivider } from 'vuetify/components';
 import TicketCard from './TicketCard.vue';
-
-
-interface ticketCardInfo {
-    id: string;
-    title: string;
-    description: string;
-    scope: string;
-}
+import type { ITicket } from '@/api/ticket';
 
 const props = defineProps<{
-  tickets: ticketCardInfo[];
+  tickets: ITicket[];
 }>();
 
 // Emit an action event when the button is clicked
@@ -21,7 +14,7 @@ const emit = defineEmits<{
 }>();
 
 const filteredTickets = (scope: string) => {
-    return props.tickets.filter((ticket) => ticket.scope === scope )
+    return props.tickets.filter((ticket) => ticket.status === scope )
 }
 
 const columns = [
@@ -67,9 +60,7 @@ const columns = [
         <TicketCard
           v-for="ticket in filteredTickets(column.status)"
           class="kanban-card"
-          :key="ticket.id"
-          :title="ticket.title"
-          :description="ticket.description"
+          :ticket="ticket"
         />
       </VCol>
       
@@ -95,6 +86,7 @@ const columns = [
   border-radius: 8px;
   min-height: 400px;
   min-width: 300px;
+  min-height: 750px;
 }
 
 .kanban-card {
