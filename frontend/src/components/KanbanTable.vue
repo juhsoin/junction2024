@@ -71,7 +71,7 @@ const columns = [
 <style scoped>
 
 .kanban-row {
-  width: 1750px !important;
+  width: 1700px !important;
 }
 
 .column-title {

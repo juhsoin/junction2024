@@ -21,6 +21,7 @@ export interface ITicket {
 	next_steps?: string
 	planned_release?: string
 	categories?: string
+	planned_release_version?: string
 }
 
 export interface ITicketComment {

@@ -32,8 +32,9 @@ const stateHighlight = (ticket: ITicket) => {
       {{ ticket.title }}
     </VCardTitle>
     <VCardText :class="stateHighlight(ticket)">{{ EStates[parseInt(ticket.status)] }}</VCardText>
+    <VChip class="release-avatar">Release: {{ ticket.planned_release_version ?? 'X' }}</VChip>
     <VCardText color="secondary" class="description-paragraph">
-      {{ ticket.description.slice(0, 30) + (ticket.description.length > 30 ? '...' : '')}}
+      {{ ticket.description ? ticket.description.slice(0, 30) + (ticket.description.length > 30 ? '...' : '') : ''}}
     </VCardText>
     <VDialog scrollable>
         <template v-slot:activator="{ props: activatorProps }">
@@ -58,6 +59,11 @@ const stateHighlight = (ticket: ITicket) => {
 
 .description-paragraph {
   max-height: 10px;
+}
+
+.release-avatar {
+  margin-left: 10px;
+  background-color: var(--brand-light-blue)
 }
 
 .ticket-modal {

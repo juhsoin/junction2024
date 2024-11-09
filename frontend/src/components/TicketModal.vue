@@ -37,7 +37,7 @@ const title = props.ticket.title;
 const state = EStates[parseInt(props.ticket.status)]
 const category = props.ticket.categories;
 const description = props.ticket.description;
-const release_version = props.ticket.planned_release ?? 'unknown';
+const release_version = props.ticket.planned_release_version ?? 'unknown';
 const meetingNotes = ref<string[]>([])
 
 fetchTicketMeetingNotes(props.ticket.id ?? '').then((response) => {
@@ -84,7 +84,7 @@ const subscribe = () => {
 						<span class="card-section-title">Category: </span>{{ category }}
 					</VCardText>
 					<VCardText>
-						<span class="card-section-title">Planned release: </span>{{ release_version }}
+						<span class="card-section-title">Planned release version: </span>{{ release_version }}
 					</VCardText>
 				</div>
 				<div class="modal-header-interactions">
