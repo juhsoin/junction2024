@@ -1,7 +1,9 @@
-ARG ARCH
-ARG PYTHON_VERSION
+ARG ARCH=amd64
+ARG PYTHON_VERSION=3.11
 
-FROM ${ARCH}/python:${PYTHON_VERSION}
+FROM amd64/python:${PYTHON_VERSION}
+
+EXPOSE 8000
 
 # Install dependencies for the project; add your own if you wish
 RUN debian_frontend=noninteractive apt-get update && apt-get install -y \
@@ -13,8 +15,8 @@ RUN debian_frontend=noninteractive apt-get update && apt-get install -y \
     npm \
     sqlite3
 
-COPY ./backend/requirements.txt /app/backend/requirements.txt
-COPY ./frontend/package.json /app/frontend/package.json
+COPY ./backend/ /app/backend/
+COPY ./frontend/ /app/frontend/
 
 WORKDIR /app/backend/
 RUN pip3 install -r requirements.txt
@@ -25,5 +27,13 @@ WORKDIR /app/frontend/
 RUN npm install 
 RUN npm ci
 
+RUN npm run build
 
-CMD [ "bash" ]
+RUN cp -r /app/frontend/dist/* /app/backend/static/
+
+WORKDIR /app/backend/
+
+RUN python3 add_mock_data.py
+
+
+CMD [ "fastapi", "run", "--host", "0.0.0.0" ]

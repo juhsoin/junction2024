@@ -6,6 +6,9 @@ from contextlib import asynccontextmanager
 from .schemas.database_init import create_db_and_tables
 
 from .routers import users, apis, tickets, update, comment
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse
+from fastapi import Request
 
 
 @asynccontextmanager
@@ -37,3 +40,14 @@ app.include_router(apis.router)
 app.include_router(tickets.router)
 app.include_router(update.router)
 app.include_router(comment.router)
+
+
+
+@app.get("/", response_class=HTMLResponse)
+async def read_index(request: Request):
+    print(request.url)
+    with open("static/index.html") as f:
+        return HTMLResponse(content=f.read())
+
+
+app.mount("/", StaticFiles(directory="static"), name="static")
