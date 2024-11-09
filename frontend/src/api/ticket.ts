@@ -62,7 +62,7 @@ export const fetchTicketsByApi = async (root_id: string): Promise<ITicket[]> => 
 
 export const fetchUsersTickets = async (): Promise<ITicket[]> => {
 	const user = useUserStore()
-	const response = await fetch(API_URL + "/tickets/user/" + user.$id + "/tickets", {
+	const response = await fetch(API_URL + "/users/" + user.$state.id + "/tickets", {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
@@ -74,7 +74,7 @@ export const fetchUsersTickets = async (): Promise<ITicket[]> => {
 
 export const subscRibeToTickets = async (ticketId: string) => {
 	const user = useUserStore()
-	const response = await fetch(API_URL + "/tickets/user/" + user.$id + "/subscribe/" + ticketId, {
+	const response = await fetch(API_URL + "/users/" + user.$state.id + "/subscribe/" + ticketId, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
