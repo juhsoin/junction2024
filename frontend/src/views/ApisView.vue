@@ -4,6 +4,6 @@
 
 <template>
 	<main>
-		<div>uwu</div>
+		<div>turreilulle iso EI!</div>
 	</main>
 </template>
