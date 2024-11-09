@@ -34,6 +34,7 @@ const stateHighlight = (ticket: ITicket) => {
 			{{ ticket.title }}
 		</VCardTitle>
 		<VCardText :class="stateHighlight(ticket)">{{ EStates[parseInt(ticket.status)] }}</VCardText>
+    <VChip class="release-avatar">Release: {{ ticket.planned_release_version ?? 'X' }}</VChip>
 		<VCardText color="secondary" class="description-paragraph">
 			{{ ticket.description.slice(0, 30) + (ticket.description.length > 30 ? '...' : '') }}
 		</VCardText>
@@ -57,6 +58,11 @@ const stateHighlight = (ticket: ITicket) => {
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	max-height: 250px;
 	max-width: 280px;
+}
+
+.release-avatar {
+  margin-left: 10px;
+  background-color: var(--brand-light-blue)
 }
 
 .description-paragraph {
