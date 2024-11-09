@@ -1,8 +1,8 @@
-
-from backend.schemas.ticket import Ticket
-from backend.schemas.database_init import  SessionDep
+from ..schemas.ticket import Ticket
+from ..schemas.database_init import SessionDep
 from fastapi import APIRouter, HTTPException
 from sqlmodel import select
+import datetime
 
 
 router = APIRouter()
@@ -11,6 +11,9 @@ router = APIRouter()
 @router.post("/api/tickets/")
 def create_ticket(ticket: Ticket, session: SessionDep) -> Ticket:
     Ticket.model_validate(ticket)
+    ticket.created_at = datetime.datetime.now().strftime("%Y-%m-%d--T%H-%M-%S")
+    ticket.updated_at = datetime.datetime.now().strftime("%Y-%m-%d--T%H-%M-%S")
+    ticket.id = datetime.datetime.now().strftime("%M%S")
     session.add(ticket)
     session.commit()
     session.refresh(ticket)
@@ -38,11 +41,9 @@ def read_tickets(session: SessionDep) -> list[Ticket]:
 
 @router.get("/api/tickets/root/{root_id}")
 def get_api_tickets(root_id: int, session: SessionDep) -> list[Ticket]:
-    tickets = session.exec(select(Ticket).where(Ticket.api_id == root_id))
+    tickets = session.exec(select(Ticket).where(Ticket.api_id == root_id)).all()
     if not tickets:
         raise HTTPException(status_code=404, detail="Ticket not found")
-    for t in tickets:
-        print(t)
     return list(tickets)
 
 

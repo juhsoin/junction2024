@@ -1,5 +1,5 @@
-from backend.schemas.database_init import  SessionDep
-from backend.schemas.user import User
+from ..schemas.database_init import SessionDep
+from ..schemas.user import User
 
 from fastapi import APIRouter, HTTPException
 from sqlmodel import select
@@ -30,7 +30,7 @@ def read_users(session: SessionDep) -> list[User]:
     users = session.exec(select(User)).all()
     if not users:
         raise HTTPException(status_code=404, detail="Users not found")
-    return users
+    return list(users)
 
 
 @router.delete("/api/users/{user_id}")
@@ -56,3 +56,4 @@ def update_user(user_id: int, user: User, session: SessionDep):
     session.commit()
     session.refresh(db_user)
     return db_user
+
