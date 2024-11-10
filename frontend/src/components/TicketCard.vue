@@ -8,7 +8,7 @@ import { EStates } from '@/filters/filter';
 // Define the props
 const props = defineProps<{
 	ticket: ITicket;
-	followed?: bool
+	followed?: boolean
 }>();
 
 // Emit an action event when the button is clicked

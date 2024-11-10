@@ -7,6 +7,9 @@ interface apiInfo {
     title: string;
     description: string;
     status: string;
+    updateSummary: string;
+    version: string;
+    nextRelease: string;
 }
 
 const props = defineProps<{
@@ -32,6 +35,9 @@ const emit = defineEmits<{
             :description="api.description"
             :status="api.status"
             :short-form="shortForm"
+            :next-release="api.nextRelease"
+            :update-summary="api.updateSummary"
+            :version="api.version"
         ></ApiCard>
     </VRow>
    </VContainer>
