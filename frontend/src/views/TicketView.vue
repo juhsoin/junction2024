@@ -5,6 +5,7 @@ import KanbanTable from '@/components/KanbanTable.vue';
 import { useFilterStore } from '@/stores/filterStore';
 import { onMounted, ref } from 'vue';
 import { VSelect, VContainer, VCheckbox } from 'vuetify/components';
+import { get_user_id } from "../stores/userState"
 
 const store = useFilterStore();
 
@@ -47,10 +48,15 @@ const toggleFilter = async (value: string) => {
 	tickets.value = await fetchTickets();
 }
 
-const toggle = (value: bool) => {
+const toggle = (value) => {
 	if (value) {
-		store.$state.filter. = value;
+		store.$state.filter.user_id = get_user_id();
+	} else {
+		store.$state.filter.user_id = "";
 	}
+	fetchTickets().then((res) => {
+		tickets.value = res
+	})
 }
 </script>
 
@@ -65,7 +71,7 @@ const toggle = (value: bool) => {
 			closable-chips
 		></VSelect>
 		<AddNewTicket class="add-ticket-dialog"/>
-		<VCheckbox label="Show only my tickets" @change="toggle(value)"></VCheckbox>
+		<VCheckbox label="Show only my tickets" @update:model-value="(value) => toggle(value)"></VCheckbox>
 		<div v-if="loading">Loading...</div>
         <KanbanTable v-else :tickets="tickets"></KanbanTable>
     </VContainer>

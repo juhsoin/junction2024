@@ -12,18 +12,4 @@ class Filter(SQLModel):
     categories: Optional[str] = None
     state: Optional[States] = None
     root: Optional[str] = None
-
-    def apply(self, target) -> bool:
-        if self.id and target.id != self.id:
-            return False
-        if self.created_after and target.created_at and self.created_after > target.created_at:
-            return False
-        if self.created_before and target.created_at and self.created_before < target.created_at:
-            return False
-        if self.root and target.root and self.root != target.root_id:
-            return False
-        if self.state and target.state and not self.state in target.state:
-            return False
-        if self.categories and target.categories != None and self.categories != target.categories:
-            return False
-        return True
+    user_id: Optional[str] = None
