@@ -22,10 +22,8 @@ def create_api(api: Api, session: SessionDep) -> Api:
 
 
 @router.get("/api/apis")
-def get_api(session: SessionDep) -> list[Api]:
+def get_all_apis(session: SessionDep) -> list[Api]:
     apis = session.exec(select(Api)).all()
     if not apis:
         raise HTTPException(status_code=404, detail="Comment not found")
-    for a in apis:
-        print(a)
     return list(apis)

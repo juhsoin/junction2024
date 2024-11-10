@@ -3,7 +3,7 @@ import { defineProps, defineEmits } from 'vue';
 import { VCard, VCardTitle, VCardText } from 'vuetify/components';
 
 const props = defineProps<{
-    id: string;
+    id: string | Number;
     title: string;
     description: string;
     status: string;

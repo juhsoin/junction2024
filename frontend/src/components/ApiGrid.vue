@@ -2,18 +2,19 @@
 import { VRow, VContainer } from 'vuetify/components';
 import ApiCard from './ApiCard.vue';
 
-interface apiInfo {
-    id: string;
-    title: string;
-    description: string;
-    status: string;
-    updateSummary: string;
-    version: string;
-    nextRelease: string;
-}
+// interface apiInfo {
+//     id: string;
+//     title: string;
+//     description: string;
+//     status: string;
+//     updateSummary: string;
+//     version: string;
+//     nextRelease: string;
+// }
+import { IApi } from "../api/apis"
 
 const props = defineProps<{
-  apiList: apiInfo[];
+  apiList: IApi[];
   shortForm: boolean;
 }>();
 

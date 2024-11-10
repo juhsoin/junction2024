@@ -20,6 +20,9 @@
 					<!-- Ticket Description Field -->
 					<v-textarea v-model="description" label="Problem Description" outlined autogrow
 						placeholder="Describe the problem in detail" />
+
+
+					<VSelect :items="props.categories" v-model="filter" chips closable-chips></VSelect>
 				</v-card-text>
 
 				<v-card-actions>
@@ -33,12 +36,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, defineProps } from 'vue';
 import { createTicket } from '@/api/ticket';
 
 const dialogVisible = ref(false);    // Controls visibility of the popup
 const header = ref<string>('');      // Header field for the ticket
 const description = ref<string>(''); // Problem description field
+
+const props = defineProps(["categories"])
+const filter = ref(props.categories[0])
 
 // Toggles the visibility of the dialog
 const toggleDialog = () => {
@@ -55,7 +61,9 @@ const submitTicket = () => {
 		const newTicket = {
 			title: header.value,
 			description: description.value,
+			categories: filter.value,
 		};
+		// console.log(newTicket)
 		createTicket(newTicket)
 		emit('submit-ticket', newTicket); // Emit the new ticket data to the parent
 

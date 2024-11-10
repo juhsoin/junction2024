@@ -70,7 +70,7 @@ const toggle = (value) => {
 			chips
 			closable-chips
 		></VSelect>
-		<AddNewTicket class="add-ticket-dialog"/>
+		<AddNewTicket :categories="items" class="add-ticket-dialog"/>
 		<VCheckbox label="Show only my tickets" @update:model-value="(value) => toggle(value)"></VCheckbox>
 		<div v-if="loading">Loading...</div>
         <KanbanTable v-else :tickets="tickets"></KanbanTable>
