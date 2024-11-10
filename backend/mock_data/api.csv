@@ -1,3 +1,3 @@
-id	title	description	status	created_at	updated_at
-1	Electricity Consumption Data API	Provides access to historical and real-time electricity consumption data for various regions.	active	1694000000.0	1704000000.0
-2	Renewable Energy Forecast API	Offers predictions of renewable energy generation based on weather data and historical trends.	active	1680000000.0	1700000000.0
+id	title	description	status	created_at	updated_at	UpdateSummary 	version	nextRelease
+1	Electricity Consumption Data API	Provides access to historical and real-time electricity consumption data for various regions.	active	1694000000.0	1704000000.0	Next release will modify the payload data format for user requests. Next release will modify the payload data format for user requests.	2.4.2	2.5.0
+2	Renewable Energy Forecast API	Offers predictions of renewable energy generation based on weather data and historical trends.	active	1680000000.0	1700000000.0	'Next release will modify the update interval for the price fetching.	1.3.4	1.4.0
