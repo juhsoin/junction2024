@@ -53,13 +53,21 @@ const handleNavigation = (route: string) => {
 	<VContainer>
 		<h1>Your Tickets</h1>
 		<div v-if="loading">Loading...</div>
+		<div v-if="!tickets.length" class='empty-state'> You are not following any tickets at the moment.</div>
 		<TicketGrid v-else @deleted="refresh" :followed="true" :tickets="tickets">
 		</TicketGrid>
-		<VBtn variant="plain" color="primary" @click="handleNavigation('/tickets')">Show All</VBtn>
+		<VBtn variant="plain" color="primary" @click="handleNavigation('/tickets')">Show All Tickets</VBtn>
 	</VContainer>
 	<VContainer>
 		<h1>Your Fingrid Services</h1>
 		<ApiGrid :api-list="apiInfo" :short-form="true" />
-		<VBtn variant="plain" color="primary" @click="handleNavigation('/apis')">Show All</VBtn>
+		<VBtn variant="plain" color="primary" @click="handleNavigation('/apis')">Show All Services</VBtn>
 	</VContainer>
 </template>
+
+<style scoped>
+	.empty-state {
+		margin-left: 10px;
+		margin-top: 10px;
+	}
+</style>

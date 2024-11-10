@@ -29,3 +29,9 @@ const unsub = () => {
 		<VBtn v-else color="primary" @click="unsub">Unfollow</VBtn>
 	</div>
 </template>
+
+<style scoped>
+	.v-btn {
+		margin-top: 10px;
+	}
+</style>
