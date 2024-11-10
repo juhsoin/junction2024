@@ -98,10 +98,9 @@ export const unsubscRibeToTickets = async (ticketId: string) => {
 
 export interface IUpdateTicket {
 	status?: States
-	header: string
+	title: string
 	description: string
 }
-
 
 export const createTicket = async(ticket: IUpdateTicket) => {
 	ticket.status = States.NEW

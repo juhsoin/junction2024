@@ -53,14 +53,14 @@ const toggleDialog = () => {
 };
 
 const emit = defineEmits<{
-	(e: 'submit-ticket', ticket: { header: string; description: string }): void;
+	(e: 'submit-ticket', ticket: { title: string; description: string }): void;
 }>();
 
 // Function to submit the ticket
 const submitTicket = () => {
 	if (header.value.trim() && description.value.trim()) {
 		const newTicket: IUpdateTicket = {
-			header: header.value,
+			title: header.value,
 			description: description.value,
 			categories: filter.value,
 		};
