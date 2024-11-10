@@ -30,7 +30,8 @@ RUN npm run build
 
 RUN cp -r /app/frontend/dist/* /app/backend/static/
 
-RUN echo "VITE_API_URL=https://junction-70s-pohina.fly.dev/" > /app/frontend/.env.production
+RUN rm /app/frontend/.env
+RUN echo "VITE_API_URL=https://junction-70s-pohina.fly.dev/" > /app/frontend/.env
 
 WORKDIR /app/backend/
 

@@ -48,7 +48,7 @@ const toggleFilter = async (value: string) => {
 	tickets.value = await fetchTickets();
 }
 
-const toggle = (value) => {
+const toggle = (value: boolean) => {
 	if (value) {
 		store.$state.filter.user_id = get_user_id();
 	} else {
