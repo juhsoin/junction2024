@@ -25,13 +25,14 @@ RUN pip3 install -r requirements.txt
 WORKDIR /app/frontend/
 #RUN npm cache --clean 
 RUN npm ci
+RUN rm /app/frontend/.env
+
 RUN echo "VITE_API_URL=https://junction-70s-pohina.fly.dev/" > /app/frontend/.env
 
 RUN npm run build
 
 RUN cp -r /app/frontend/dist/* /app/backend/static/
 
-RUN rm /app/frontend/.env
 
 WORKDIR /app/backend/
 
