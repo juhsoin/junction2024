@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import ApiGrid from "@/components/ApiGrid.vue"
-import { fetchApis } from "../api/apis.ts"
+import { fetchApis, type IApi } from "../api/apis"
 import { ref, onMounted } from "vue"
+
 
 const apis = ref<IApi[]>([])
 const loading = ref(true)

@@ -38,6 +38,7 @@
 <script lang="ts" setup>
 import { ref, defineProps } from 'vue';
 import { createTicket } from '@/api/ticket';
+import { type IUpdateTicket } from '@/api/ticket';
 
 const dialogVisible = ref(false);    // Controls visibility of the popup
 const header = ref<string>('');      // Header field for the ticket
@@ -52,16 +53,16 @@ const toggleDialog = () => {
 };
 
 const emit = defineEmits<{
-	(e: 'submit-ticket', ticket: { header: string; description: string }): void;
+	(e: 'submit-ticket', ticket: { title: string; description: string }): void;
 }>();
 
 // Function to submit the ticket
 const submitTicket = () => {
 	if (header.value.trim() && description.value.trim()) {
-		const newTicket = {
+		const newTicket: IUpdateTicket = {
 			title: header.value,
 			description: description.value,
-			categories: filter.value,
+			categories: filter.value
 		};
 		// console.log(newTicket)
 		createTicket(newTicket)

@@ -96,9 +96,16 @@ export const unsubscRibeToTickets = async (ticketId: string) => {
 	return response
 }
 
-export const createTicket = async(ticket) => {
+export interface IUpdateTicket {
+	status?: States
+	title: string
+	description: string
+	categories: string
+}
+
+export const createTicket = async(ticket: IUpdateTicket) => {
 	ticket.status = States.NEW
-	const response = await fetch(API_URL + "/tickets", {
+	const response = await fetch(API_URL + "/tickets/", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

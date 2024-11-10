@@ -8,6 +8,7 @@ export interface IFilter {
     categories?: string;
     state?: EStates;
     root?: string;
+    user_id?: string;
 }
 
 export enum EStates {

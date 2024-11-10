@@ -49,6 +49,7 @@ def apply_filter(filter: Filter, targets: list[Ticket], session: SessionDep) -> 
 
 @router.post("/api/tickets/")
 def create_ticket(ticket: Ticket, session: SessionDep) -> Ticket:
+    print(ticket)
     Ticket.model_validate(ticket)
     date = datetime.datetime.now()
     ticket.created_at = date.timestamp()

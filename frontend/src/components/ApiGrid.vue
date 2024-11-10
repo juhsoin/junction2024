@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { VRow, VContainer } from 'vuetify/components';
 import ApiCard from './ApiCard.vue';
-import { IApi } from "../api/apis"
+import { type IApi } from "../api/apis"
 
 const props = defineProps<{
   apiList: IApi[];

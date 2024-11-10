@@ -1,0 +1,72 @@
+# flyctl launch added from .gitignore
+**/*/**/__pycache__/*
+**/nvim_config
+**/nvim-linux64
+
+**/__pycache__
+**/backend/db.sqlite
+**/secret
+**/xml
+
+# flyctl launch added from frontend/.gitignore
+# Logs
+frontend/**/logs
+frontend/**/*.log
+frontend/**/npm-debug.log*
+frontend/**/yarn-debug.log*
+frontend/**/yarn-error.log*
+frontend/**/pnpm-debug.log*
+frontend/**/lerna-debug.log*
+
+frontend/**/node_modules
+frontend/**/.DS_Store
+frontend/**/dist
+frontend/**/dist-ssr
+frontend/**/coverage
+frontend/**/*.local
+
+frontend/cypress/videos
+frontend/cypress/screenshots
+
+# Editor directories and files
+frontend/**/.vscode/*
+!frontend/**/.vscode/extensions.json
+frontend/**/.idea
+frontend/**/*.suo
+frontend/**/*.ntvs*
+frontend/**/*.njsproj
+frontend/**/*.sln
+frontend/**/*.sw?
+
+frontend/**/*.tsbuildinfo
+
+# flyctl launch added from nvim-linux64/.vscode-server/extensions/42crunch.vscode-openapi-4.29.2/node_modules/@xliic/openapi/.gitignore
+nvim-linux64/.vscode-server/extensions/42crunch.vscode-openapi-4.29.2/node_modules/@xliic/openapi/**/node_modules
+nvim-linux64/.vscode-server/extensions/42crunch.vscode-openapi-4.29.2/node_modules/@xliic/openapi/**/dist
+nvim-linux64/.vscode-server/extensions/42crunch.vscode-openapi-4.29.2/node_modules/@xliic/openapi/**/tsconfig.tsbuildinfo
+
+# flyctl launch added from nvim-linux64/.vscode-server/extensions/42crunch.vscode-openapi-4.29.2/node_modules/@xliic/result/.gitignore
+nvim-linux64/.vscode-server/extensions/42crunch.vscode-openapi-4.29.2/node_modules/@xliic/result/**/node_modules
+nvim-linux64/.vscode-server/extensions/42crunch.vscode-openapi-4.29.2/node_modules/@xliic/result/**/dist
+nvim-linux64/.vscode-server/extensions/42crunch.vscode-openapi-4.29.2/node_modules/@xliic/result/**/tsconfig.tsbuildinfo
+
+# flyctl launch added from nvim-linux64/.vscode-server/extensions/42crunch.vscode-openapi-4.29.2/node_modules/@xliic/scanconf/.gitignore
+nvim-linux64/.vscode-server/extensions/42crunch.vscode-openapi-4.29.2/node_modules/@xliic/scanconf/**/node_modules
+nvim-linux64/.vscode-server/extensions/42crunch.vscode-openapi-4.29.2/node_modules/@xliic/scanconf/**/dist
+nvim-linux64/.vscode-server/extensions/42crunch.vscode-openapi-4.29.2/node_modules/@xliic/scanconf/**/tsconfig.tsbuildinfo
+
+# flyctl launch added from nvim-linux64/.vscode-server/extensions/ms-python.debugpy-2024.12.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_frame_eval/.gitignore
+nvim-linux64/.vscode-server/extensions/ms-python.debugpy-2024.12.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_frame_eval/pydevd_frame_evaluator.*.so
+nvim-linux64/.vscode-server/extensions/ms-python.debugpy-2024.12.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_frame_eval/pydevd_frame_evaluator.*.pyd
+nvim-linux64/.vscode-server/extensions/ms-python.debugpy-2024.12.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_frame_eval/pydevd_frame_evaluator.pyx
+
+# flyctl launch added from nvim-linux64/.vscode-server/extensions/ms-python.debugpy-2024.12.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/pydevd_attach_to_process/linux_and_mac/.gitignore
+nvim-linux64/.vscode-server/extensions/ms-python.debugpy-2024.12.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/pydevd_attach_to_process/linux_and_mac/attach_x86.dylib
+nvim-linux64/.vscode-server/extensions/ms-python.debugpy-2024.12.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/pydevd_attach_to_process/linux_and_mac/attach_x86_64.dylib
+nvim-linux64/.vscode-server/extensions/ms-python.debugpy-2024.12.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/pydevd_attach_to_process/linux_and_mac/attach_linux_x86.o
+nvim-linux64/.vscode-server/extensions/ms-python.debugpy-2024.12.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/pydevd_attach_to_process/linux_and_mac/attach_linux_x86_64.o
+
+# flyctl launch added from nvim-linux64/.vscode-server/extensions/ms-vscode.vscode-typescript-next-5.8.20241108/.gitignore
+nvim-linux64/.vscode-server/extensions/ms-vscode.vscode-typescript-next-5.8.20241108/**/node_modules
+nvim-linux64/.vscode-server/extensions/ms-vscode.vscode-typescript-next-5.8.20241108/**/.DS_Store
+nvim-linux64/.vscode-server/extensions/ms-vscode.vscode-typescript-next-5.8.20241108/**/*.vsix

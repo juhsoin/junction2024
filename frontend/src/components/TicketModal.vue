@@ -9,7 +9,7 @@ import SubscribeButton from "./SubscribeButton.vue"
 // Define the props
 const props = defineProps<{
 	ticket: ITicket;
-	followed?: bool
+	followed?: boolean
 }>();
 
 // Emit an action event when the button is clicked

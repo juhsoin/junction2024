@@ -31,9 +31,11 @@ import { VApp, VMain } from 'vuetify/components';
 	--brand-yellow: #f8f43f;
 	--brand-light-blue: #a5d0e2;
 }
-
 body {
 	background-color: white;
+}
+#app {
+  max-width: none !important;
 }
 
 #app {
