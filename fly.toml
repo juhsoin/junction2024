@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for junction on 2024-11-10T01:12:30+02:00
+# fly.toml app configuration file generated for junction-70s-pohina on 2024-11-10T02:15:57+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'junction'
+app = 'junction-70s-pohina'
 primary_region = 'arn'
 
 [build]
