@@ -1,6 +1,5 @@
 import { API_URL } from "./common"
 
-
 export interface IApi {
 	id?: string
 	title: string
@@ -8,6 +7,9 @@ export interface IApi {
 	status: string
 	created_at?: string
 	updated_at?: string
+	updateSummary?: string
+	version?: string
+	nextRelease?: string
 }
 
 export const fetchApis = async (): Promise<IApi[]> => {
