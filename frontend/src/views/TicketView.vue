@@ -48,7 +48,7 @@ const toggleFilter = async (value: string) => {
 	tickets.value = await fetchTickets();
 }
 
-const toggle = (value: boolean) => {
+const toggle = (value: unknown): void => {
 	if (value) {
 		store.$state.filter.user_id = get_user_id();
 	} else {
@@ -70,8 +70,8 @@ const toggle = (value: boolean) => {
 			chips
 			closable-chips
 		></VSelect>
-		<AddNewTicket :categories="items" class="add-ticket-dialog"/>
-		<VCheckbox label="Show only my tickets" @update:model-value="(value) => toggle(value)"></VCheckbox>
+		<AddNewTicket class="add-ticket-dialog"/>
+		<VCheckbox label="Show only my tickets" @update:model-value="(value: unknown) => toggle(value)"></VCheckbox>
 		<div v-if="loading">Loading...</div>
         <KanbanTable v-else :tickets="tickets"></KanbanTable>
     </VContainer>
