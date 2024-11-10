@@ -32,11 +32,14 @@ import { VApp, VMain } from 'vuetify/components';
 	--brand-light-blue: #a5d0e2;
 }
 
-#app {
-  max-width: none !important;
+body {
+	background-color: white;
 }
 
-.v-application {
-	font-family: Inter !important;
+#app {
+  max-width: none !important;
+  font-family: Inter !important;
+  background: white;
 }
+
 </style>
