@@ -5,11 +5,14 @@ import router from '../router/index'
 
 import { VContainer } from 'vuetify/components';
 import { fetchUsersTickets, type ITicket } from '../api/ticket';
+import { fetchApis, type IApi } from '../api/apis';
 
 import { onMounted, ref } from 'vue';
 
 const tickets = ref<ITicket[]>([]);
+const apis = ref<IApi[]>([]);
 const loading = ref(true);
+const loading_apis = ref(true);
 
 
 onMounted(() => {
@@ -17,6 +20,10 @@ onMounted(() => {
 		// console.log(response)
 		tickets.value = response
 		loading.value = false;
+	});
+	fetchApis().then((response) => {
+		apis.value = response
+		loading_apis.value = false;
 	});
 });
 
@@ -28,20 +35,20 @@ const refresh = () => {
 	});
 }
 
-const apiInfo = [
-	{
-		id: '1',
-		title: 'Wind service',
-		description: 'Tuuli?',
-		status: 'Status',
-	},
-	{
-		id: '1',
-		title: 'Wind service',
-		description: 'Tuuli?',
-		status: 'Status',
-	},
-]
+// const apiInfo = [
+// 	{
+// 		id: '1',
+// 		title: 'Wind service',
+// 		description: 'Tuuli?',
+// 		status: 'Status',
+// 	},
+// 	{
+// 		id: '1',
+// 		title: 'Wind service',
+// 		description: 'Tuuli?',
+// 		status: 'Status',
+// 	},
+// ]
 
 const handleNavigation = (route: string) => {
 	router.push(route);
@@ -51,15 +58,16 @@ const handleNavigation = (route: string) => {
 <template>
 	<VContainer>
 		<h1>Your Tickets</h1>
-		<div v-if="loading">Loading...</div>
 		<div v-if="!tickets.length" class='empty-state'> You are not following any tickets at the moment.</div>
+		<div v-if="loading">Loading...</div>
 		<TicketGrid v-else @deleted="refresh" :followed="true" :tickets="tickets">
 		</TicketGrid>
 		<VBtn variant="plain" color="primary" @click="handleNavigation('/tickets')">Show All Tickets</VBtn>
 	</VContainer>
 	<VContainer>
 		<h1>Your Fingrid Services</h1>
-		<ApiGrid :api-list="apiInfo" :short-form="true" />
+		<div v-if="loading_apis">Loading...</div>
+		<ApiGrid v-else :api-list="apis" :short-form="true" />
 		<VBtn variant="plain" color="primary" @click="handleNavigation('/apis')">Show All Services</VBtn>
 	</VContainer>
 </template>
