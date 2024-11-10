@@ -27,12 +27,6 @@ const router = createRouter({
 			name: "tickets",
 			component: () => import("../views/TicketView.vue"),
 		},
-		{
-			path: "/apis/:api_id",
-			name: "api",
-			component: () => import("../views/ApiView.vue"),
-			props: true,
-		},
 	],
 })
 
