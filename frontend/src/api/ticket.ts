@@ -103,9 +103,9 @@ export interface IUpdateTicket {
 	categories: string
 }
 
-export const createTicket = async(ticket: ITicketComment) => {
+export const createTicket = async(ticket: IUpdateTicket) => {
 	ticket.status = States.NEW
-	const response = await fetch(API_URL + "/tickets", {
+	const response = await fetch(API_URL + "/tickets/", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

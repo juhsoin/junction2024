@@ -62,7 +62,7 @@ const submitTicket = () => {
 		const newTicket: IUpdateTicket = {
 			title: header.value,
 			description: description.value,
-			categories: filter.value,
+			categories: filter.value
 		};
 		// console.log(newTicket)
 		createTicket(newTicket)

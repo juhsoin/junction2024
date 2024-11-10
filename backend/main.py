@@ -31,6 +31,7 @@ origins = [
 async def redirect_html_requests(request: Request, call_next):
     accept_header = request.headers.get("accept", "")
     if "text/html" in accept_header:
+        print(request)
         return await read_index(request)
     response = await call_next(request)
     return response
