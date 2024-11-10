@@ -9,6 +9,7 @@ const loading = ref(true)
 onMounted(() => {
 	fetchApis().then((response) => {
 		apis.value = response
+		console.log(response)
 		loading.value = false
 	})
 })

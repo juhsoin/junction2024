@@ -7,10 +7,10 @@ const props = defineProps<{
     title: string;
     description: string;
     status: string;
-    updateSummary: string;
+    updateSummary?: string;
     shortForm: boolean;
     version: string;
-    nextRelease: string;
+    nextRelease?: string;
 }>();
 
 const emit = defineEmits<{

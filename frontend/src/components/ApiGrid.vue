@@ -1,16 +1,6 @@
 <script lang="ts" setup>
 import { VRow, VContainer } from 'vuetify/components';
 import ApiCard from './ApiCard.vue';
-
-// interface apiInfo {
-//     id: string;
-//     title: string;
-//     description: string;
-//     status: string;
-//     updateSummary: string;
-//     version: string;
-//     nextRelease: string;
-// }
 import { IApi } from "../api/apis"
 
 const props = defineProps<{
@@ -36,8 +26,8 @@ const emit = defineEmits<{
             :description="api.description"
             :status="api.status"
             :short-form="shortForm"
-            :next-release="api.nextRelease"
-            :update-summary="api.updateSummary"
+            :next-release="api.next_release"
+            :update-summary="api.update_summary"
             :version="api.version"
         ></ApiCard>
     </VRow>

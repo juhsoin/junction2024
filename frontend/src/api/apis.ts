@@ -7,9 +7,9 @@ export interface IApi {
 	status: string
 	created_at?: string
 	updated_at?: string
-	updateSummary?: string
+	update_summary?: string
 	version?: string
-	nextRelease?: string
+	next_release?: string
 }
 
 export const fetchApis = async (): Promise<IApi[]> => {
