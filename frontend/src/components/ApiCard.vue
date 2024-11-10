@@ -1,15 +1,16 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from 'vue';
 import { VCard, VCardTitle, VCardText } from 'vuetify/components';
+import { type IApi } from "../api/apis"
 
 const props = defineProps<{
-    id: string | Number;
+    id: string | undefined;
     title: string;
     description: string;
     status: string;
     updateSummary?: string;
     shortForm: boolean;
-    version: string;
+    version: string |undefined;
     nextRelease?: string;
 }>();
 

@@ -100,6 +100,7 @@ export interface IUpdateTicket {
 	status?: States
 	title: string
 	description: string
+	categories: string
 }
 
 export const createTicket = async(ticket: IUpdateTicket) => {
